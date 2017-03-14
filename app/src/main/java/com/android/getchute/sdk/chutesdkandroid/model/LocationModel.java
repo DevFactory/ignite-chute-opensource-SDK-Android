@@ -1,9 +1,9 @@
 /**
  * Copyright (c) 2011, Chute Corporation. All rights reserved.
- * <p>
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- * <p>
+ *
  * Redistributions of source code must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice,
@@ -12,7 +12,7 @@
  * Neither the name of the Chute Corporation nor the names
  * of its contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
- * <p>
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -26,67 +26,31 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.model;
 
-import com.google.gson.annotations.SerializedName;
+public class LocationModel {
 
-public class LoginRequestModel {
+  private String latitude;
+  private String longitude;
 
-  @SerializedName("grant_type")
-  String grantType = "password";
-  @SerializedName("username")
-  String username;
-  @SerializedName("password")
-  String password;
-  @SerializedName("client_id")
-  String clientId;
-  @SerializedName("client_secret")
-  String clientSecret;
-
-  public LoginRequestModel(String username, String password, String clientId, String clientSecret) {
-    this.username = username;
-    this.password = password;
-    this.clientId = clientId;
-    this.clientSecret = clientSecret;
+  public String getLatitude() {
+    return latitude;
   }
 
-  public void setClientId(String clientId) {
-    this.clientId = clientId;
+  public void setLatitude(String latitude) {
+    this.latitude = latitude;
   }
 
-  public void setClientSecret(String clientSecret) {
-    this.clientSecret = clientSecret;
+  public String getLongitude() {
+    return longitude;
   }
 
-  public String getClientId() {
-    return clientId;
-  }
-
-  public String getClientSecret() {
-    return clientSecret;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
+  public void setLongitude(String longitude) {
+    this.longitude = longitude;
   }
 
   @Override public String toString() {
-    return "LoginRequestModel{" +
-        "grantType='" + grantType + '\'' +
-        ", username='" + username + '\'' +
-        ", password='" + password + '\'' +
-        ", clientId='" + clientId + '\'' +
-        ", clientSecret='" + clientSecret + '\'' +
+    return "LocationModel{" +
+        "latitude='" + latitude + '\'' +
+        ", longitude='" + longitude + '\'' +
         '}';
   }
 }

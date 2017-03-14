@@ -1,9 +1,9 @@
 /**
  * Copyright (c) 2011, Chute Corporation. All rights reserved.
- * <p>
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- * <p>
+ *
  * Redistributions of source code must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice,
@@ -12,7 +12,7 @@
  * Neither the name of the Chute Corporation nor the names
  * of its contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
- * <p>
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -26,67 +26,54 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.model;
 
-import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
+import java.util.List;
 
-public class LoginRequestModel {
+public class OauthAppModel implements Serializable {
 
-  @SerializedName("grant_type")
-  String grantType = "password";
-  @SerializedName("username")
-  String username;
-  @SerializedName("password")
-  String password;
-  @SerializedName("client_id")
-  String clientId;
-  @SerializedName("client_secret")
-  String clientSecret;
+  private String id;
+  private String name;
+  private List<String> scopes;
+  private List<String> permissions;
 
-  public LoginRequestModel(String username, String password, String clientId, String clientSecret) {
-    this.username = username;
-    this.password = password;
-    this.clientId = clientId;
-    this.clientSecret = clientSecret;
+  public String getId() {
+    return id;
   }
 
-  public void setClientId(String clientId) {
-    this.clientId = clientId;
+  public void setId(String id) {
+    this.id = id;
   }
 
-  public void setClientSecret(String clientSecret) {
-    this.clientSecret = clientSecret;
+  public String getName() {
+    return name;
   }
 
-  public String getClientId() {
-    return clientId;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public String getClientSecret() {
-    return clientSecret;
+  public List<String> getScopes() {
+    return scopes;
   }
 
-  public String getPassword() {
-    return password;
+  public void setScopes(List<String> scopes) {
+    this.scopes = scopes;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public List<String> getPermissions() {
+    return permissions;
   }
 
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
+  public void setPermissions(List<String> permissions) {
+    this.permissions = permissions;
   }
 
   @Override public String toString() {
-    return "LoginRequestModel{" +
-        "grantType='" + grantType + '\'' +
-        ", username='" + username + '\'' +
-        ", password='" + password + '\'' +
-        ", clientId='" + clientId + '\'' +
-        ", clientSecret='" + clientSecret + '\'' +
+    return "OauthAppModel{" +
+        "id='" + id + '\'' +
+        ", name='" + name + '\'' +
+        ", scopes=" + scopes +
+        ", permissions=" + permissions +
         '}';
   }
 }

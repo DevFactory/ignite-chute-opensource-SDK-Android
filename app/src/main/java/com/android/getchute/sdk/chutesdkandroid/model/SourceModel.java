@@ -26,105 +26,119 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.model;
 
+import java.io.Serializable;
+
 /**
- * The {@link ResponseStatusModel} class represents the status of the response.
- * <p>
- * It holds info regarding error messages, error codes, protocol version, href
- * and API limitations.
+ * The {@link SourceModel} class holds asset source information such as source
+ * URL, service, import URL and original URL.
  */
-public class ResponseStatusModel {
+public class SourceModel implements Serializable {
 
-  public static final String TAG = ResponseStatusModel.class.getSimpleName();
-
-  /**
-   * Response title.
-   */
-  private String title;
+  public static final String TAG = SourceModel.class.getSimpleName();
 
   /**
-   * Error message.
+   * Asset source.
    */
-  private String error;
+  private String source;
 
   /**
-   * Protocol version.
+   * Source ID.
    */
-  private int version;
+  private String sourceId;
 
   /**
-   * Error code.
+   * Source URL.
    */
-  private int code;
+  private String sourceUrl;
 
   /**
-   * Href info.
+   * Source service.
    */
-  private String href;
+  private String service;
 
   /**
-   * API calls limits.
+   * Import ID.
    */
-  private ApiLimitsModel apiLimits;
+  private String importId;
+
+  /**
+   * Import URL.
+   */
+  private String importUrl;
+
+  /**
+   * Original URL.
+   */
+  private String originalUrl;
 
   /**
    * Getters and setters.
    */
-  public String getError() {
-    return error;
+  public String getSource() {
+    return source;
   }
 
-  public String getTitle() {
-    return title;
+  public void setSource(String source) {
+    this.source = source;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public String getSourceId() {
+    return sourceId;
   }
 
-  public void setError(String error) {
-    this.error = error;
+  public void setSourceId(String sourceId) {
+    this.sourceId = sourceId;
   }
 
-  public int getVersion() {
-    return version;
+  public String getSourceUrl() {
+    return sourceUrl;
   }
 
-  public void setVersion(int version) {
-    this.version = version;
+  public void setSourceUrl(String sourceUrl) {
+    this.sourceUrl = sourceUrl;
   }
 
-  public int getCode() {
-    return code;
+  public String getService() {
+    return service;
   }
 
-  public void setCode(int code) {
-    this.code = code;
+  public void setService(String service) {
+    this.service = service;
   }
 
-  public String getHref() {
-    return href;
+  public String getImportId() {
+    return importId;
   }
 
-  public void setHref(String href) {
-    this.href = href;
+  public void setImportId(String importId) {
+    this.importId = importId;
   }
 
-  public ApiLimitsModel getApiLimits() {
-    return apiLimits;
+  public String getImportUrl() {
+    return importUrl;
   }
 
-  public void setApiLimits(ApiLimitsModel apiLimits) {
-    this.apiLimits = apiLimits;
+  public void setImportUrl(String importUrl) {
+    this.importUrl = importUrl;
+  }
+
+  public String getOriginalUrl() {
+    return originalUrl;
+  }
+
+  public void setOriginalUrl(String originalUrl) {
+    this.originalUrl = originalUrl;
   }
 
   @Override public String toString() {
-    return "ResponseStatusModel{" +
-        "title='" + title + '\'' +
-        ", error='" + error + '\'' +
-        ", version=" + version +
-        ", code=" + code +
-        ", href='" + href + '\'' +
-        ", apiLimits=" + apiLimits +
+    return "SourceModel{" +
+        "source='" + source + '\'' +
+        ", sourceId='" + sourceId + '\'' +
+        ", sourceUrl='" + sourceUrl + '\'' +
+        ", service='" + service + '\'' +
+        ", importId='" + importId + '\'' +
+        ", importUrl='" + importUrl + '\'' +
+        ", originalUrl='" + originalUrl + '\'' +
         '}';
   }
 }

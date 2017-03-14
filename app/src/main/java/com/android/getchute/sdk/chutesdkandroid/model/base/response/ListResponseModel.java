@@ -35,8 +35,7 @@ import java.util.List;
  * response received from the server. It consists of {@link PaginationModel},
  * {@link ResponseStatusModel} and data object.
  *
- * @param <T>
- *            The response received can be of any kind.
+ * @param <T> The response received can be of any kind.
  */
 public class ListResponseModel<T> {
 
@@ -84,21 +83,11 @@ public class ListResponseModel<T> {
     this.data = data;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#toString()
-   */
-  @Override
-  public String toString() {
-    StringBuilder builder = new StringBuilder();
-    builder.append("ListResponseModel [data=");
-    builder.append(data);
-    builder.append(", pagination=");
-    builder.append(pagination);
-    builder.append(", response=");
-    builder.append(response);
-    builder.append("]");
-    return builder.toString();
+  @Override public String toString() {
+    return "ListResponseModel{" +
+        "data=" + data +
+        ", pagination=" + pagination +
+        ", response=" + response +
+        '}';
   }
 }

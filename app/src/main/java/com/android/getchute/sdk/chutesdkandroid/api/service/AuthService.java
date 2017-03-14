@@ -28,8 +28,6 @@ package com.android.getchute.sdk.chutesdkandroid.api.service;
 
 import com.android.getchute.sdk.chutesdkandroid.model.LoginRequestModel;
 import com.android.getchute.sdk.chutesdkandroid.model.LoginResponseModel;
-
-import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -38,14 +36,10 @@ import rx.Observable;
 public interface AuthService {
 
     @POST("oauth/token")
-    Observable<LoginResponseModel> loginObservableRequest(
+    Observable<LoginResponseModel> loginObservable(
             @Body LoginRequestModel loginRequestModel);
 
     @POST("oauth/token")
-    Flowable<LoginResponseModel> loginFlowableRequest(
-            @Body LoginRequestModel loginRequestModel);
-
-    @POST("oauth/token")
-    Call<LoginResponseModel> loginCallRequest(
+    Call<LoginResponseModel> loginCall(
             @Body LoginRequestModel loginRequestModel);
 }

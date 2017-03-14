@@ -29,28 +29,35 @@ package com.android.getchute.sdk.chutesdkandroid.api.service.model;
 import com.android.getchute.sdk.chutesdkandroid.api.Chute;
 import com.android.getchute.sdk.chutesdkandroid.model.LoginRequestModel;
 import com.android.getchute.sdk.chutesdkandroid.model.LoginResponseModel;
-
-import io.reactivex.Flowable;
 import retrofit2.Call;
 import rx.Observable;
 
 public class GCAuthentication {
 
+  public static class Observables {
+
     /**
      * Authenticates user with given client ID and secret.
      */
-    public Observable<LoginResponseModel> loginObservable(String username, String password, String clientId, String clientSecret) {
-        LoginRequestModel loginRequestModel = new LoginRequestModel(username, password, clientId, clientSecret);
-        return Chute.getAuthService().loginObservableRequest(loginRequestModel);
+    public static Observable<LoginResponseModel> login(String username, String password,
+        String clientId, String clientSecret) {
+      LoginRequestModel loginRequestModel =
+          new LoginRequestModel(username, password, clientId, clientSecret);
+      return Chute.getAuthService().loginObservable(loginRequestModel);
     }
+  }
 
-    public Flowable<LoginResponseModel> loginFlowable(String username, String password, String clientId, String clientSecret) {
-        LoginRequestModel loginRequestModel = new LoginRequestModel(username, password, clientId, clientSecret);
-        return Chute.getAuthService().loginFlowableRequest(loginRequestModel);
-    }
+  public static class Calls {
 
-    public Call<LoginResponseModel> loginCall(String username, String password, String clientId, String clientSecret) {
-        LoginRequestModel loginRequestModel = new LoginRequestModel(username, password, clientId, clientSecret);
-        return Chute.getAuthService().loginCallRequest(loginRequestModel);
+    /**
+     * Authenticates user with given client ID and secret.
+     */
+    public static Call<LoginResponseModel> login(String username, String password,
+        String clientId,
+        String clientSecret) {
+      LoginRequestModel loginRequestModel =
+          new LoginRequestModel(username, password, clientId, clientSecret);
+      return Chute.getAuthService().loginCall(loginRequestModel);
     }
+  }
 }

@@ -65,14 +65,12 @@ public class LoginResponseModel {
     this.errorDescription = errorDescription;
   }
 
-  @Override
-  public String toString() {
-    final StringBuilder sb = new StringBuilder("LoginResponseModel{");
-    sb.append("accessToken='").append(accessToken).append('\'');
-    sb.append(", tokenType='").append(tokenType).append('\'');
-    sb.append(", error='").append(error).append('\'');
-    sb.append(", errorDescription='").append(errorDescription).append('\'');
-    sb.append('}');
-    return sb.toString();
+  @Override public String toString() {
+    return "LoginResponseModel{" +
+        "accessToken='" + accessToken + '\'' +
+        ", tokenType='" + tokenType + '\'' +
+        ", error='" + error + '\'' +
+        ", errorDescription='" + errorDescription + '\'' +
+        '}';
   }
 }

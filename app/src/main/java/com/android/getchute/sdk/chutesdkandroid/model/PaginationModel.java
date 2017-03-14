@@ -145,29 +145,15 @@ public class PaginationModel {
     this.perPage = perPage;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#toString()
-   */
-  @Override
-  public String toString() {
-    StringBuilder builder = new StringBuilder();
-    builder.append("PaginationModel [totalPages=");
-    builder.append(totalPages);
-    builder.append(", currentPage=");
-    builder.append(currentPage);
-    builder.append(", nextPage=");
-    builder.append(nextPage);
-    builder.append(", previousPage=");
-    builder.append(previousPage);
-    builder.append(", firstPage=");
-    builder.append(firstPage);
-    builder.append(", lastPage=");
-    builder.append(lastPage);
-    builder.append(", perPage=");
-    builder.append(perPage);
-    builder.append("]");
-    return builder.toString();
+  @Override public String toString() {
+    return "PaginationModel{" +
+        "totalPages=" + totalPages +
+        ", currentPage=" + currentPage +
+        ", nextPage='" + nextPage + '\'' +
+        ", previousPage='" + previousPage + '\'' +
+        ", firstPage='" + firstPage + '\'' +
+        ", lastPage='" + lastPage + '\'' +
+        ", perPage=" + perPage +
+        '}';
   }
 }

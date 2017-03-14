@@ -1,18 +1,18 @@
 /**
  * Copyright (c) 2011, Chute Corporation. All rights reserved.
- * <p>
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- * <p>
+ *
  * Redistributions of source code must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation
  * and/or other materials provided with the distribution.
- * Neither the name of the Chute Corporation nor the names
+ * Neither the name of the  Chute Corporation nor the names
  * of its contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
- * <p>
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -26,67 +26,88 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.model;
 
-import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class LoginRequestModel {
+/**
+ * The {@link ProfileModel} class holds information regarding the user profile.
+ */
+public class ProfileModel implements Serializable {
 
-  @SerializedName("grant_type")
-  String grantType = "password";
-  @SerializedName("username")
-  String username;
-  @SerializedName("password")
-  String password;
-  @SerializedName("client_id")
-  String clientId;
-  @SerializedName("client_secret")
-  String clientSecret;
+  /**
+   * First name of the user.
+   */
+  private String firstName;
 
-  public LoginRequestModel(String username, String password, String clientId, String clientSecret) {
-    this.username = username;
-    this.password = password;
-    this.clientId = clientId;
-    this.clientSecret = clientSecret;
+  /**
+   * Last name of the user.
+   */
+  private String lastName;
+
+  /**
+   * User e-mail.
+   */
+  private String email;
+
+  /**
+   * User phone number.
+   */
+  private String phoneNumber;
+
+  /**
+   * User birth year.
+   */
+  private String birthYear;
+
+  /**
+   * Getter and setter methods.
+   */
+  public String getFirstName() {
+    return firstName;
   }
 
-  public void setClientId(String clientId) {
-    this.clientId = clientId;
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 
-  public void setClientSecret(String clientSecret) {
-    this.clientSecret = clientSecret;
+  public String getLastName() {
+    return lastName;
   }
 
-  public String getClientId() {
-    return clientId;
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
-  public String getClientSecret() {
-    return clientSecret;
+  public String getEmail() {
+    return email;
   }
 
-  public String getPassword() {
-    return password;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
 
-  public String getUsername() {
-    return username;
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public String getBirthYear() {
+    return birthYear;
+  }
+
+  public void setBirthYear(String birthYear) {
+    this.birthYear = birthYear;
   }
 
   @Override public String toString() {
-    return "LoginRequestModel{" +
-        "grantType='" + grantType + '\'' +
-        ", username='" + username + '\'' +
-        ", password='" + password + '\'' +
-        ", clientId='" + clientId + '\'' +
-        ", clientSecret='" + clientSecret + '\'' +
+    return "ProfileModel{" +
+        "firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", email='" + email + '\'' +
+        ", phoneNumber='" + phoneNumber + '\'' +
+        ", birthYear='" + birthYear + '\'' +
         '}';
   }
 }

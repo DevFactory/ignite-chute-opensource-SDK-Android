@@ -1,9 +1,9 @@
 /**
  * Copyright (c) 2011, Chute Corporation. All rights reserved.
- * <p>
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- * <p>
+ *
  * Redistributions of source code must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
  * Redistributions in binary form must reproduce the above copyright notice,
@@ -12,7 +12,7 @@
  * Neither the name of the Chute Corporation nor the names
  * of its contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
- * <p>
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -26,67 +26,59 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.model;
 
-import com.google.gson.annotations.SerializedName;
+/**
+ * The {@link CounterModel} class wraps information regarding number of photo,
+ * video and inbox items for an asset or album.
+ */
+public class CounterModel {
 
-public class LoginRequestModel {
+  /**
+   * Number of photos.
+   */
+  private long photos;
 
-  @SerializedName("grant_type")
-  String grantType = "password";
-  @SerializedName("username")
-  String username;
-  @SerializedName("password")
-  String password;
-  @SerializedName("client_id")
-  String clientId;
-  @SerializedName("client_secret")
-  String clientSecret;
+  /**
+   * Number of videos.
+   */
+  private long videos;
 
-  public LoginRequestModel(String username, String password, String clientId, String clientSecret) {
-    this.username = username;
-    this.password = password;
-    this.clientId = clientId;
-    this.clientSecret = clientSecret;
+  /**
+   * Number of inbox items.
+   */
+  private long inbox;
+
+  /**
+   * Getters and setters.
+   */
+  public long getPhotos() {
+    return photos;
   }
 
-  public void setClientId(String clientId) {
-    this.clientId = clientId;
+  public void setPhotos(long photos) {
+    this.photos = photos;
   }
 
-  public void setClientSecret(String clientSecret) {
-    this.clientSecret = clientSecret;
+  public long getVideos() {
+    return videos;
   }
 
-  public String getClientId() {
-    return clientId;
+  public void setVideos(long videos) {
+    this.videos = videos;
   }
 
-  public String getClientSecret() {
-    return clientSecret;
+  public long getInbox() {
+    return inbox;
   }
 
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
+  public void setInbox(long inbox) {
+    this.inbox = inbox;
   }
 
   @Override public String toString() {
-    return "LoginRequestModel{" +
-        "grantType='" + grantType + '\'' +
-        ", username='" + username + '\'' +
-        ", password='" + password + '\'' +
-        ", clientId='" + clientId + '\'' +
-        ", clientSecret='" + clientSecret + '\'' +
+    return "CounterModel{" +
+        "photos=" + photos +
+        ", videos=" + videos +
+        ", inbox=" + inbox +
         '}';
   }
 }

@@ -90,23 +90,12 @@ public class ApiLimitsModel {
     this.availableHourlyCalls = availableHourlyCalls;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#toString()
-   */
-  @Override
-  public String toString() {
-    StringBuilder builder = new StringBuilder();
-    builder.append("ApiLimitsModel [maxMonthlyCalls=");
-    builder.append(maxMonthlyCalls);
-    builder.append(", availableMonthlyCalls=");
-    builder.append(availableMonthlyCalls);
-    builder.append(", maxHourlyCalls=");
-    builder.append(maxHourlyCalls);
-    builder.append(", availableHourlyCalls=");
-    builder.append(availableHourlyCalls);
-    builder.append("]");
-    return builder.toString();
+  @Override public String toString() {
+    return "ApiLimitsModel{" +
+        "maxMonthlyCalls=" + maxMonthlyCalls +
+        ", availableMonthlyCalls=" + availableMonthlyCalls +
+        ", maxHourlyCalls=" + maxHourlyCalls +
+        ", availableHourlyCalls=" + availableHourlyCalls +
+        '}';
   }
 }

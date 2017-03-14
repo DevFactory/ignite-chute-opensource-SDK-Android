@@ -30,13 +30,11 @@ import com.android.getchute.sdk.chutesdkandroid.model.PaginationModel;
 import com.android.getchute.sdk.chutesdkandroid.model.ResponseStatusModel;
 
 /**
- *
  * The {@link ResponseModel} class represents a concept of the JSON response
  * received from the server. It consists of {@link PaginationModel},
  * {@link ResponseStatusModel} and data object.
  *
- * @param <T>
- *            The response received can be of any kind.
+ * @param <T> The response received can be of any kind.
  */
 public class ResponseModel<T> {
 
@@ -84,21 +82,11 @@ public class ResponseModel<T> {
     this.data = data;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#toString()
-   */
-  @Override
-  public String toString() {
-    StringBuilder builder = new StringBuilder();
-    builder.append("ResponseModel [data=");
-    builder.append(data);
-    builder.append(", pagination=");
-    builder.append(pagination);
-    builder.append(", response=");
-    builder.append(response);
-    builder.append("]");
-    return builder.toString();
+  @Override public String toString() {
+    return "ResponseModel{" +
+        "data=" + data +
+        ", pagination=" + pagination +
+        ", response=" + response +
+        '}';
   }
 }
