@@ -40,11 +40,6 @@ public class PaginationModel {
   public static final int DEFAULT_PER_PAGE = 50;
 
   /**
-   * Number of total response pages.
-   */
-  private long totalPages;
-
-  /**
    * The current page of the response.
    */
   private long currentPage;
@@ -60,16 +55,6 @@ public class PaginationModel {
   private String previousPage;
 
   /**
-   * The first page of the response.
-   */
-  private String firstPage;
-
-  /**
-   * The last page of the response.
-   */
-  private String lastPage;
-
-  /**
    * Number of responses per page.
    */
   private int perPage = DEFAULT_PER_PAGE;
@@ -77,14 +62,6 @@ public class PaginationModel {
   /**
    * Getters and setters.
    */
-  public long getTotalPages() {
-    return totalPages;
-  }
-
-  public void setTotalPages(long totalPages) {
-    this.totalPages = totalPages;
-  }
-
   public long getCurrentPage() {
     return currentPage;
   }
@@ -102,7 +79,7 @@ public class PaginationModel {
   }
 
   public boolean hasNextPage() {
-    return TextUtils.isEmpty(nextPage) == false;
+    return !TextUtils.isEmpty(nextPage);
   }
 
   public String getPreviousPage() {
@@ -114,23 +91,7 @@ public class PaginationModel {
   }
 
   public boolean hasPreviousPage() {
-    return TextUtils.isEmpty(previousPage) == false;
-  }
-
-  public String getFirstPage() {
-    return firstPage;
-  }
-
-  public void setFirstPage(String firstPage) {
-    this.firstPage = firstPage;
-  }
-
-  public String getLastPage() {
-    return lastPage;
-  }
-
-  public void setLastPage(String lastPage) {
-    this.lastPage = lastPage;
+    return !TextUtils.isEmpty(previousPage);
   }
 
   public int getPerPage() {
@@ -147,12 +108,9 @@ public class PaginationModel {
 
   @Override public String toString() {
     return "PaginationModel{" +
-        "totalPages=" + totalPages +
-        ", currentPage=" + currentPage +
+        "currentPage=" + currentPage +
         ", nextPage='" + nextPage + '\'' +
         ", previousPage='" + previousPage + '\'' +
-        ", firstPage='" + firstPage + '\'' +
-        ", lastPage='" + lastPage + '\'' +
         ", perPage=" + perPage +
         '}';
   }

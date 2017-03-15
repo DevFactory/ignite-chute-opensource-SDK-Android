@@ -31,6 +31,7 @@ import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenti
 import com.android.getchute.sdk.chutesdkandroid.api.service.AlbumService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.AssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.AuthService;
+import com.android.getchute.sdk.chutesdkandroid.api.service.HeartService;
 import com.android.getchute.sdk.chutesdkandroid.retrofit.LoggingInterceptor;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -85,5 +86,12 @@ public class Chute {
         .baseUrl(Endpoints.BASE_URL)
         .build();
     return retrofit.create(AssetService.class);
+  }
+
+  public static HeartService getHeartService() {
+    Retrofit retrofit = retrofit()
+        .baseUrl(Endpoints.BASE_URL)
+        .build();
+    return retrofit.create(HeartService.class);
   }
 }
