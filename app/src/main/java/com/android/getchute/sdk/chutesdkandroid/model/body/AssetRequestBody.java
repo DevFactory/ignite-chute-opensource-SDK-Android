@@ -26,38 +26,25 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.model.body;
 
-public class AlbumBodyRequestModel {
+import com.google.gson.annotations.SerializedName;
 
-    /*
-    Album name
-     */
-    private String name;
-    /*
-    Asset Id
-     */
-    private String coverAssetId;
+public class AssetRequestBody {
 
-    public String getName() {
-        return name;
+    @SerializedName("asset")
+    private AssetBodyRequestModel asset;
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("AssetRequestBody{");
+        sb.append("asset=").append(asset);
+        sb.append('}');
+        return sb.toString();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public AssetBodyRequestModel getAsset() {
+        return asset;
     }
 
-    public String getCoverAssetId() {
-        return coverAssetId;
-    }
-
-    public void setCoverAssetId(String coverAssetId) {
-        this.coverAssetId = coverAssetId;
-    }
-
-    @Override
-    public String toString() {
-        return "AlbumBodyRequestModel{" +
-                "name='" + name + '\'' +
-                ", coverAssetId='" + coverAssetId + '\'' +
-                '}';
+    public void setAsset(AssetBodyRequestModel asset) {
+        this.asset = asset;
     }
 }

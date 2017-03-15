@@ -24,12 +24,12 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-
 package com.android.getchute.sdk.chutesdkandroid.api;
 
 import com.android.getchute.sdk.chutesdkandroid.Endpoints;
 import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
 import com.android.getchute.sdk.chutesdkandroid.api.service.AlbumService;
+import com.android.getchute.sdk.chutesdkandroid.api.service.AssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.AuthService;
 import com.android.getchute.sdk.chutesdkandroid.retrofit.LoggingInterceptor;
 import com.google.gson.FieldNamingPolicy;
@@ -78,5 +78,12 @@ public class Chute {
         .baseUrl(Endpoints.BASE_URL)
         .build();
     return retrofit.create(AlbumService.class);
+  }
+
+  public static AssetService getAssetService() {
+    Retrofit retrofit = retrofit()
+        .baseUrl(Endpoints.BASE_URL)
+        .build();
+    return retrofit.create(AssetService.class);
   }
 }

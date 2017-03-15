@@ -26,38 +26,23 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.model.body;
 
-public class AlbumBodyRequestModel {
+import java.util.List;
 
-    /*
-    Album name
-     */
-    private String name;
-    /*
-    Asset Id
-     */
-    private String coverAssetId;
+public class AssetBodyRequestModel {
 
-    public String getName() {
-        return name;
-    }
+  private List<String> tags;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public List<String> getTags() {
+    return tags;
+  }
 
-    public String getCoverAssetId() {
-        return coverAssetId;
-    }
+  public void setTags(List<String> tags) {
+    this.tags = tags;
+  }
 
-    public void setCoverAssetId(String coverAssetId) {
-        this.coverAssetId = coverAssetId;
-    }
-
-    @Override
-    public String toString() {
-        return "AlbumBodyRequestModel{" +
-                "name='" + name + '\'' +
-                ", coverAssetId='" + coverAssetId + '\'' +
-                '}';
-    }
+  @Override public String toString() {
+    return "AssetBodyRequestModel{" +
+        "tags=" + tags +
+        '}';
+  }
 }
