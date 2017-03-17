@@ -24,7 +24,7 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api;
+package com.android.getchute.sdk.chutesdkandroid.retrofit;
 
 import com.android.getchute.sdk.chutesdkandroid.Endpoints;
 import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
@@ -32,7 +32,7 @@ import com.android.getchute.sdk.chutesdkandroid.api.service.AlbumService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.AssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.AuthService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.HeartService;
-import com.android.getchute.sdk.chutesdkandroid.retrofit.LoggingInterceptor;
+import com.android.getchute.sdk.chutesdkandroid.api.service.VoteService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,56 +42,66 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.schedulers.Schedulers;
 
-public class Chute {
+public class RetrofitService {
 
-  public static final String TAG = Chute.class.getSimpleName();
+  private static RetrofitService instance;
+  private Retrofit retrofit;
 
-  private static Gson gson() {
+  private RetrofitService() {
+    createRetrofit();
+  }
+
+  public static RetrofitService get() {
+    if (instance == null) {
+      synchronized (RetrofitService.class) {
+       if (instance == null) {
+         instance = new RetrofitService();
+       }
+      }
+    }
+    return instance;
+  }
+
+  private Gson gson() {
     Gson gson = new GsonBuilder().setFieldNamingPolicy(
         FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
     return gson;
   }
 
-  private static Retrofit.Builder retrofit() {
-    Retrofit.Builder retrofit = new Retrofit.Builder()
+  private Retrofit createRetrofit() {
+    Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson()))
         .client(authClient().build())
         .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()));
+    retrofit = retrofitBuilder.baseUrl(Endpoints.BASE_URL)
+        .build();
     return retrofit;
   }
 
-  private static OkHttpClient.Builder authClient() {
+  private OkHttpClient.Builder authClient() {
     OkHttpClient.Builder client = new OkHttpClient.Builder();
     client.interceptors().add(new LoggingInterceptor());
     client.interceptors().add(TokenAuthenticationProvider.getInstance());
     return client;
   }
 
-  public static AuthService getAuthService() {
-    Retrofit retrofit = retrofit()
-        .baseUrl(Endpoints.BASE_URL)
-        .build();
+  public AuthService getAuthService() {
     return retrofit.create(AuthService.class);
   }
 
-  public static AlbumService getAlbumService() {
-    Retrofit retrofit = retrofit()
-        .baseUrl(Endpoints.BASE_URL)
-        .build();
+  public AlbumService getAlbumService() {
     return retrofit.create(AlbumService.class);
   }
 
-  public static AssetService getAssetService() {
-    Retrofit retrofit = retrofit()
-        .baseUrl(Endpoints.BASE_URL)
-        .build();
+  public AssetService getAssetService() {
     return retrofit.create(AssetService.class);
   }
 
-  public static HeartService getHeartService() {
-    Retrofit retrofit = retrofit()
-        .baseUrl(Endpoints.BASE_URL)
-        .build();
+  public HeartService getHeartService() {
     return retrofit.create(HeartService.class);
+  }
+
+  public VoteService getVoteService() {
+    return retrofit.create(VoteService.class);
   }
 }

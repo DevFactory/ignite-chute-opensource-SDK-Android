@@ -26,11 +26,11 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.api.service.model;
 
-import com.android.getchute.sdk.chutesdkandroid.api.Chute;
 import com.android.getchute.sdk.chutesdkandroid.model.LoginRequestModel;
 import com.android.getchute.sdk.chutesdkandroid.model.LoginResponseModel;
+import com.android.getchute.sdk.chutesdkandroid.retrofit.RetrofitService;
+import io.reactivex.Observable;
 import retrofit2.Call;
-import rx.Observable;
 
 public class GCAuthentication {
 
@@ -43,7 +43,7 @@ public class GCAuthentication {
         String clientId, String clientSecret) {
       LoginRequestModel loginRequestModel =
           new LoginRequestModel(username, password, clientId, clientSecret);
-      return Chute.getAuthService().loginObservable(loginRequestModel);
+      return RetrofitService.get().getAuthService().loginObservable(loginRequestModel);
     }
   }
 
@@ -57,7 +57,7 @@ public class GCAuthentication {
         String clientSecret) {
       LoginRequestModel loginRequestModel =
           new LoginRequestModel(username, password, clientId, clientSecret);
-      return Chute.getAuthService().loginCall(loginRequestModel);
+      return RetrofitService.get().getAuthService().loginCall(loginRequestModel);
     }
   }
 }

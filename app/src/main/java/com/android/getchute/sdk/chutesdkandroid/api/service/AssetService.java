@@ -30,6 +30,7 @@ import com.android.getchute.sdk.chutesdkandroid.model.AssetModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.body.AssetRequestBody;
+import io.reactivex.Observable;
 import java.util.HashMap;
 import java.util.List;
 import retrofit2.Call;
@@ -41,7 +42,6 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
-import rx.Observable;
 
 public interface AssetService {
 

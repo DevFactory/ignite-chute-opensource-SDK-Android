@@ -27,7 +27,6 @@
 package com.android.getchute.sdk.chutesdkandroid.api.service.model;
 
 import android.support.annotation.Nullable;
-import com.android.getchute.sdk.chutesdkandroid.api.Chute;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.AssetModel;
 import com.android.getchute.sdk.chutesdkandroid.model.PaginationModel;
@@ -37,10 +36,11 @@ import com.android.getchute.sdk.chutesdkandroid.model.body.AssetBodyRequestModel
 import com.android.getchute.sdk.chutesdkandroid.model.body.AssetRequestBody;
 import com.android.getchute.sdk.chutesdkandroid.model.enums.AccountType;
 import com.android.getchute.sdk.chutesdkandroid.model.enums.AssetType;
+import com.android.getchute.sdk.chutesdkandroid.retrofit.RetrofitService;
+import io.reactivex.Observable;
 import java.util.HashMap;
 import java.util.List;
 import retrofit2.Call;
-import rx.Observable;
 
 public class GCAssets {
 
@@ -52,10 +52,10 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} whose assets are being retrieved.
      * @param perPage Number of assets per page.
      */
-    public Observable<ListResponseModel<AssetModel>> list(String albumId, String perPage,
+    public static Observable<ListResponseModel<AssetModel>> list(String albumId, String perPage,
         @Nullable AssetType type, @Nullable String username, @Nullable List<String> tags,
         @Nullable AccountType service) {
-      return Chute.getAssetService()
+      return RetrofitService.get().getAssetService()
           .listObservable(albumId, perPage, type.name(), username, tags, service.getLoginMethod());
     }
 
@@ -65,8 +65,8 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} whose asset is demanded.
      * @param assetId The ID of the requested {@link AssetModel}
      */
-    public Observable<ResponseModel<AssetModel>> get(String albumId, String assetId) {
-      return Chute.getAssetService().getObservable(albumId, assetId);
+    public static Observable<ResponseModel<AssetModel>> get(String albumId, String assetId) {
+      return RetrofitService.get().getAssetService().getObservable(albumId, assetId);
     }
 
     /**
@@ -76,9 +76,9 @@ public class GCAssets {
      * @param assetId The ID of the {@link AssetModel} you wish to copy to another album
      * @param newAlbumId The ID of the {@link AlbumModel} that is going to store the copied asset.
      */
-    public Observable<ResponseModel<AssetModel>> copy(String albumId, String assetId,
+    public static Observable<ResponseModel<AssetModel>> copy(String albumId, String assetId,
         String newAlbumId) {
-      return Chute.getAssetService().copyObservable(albumId, assetId, newAlbumId);
+      return RetrofitService.get().getAssetService().copyObservable(albumId, assetId, newAlbumId);
     }
 
     /**
@@ -87,8 +87,8 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} holding the asset to be deleted.
      * @param assetId The ID of the {@link AssetModel} to be removed.
      */
-    public Observable<ResponseModel<AssetModel>> delete(String albumId, String assetId) {
-      return Chute.getAssetService().deleteObservable(albumId, assetId);
+    public static Observable<ResponseModel<AssetModel>> delete(String albumId, String assetId) {
+      return RetrofitService.get().getAssetService().deleteObservable(albumId, assetId);
     }
 
     /**
@@ -98,9 +98,9 @@ public class GCAssets {
      * @param assetId The ID of the {@link AssetModel} you wish to move to another album.
      * @param newAlbumId The ID of the {@link AlbumModel} that is going to store the moved asset.
      */
-    public Observable<ResponseModel<AssetModel>> move(String albumId, String assetId,
+    public static Observable<ResponseModel<AssetModel>> move(String albumId, String assetId,
         String newAlbumId) {
-      return Chute.getAssetService().moveObservable(albumId, assetId, newAlbumId);
+      return RetrofitService.get().getAssetService().moveObservable(albumId, assetId, newAlbumId);
     }
 
     /**
@@ -111,9 +111,9 @@ public class GCAssets {
      * @param urls List of URL-s you want to import.
      * @param instagramIds List of Instagram IDs you want to import.
      */
-    public Observable<ResponseModel<AssetModel>> importAssets(String albumId, String assetId,
+    public static Observable<ResponseModel<AssetModel>> importAssets(String albumId, String assetId,
         @Nullable List<String> urls, @Nullable List<String> instagramIds) {
-      return Chute.getAssetService().importObservable(albumId, assetId, urls, instagramIds);
+      return RetrofitService.get().getAssetService().importObservable(albumId, assetId, urls, instagramIds);
     }
 
     /**
@@ -122,13 +122,13 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} containing the asset to be updated.
      * @param assetId The ID of the {@link AssetModel} that needs to be updated.
      */
-    public Observable<ResponseModel<AssetModel>> update(String albumId, String assetId,
+    public static Observable<ResponseModel<AssetModel>> update(String albumId, String assetId,
         List<String> tags) {
       AssetRequestBody assetRequestBody = new AssetRequestBody();
       AssetBodyRequestModel assetBodyRequestModel = new AssetBodyRequestModel();
       assetBodyRequestModel.setTags(tags);
       assetRequestBody.setAsset(assetBodyRequestModel);
-      return Chute.getAssetService().updateObservable(albumId, assetId, assetRequestBody);
+      return RetrofitService.get().getAssetService().updateObservable(albumId, assetId, assetRequestBody);
     }
 
     /**
@@ -141,9 +141,9 @@ public class GCAssets {
      * be retrieved.
      * @param assetId The ID of the {@link AssetModel} containing exif data to be retrieved.
      */
-    public Observable<ResponseModel<HashMap<String, String>>> exif(String albumId,
+    public static Observable<ResponseModel<HashMap<String, String>>> exif(String albumId,
         String assetId) {
-      return Chute.getAssetService().exifObservable(albumId, assetId);
+      return RetrofitService.get().getAssetService().exifObservable(albumId, assetId);
     }
 
     /**
@@ -151,7 +151,7 @@ public class GCAssets {
      */
     public static Observable<ListResponseModel<AssetModel>> getNextPage(
         PaginationModel paginationModel) {
-      return Chute.getAssetService().getNextPageObservable(paginationModel.getNextPage());
+      return RetrofitService.get().getAssetService().getNextPageObservable(paginationModel.getNextPage());
     }
   }
 
@@ -163,10 +163,10 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} whose assets are being retrieved.
      * @param perPage Number of assets per page.
      */
-    public Call<ListResponseModel<AssetModel>> list(String albumId, String perPage,
+    public static Call<ListResponseModel<AssetModel>> list(String albumId, String perPage,
         @Nullable AssetType type, @Nullable String username, @Nullable List<String> tags,
         @Nullable AccountType service) {
-      return Chute.getAssetService()
+      return RetrofitService.get().getAssetService()
           .listCall(albumId, perPage, type.name(), username, tags, service.getLoginMethod());
     }
 
@@ -176,8 +176,8 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} whose asset is demanded.
      * @param assetId The ID of the requested {@link AssetModel}
      */
-    public Call<ResponseModel<AssetModel>> get(String albumId, String assetId) {
-      return Chute.getAssetService().getCall(albumId, assetId);
+    public static Call<ResponseModel<AssetModel>> get(String albumId, String assetId) {
+      return RetrofitService.get().getAssetService().getCall(albumId, assetId);
     }
 
     /**
@@ -187,9 +187,9 @@ public class GCAssets {
      * @param assetId The ID of the {@link AssetModel} you wish to copy to another album
      * @param newAlbumId The ID of the {@link AlbumModel} that is going to store the copied asset.
      */
-    public Call<ResponseModel<AssetModel>> copy(String albumId, String assetId,
+    public static Call<ResponseModel<AssetModel>> copy(String albumId, String assetId,
         String newAlbumId) {
-      return Chute.getAssetService().copyCall(albumId, assetId, newAlbumId);
+      return RetrofitService.get().getAssetService().copyCall(albumId, assetId, newAlbumId);
     }
 
     /**
@@ -200,9 +200,9 @@ public class GCAssets {
      * @param urls List of URL-s you want to import.
      * @param instagramIds List of Instagram IDs you want to import.
      */
-    public Call<ResponseModel<AssetModel>> importAssets(String albumId, String assetId,
+    public static Call<ResponseModel<AssetModel>> importAssets(String albumId, String assetId,
         @Nullable List<String> urls, @Nullable List<String> instagramIds) {
-      return Chute.getAssetService().importCall(albumId, assetId, urls, instagramIds);
+      return RetrofitService.get().getAssetService().importCall(albumId, assetId, urls, instagramIds);
     }
 
     /**
@@ -211,8 +211,8 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} holding the asset to be deleted.
      * @param assetId The ID of the {@link AssetModel} to be removed.
      */
-    public Call<ResponseModel<AssetModel>> delete(String albumId, String assetId) {
-      return Chute.getAssetService().deleteCall(albumId, assetId);
+    public static Call<ResponseModel<AssetModel>> delete(String albumId, String assetId) {
+      return RetrofitService.get().getAssetService().deleteCall(albumId, assetId);
     }
 
     /**
@@ -222,9 +222,9 @@ public class GCAssets {
      * @param assetId The ID of the {@link AssetModel} you wish to move to another album.
      * @param newAlbumId The ID of the {@link AlbumModel} that is going to store the moved asset.
      */
-    public Call<ResponseModel<AssetModel>> move(String albumId, String assetId,
+    public static Call<ResponseModel<AssetModel>> move(String albumId, String assetId,
         String newAlbumId) {
-      return Chute.getAssetService().moveCall(albumId, assetId, newAlbumId);
+      return RetrofitService.get().getAssetService().moveCall(albumId, assetId, newAlbumId);
     }
 
     /**
@@ -233,13 +233,13 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} containing the asset to be updated.
      * @param assetId The ID of the {@link AssetModel} that needs to be updated.
      */
-    public Call<ResponseModel<AssetModel>> update(String albumId, String assetId,
+    public static Call<ResponseModel<AssetModel>> update(String albumId, String assetId,
         List<String> tags) {
       AssetRequestBody assetRequestBody = new AssetRequestBody();
       AssetBodyRequestModel assetBodyRequestModel = new AssetBodyRequestModel();
       assetBodyRequestModel.setTags(tags);
       assetRequestBody.setAsset(assetBodyRequestModel);
-      return Chute.getAssetService().updateCall(albumId, assetId, assetRequestBody);
+      return RetrofitService.get().getAssetService().updateCall(albumId, assetId, assetRequestBody);
     }
 
     /**
@@ -252,9 +252,9 @@ public class GCAssets {
      * be retrieved.
      * @param assetId The ID of the {@link AssetModel} containing exif data to be retrieved.
      */
-    public Call<ResponseModel<HashMap<String, String>>> exif(String albumId,
+    public static Call<ResponseModel<HashMap<String, String>>> exif(String albumId,
         String assetId) {
-      return Chute.getAssetService().exifCall(albumId, assetId);
+      return RetrofitService.get().getAssetService().exifCall(albumId, assetId);
     }
 
     /**
@@ -262,7 +262,7 @@ public class GCAssets {
      */
     public static Call<ListResponseModel<AssetModel>> getNextPage(
         PaginationModel paginationModel) {
-      return Chute.getAssetService().getNextPageCall(paginationModel.getNextPage());
+      return RetrofitService.get().getAssetService().getNextPageCall(paginationModel.getNextPage());
     }
   }
 }

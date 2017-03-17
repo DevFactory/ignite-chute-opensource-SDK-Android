@@ -26,13 +26,13 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.api.service.model;
 
-import com.android.getchute.sdk.chutesdkandroid.api.Chute;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.AssetModel;
 import com.android.getchute.sdk.chutesdkandroid.model.HeartModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
+import com.android.getchute.sdk.chutesdkandroid.retrofit.RetrofitService;
+import io.reactivex.Observable;
 import retrofit2.Call;
-import rx.Observable;
 
 public class GCHearts {
 
@@ -44,8 +44,8 @@ public class GCHearts {
      * @param albumId The ID of the {@link AlbumModel} that holds the hearted asset.
      * @param assetId The ID of the hearted {@link AssetModel}
      */
-    public Observable<ResponseModel<HeartModel>> heartCount(String albumId, String assetId) {
-      return Chute.getHeartService().heartCountObservable(albumId, assetId);
+    public static Observable<ResponseModel<HeartModel>> heartCount(String albumId, String assetId) {
+      return RetrofitService.get().getHeartService().heartCountObservable(albumId, assetId);
     }
 
     /**
@@ -56,8 +56,8 @@ public class GCHearts {
      * @param albumId The ID of the {@link AlbumModel} containing the hearted asset.
      * @param assetId The ID of the hearted {@link AssetModel}
      */
-    public Observable<ResponseModel<HeartModel>> unheart(String albumId, String assetId) {
-      return Chute.getHeartService().unheartObservable(albumId, assetId);
+    public static Observable<ResponseModel<HeartModel>> unheart(String albumId, String assetId) {
+      return RetrofitService.get().getHeartService().unheartObservable(albumId, assetId);
     }
 
     /**
@@ -68,8 +68,8 @@ public class GCHearts {
      * @param albumId The ID of the {@link AlbumModel} that holds the hearted asset.
      * @param assetId The ID of the {@link AssetModel} to be hearted.
      */
-    public Observable<ResponseModel<HeartModel>> heart(String albumId, String assetId) {
-      return Chute.getHeartService().heartObservable(albumId, assetId);
+    public static Observable<ResponseModel<HeartModel>> heart(String albumId, String assetId) {
+      return RetrofitService.get().getHeartService().heartObservable(albumId, assetId);
     }
   }
 
@@ -81,8 +81,8 @@ public class GCHearts {
      * @param albumId The ID of the {@link AlbumModel} that holds the hearted asset.
      * @param assetId The ID of the hearted {@link AssetModel}
      */
-    public Call<ResponseModel<HeartModel>> heartCount(String albumId, String assetId) {
-      return Chute.getHeartService().heartCountCall(albumId, assetId);
+    public static Call<ResponseModel<HeartModel>> heartCount(String albumId, String assetId) {
+      return RetrofitService.get().getHeartService().heartCountCall(albumId, assetId);
     }
 
     /**
@@ -93,8 +93,8 @@ public class GCHearts {
      * @param albumId The ID of the {@link AlbumModel} containing the hearted asset.
      * @param assetId The ID of the hearted {@link AssetModel}
      */
-    public Call<ResponseModel<HeartModel>> unheart(String albumId, String assetId) {
-      return Chute.getHeartService().unheartCall(albumId, assetId);
+    public static Call<ResponseModel<HeartModel>> unheart(String albumId, String assetId) {
+      return RetrofitService.get().getHeartService().unheartCall(albumId, assetId);
     }
 
     /**
@@ -105,8 +105,8 @@ public class GCHearts {
      * @param albumId The ID of the {@link AlbumModel} that holds the hearted asset.
      * @param assetId The ID of the {@link AssetModel} to be hearted.
      */
-    public Call<ResponseModel<HeartModel>> heart(String albumId, String assetId) {
-      return Chute.getHeartService().heartCall(albumId, assetId);
+    public static Call<ResponseModel<HeartModel>> heart(String albumId, String assetId) {
+      return RetrofitService.get().getHeartService().heartCall(albumId, assetId);
     }
   }
 }

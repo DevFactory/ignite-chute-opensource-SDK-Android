@@ -26,14 +26,14 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.api.service.model;
 
-import com.android.getchute.sdk.chutesdkandroid.api.Chute;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.AssetModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.body.AlbumBodyRequestModel;
+import com.android.getchute.sdk.chutesdkandroid.retrofit.RetrofitService;
+import io.reactivex.Observable;
 import retrofit2.Call;
-import rx.Observable;
 
 public class GCAlbums {
 
@@ -53,7 +53,7 @@ public class GCAlbums {
       AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
       albumBodyRequestModel.setCoverAssetId(coverAssetId);
       albumBodyRequestModel.setName(name);
-      return Chute.getAlbumService().createAlbumObservable(albumBodyRequestModel);
+      return RetrofitService.get().getAlbumService().createAlbumObservable(albumBodyRequestModel);
     }
 
     /**
@@ -64,7 +64,7 @@ public class GCAlbums {
      * @param albumId The ID of the {@link AlbumModel} to be deleted.
      */
     public static Observable<ResponseModel<AlbumModel>> deleteAlbum(String albumId) {
-      return Chute.getAlbumService().deleteAlbumObservable(albumId);
+      return RetrofitService.get().getAlbumService().deleteAlbumObservable(albumId);
     }
 
     /**
@@ -73,7 +73,7 @@ public class GCAlbums {
      * @param albumId The ID of the {@link AlbumModel} whose details are to be returned.
      */
     public static Observable<ResponseModel<AlbumModel>> getAlbum(String albumId) {
-      return Chute.getAlbumService().getAlbumObservable(albumId);
+      return RetrofitService.get().getAlbumService().getAlbumObservable(albumId);
     }
 
     /**
@@ -88,7 +88,7 @@ public class GCAlbums {
       AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
       albumBodyRequestModel.setCoverAssetId(coverAssetId);
       albumBodyRequestModel.setName(name);
-      return Chute.getAlbumService().updateAlbumObservable(albumId, albumBodyRequestModel);
+      return RetrofitService.get().getAlbumService().updateAlbumObservable(albumId, albumBodyRequestModel);
     }
 
     /**
@@ -97,7 +97,7 @@ public class GCAlbums {
      * @param perPage Number of responses per page
      */
     public static Observable<ListResponseModel<AlbumModel>> listAlbums(String perPage) {
-      return Chute.getAlbumService().listAlbumsObservable(perPage);
+      return RetrofitService.get().getAlbumService().listAlbumsObservable(perPage);
     }
 
     /**
@@ -106,7 +106,7 @@ public class GCAlbums {
      * @param albumId ID of parent {@link AlbumModel}
      */
     public static Observable<ListResponseModel<AlbumModel>> listNestedAlbums(String albumId) {
-      return Chute.getAlbumService().listNestedAlbumsObservable(albumId);
+      return RetrofitService.get().getAlbumService().listNestedAlbumsObservable(albumId);
     }
   }
 
@@ -125,7 +125,7 @@ public class GCAlbums {
       AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
       albumBodyRequestModel.setCoverAssetId(coverAssetId);
       albumBodyRequestModel.setName(name);
-      return Chute.getAlbumService().createAlbumCall(albumBodyRequestModel);
+      return RetrofitService.get().getAlbumService().createAlbumCall(albumBodyRequestModel);
     }
 
     /**
@@ -136,7 +136,7 @@ public class GCAlbums {
      * @param albumId The ID of the {@link AlbumModel} to be deleted.
      */
     public static Call<ResponseModel<AlbumModel>> deleteAlbum(String albumId) {
-      return Chute.getAlbumService().deleteAlbumCall(albumId);
+      return RetrofitService.get().getAlbumService().deleteAlbumCall(albumId);
     }
 
     /**
@@ -145,7 +145,7 @@ public class GCAlbums {
      * @param albumId The ID of the {@link AlbumModel} whose details are to be returned.
      */
     public static Call<ResponseModel<AlbumModel>> getAlbum(String albumId) {
-      return Chute.getAlbumService().getAlbumCall(albumId);
+      return RetrofitService.get().getAlbumService().getAlbumCall(albumId);
     }
 
     /**
@@ -159,7 +159,7 @@ public class GCAlbums {
       AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
       albumBodyRequestModel.setCoverAssetId(coverAssetId);
       albumBodyRequestModel.setName(name);
-      return Chute.getAlbumService().updateAlbumCall(albumId, albumBodyRequestModel);
+      return RetrofitService.get().getAlbumService().updateAlbumCall(albumId, albumBodyRequestModel);
     }
 
     /**
@@ -168,7 +168,7 @@ public class GCAlbums {
      * @param perPage Number of responses per page
      */
     public static Call<ListResponseModel<AlbumModel>> listAlbums(String perPage) {
-      return Chute.getAlbumService().listAlbumsCall(perPage);
+      return RetrofitService.get().getAlbumService().listAlbumsCall(perPage);
     }
 
     /**
@@ -177,7 +177,7 @@ public class GCAlbums {
      * @param albumId ID of parent {@link AlbumModel}
      */
     public static Call<ListResponseModel<AlbumModel>> listNestedAlbums(String albumId) {
-      return Chute.getAlbumService().listNestedAlbumsCall(albumId);
+      return RetrofitService.get().getAlbumService().listNestedAlbumsCall(albumId);
     }
   }
 }
