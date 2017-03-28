@@ -26,11 +26,10 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.api.service;
 
-import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
-import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
-import com.android.getchute.sdk.chutesdkandroid.model.body.AlbumBodyRequestModel;
 import io.reactivex.Observable;
+import java.util.List;
+import java.util.Map;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -38,49 +37,50 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
-public interface AlbumService {
+public interface TagService {
 
   /** Observables **/
 
-  @POST("albums") Observable<ResponseModel<AlbumModel>> createAlbumObservable(
-      @Body AlbumBodyRequestModel albumBodyRequestModel);
+  @POST("albums/{album_id}/assets/{asset_id}/tags")
+  Observable<ListResponseModel<String>> addTagsObservable(
+      @Path("album_id") String albumId,
+      @Path("asset_id") String assetId,
+      @Body Map<String, List<String>> tags);
 
-  @DELETE("albums/{album_id}") Observable<ResponseModel<Void>> deleteAlbumObservable(
-      @Path("album_id") String albumId);
+  @DELETE("albums/{album_id}/assets/{asset_id}/tags/{tags}")
+  Observable<ListResponseModel<String>> removeTagsObservable(@Path("album_id") String albumId,
+      @Path("asset_id") String assetId,
+      @Path("tags") String tags);
 
-  @GET("albums/{album_id}") Observable<ResponseModel<AlbumModel>> getAlbumObservable(
-      @Path("album_id") String albumId);
+  @GET("albums/{album_id}/assets/{asset_id}/tags")
+  Observable<ListResponseModel<String>> getTagsObservable(
+      @Path("album_id") String albumId,
+      @Path("asset_id") String assetId);
 
-  @GET("albums") Observable<ListResponseModel<AlbumModel>> listAlbumsObservable(
-      @Query("per_page") String perPage);
-
-  @GET("albums/{album_id}/albums")
-  Observable<ListResponseModel<AlbumModel>> listNestedAlbumsObservable(
-      @Path("album_id") String albumId);
-
-  @PUT("albums/{id}") Observable<ResponseModel<AlbumModel>> updateAlbumObservable(
-      @Path("id") String id,
-      @Body AlbumBodyRequestModel albumBodyRequestModel);
+  @PUT("albums/{album_id}/assets/{asset_id}/tags")
+  Observable<ListResponseModel<String>> replaceTagsObservable(@Path("album_id") String albumId,
+      @Path("asset_id") String assetId,
+      @Body Map<String, List<String>> tags);
 
   /** Calls **/
 
-  @POST("albums") Call<ResponseModel<AlbumModel>> createAlbumCall(
-      @Body AlbumBodyRequestModel albumBodyRequestModel);
+  @POST("albums/{album_id}/assets/{asset_id}/tags") Call<ListResponseModel<String>> addTagsCall(
+      @Path("album_id") String albumId,
+      @Path("asset_id") String assetId,
+      @Body Map<String, List<String>> tags);
 
-  @DELETE("albums/{album_id}") Call<ResponseModel<Void>> deleteAlbumCall(
-      @Path("album_id") String albumId);
+  @DELETE("albums/{album_id}/assets/{asset_id}/tags/{tags}")
+  Call<ListResponseModel<String>> removeTagsCall(@Path("album_id") String albumId,
+      @Path("asset_id") String assetId,
+      @Path("tags") String tags);
 
-  @GET("albums/{album_id}") Call<ResponseModel<AlbumModel>> getAlbumCall(
-      @Path("album_id") String albumId);
+  @GET("albums/{album_id}/assets/{asset_id}/tags") Call<ListResponseModel<String>> getTagsCall(
+      @Path("album_id") String albumId,
+      @Path("asset_id") String assetId);
 
-  @GET("albums") Call<ListResponseModel<AlbumModel>> listAlbumsCall(
-      @Query("per_page") String perPage);
-
-  @GET("albums/{album_id}/albums") Call<ListResponseModel<AlbumModel>> listNestedAlbumsCall(
-      @Path("album_id") String albumId);
-
-  @PUT("albums/{id}") Call<ResponseModel<AlbumModel>> updateAlbumCall(@Path("id") String id,
-      @Body AlbumBodyRequestModel albumBodyRequestModel);
+  @PUT("albums/{album_id}/assets/{asset_id}/tags")
+  Call<ListResponseModel<String>> replaceTagsCall(@Path("album_id") String albumId,
+      @Path("asset_id") String assetId,
+      @Body Map<String, List<String>> tags);
 }

@@ -32,15 +32,15 @@ import com.android.getchute.sdk.chutesdkandroid.api.service.AlbumService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.AssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.AuthService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.HeartService;
+import com.android.getchute.sdk.chutesdkandroid.api.service.TagService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.VoteService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.schedulers.Schedulers;
 
 public class RetrofitService {
 
@@ -54,9 +54,9 @@ public class RetrofitService {
   public static RetrofitService get() {
     if (instance == null) {
       synchronized (RetrofitService.class) {
-       if (instance == null) {
-         instance = new RetrofitService();
-       }
+        if (instance == null) {
+          instance = new RetrofitService();
+        }
       }
     }
     return instance;
@@ -72,7 +72,7 @@ public class RetrofitService {
     Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson()))
         .client(authClient().build())
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()));
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
     retrofit = retrofitBuilder.baseUrl(Endpoints.BASE_URL)
         .build();
     return retrofit;
@@ -103,5 +103,9 @@ public class RetrofitService {
 
   public VoteService getVoteService() {
     return retrofit.create(VoteService.class);
+  }
+
+  public TagService getTagService() {
+    return retrofit.create(TagService.class);
   }
 }

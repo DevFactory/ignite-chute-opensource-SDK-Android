@@ -48,7 +48,7 @@ public class GCAlbums {
      * @param name Name of the album
      * @param coverAssetId ID of the cover {@link AssetModel}
      */
-    public static Observable<ResponseModel<AlbumModel>> createAlbum(String name,
+    public static Observable<ResponseModel<AlbumModel>> create(String name,
         String coverAssetId) {
       AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
       albumBodyRequestModel.setCoverAssetId(coverAssetId);
@@ -63,7 +63,7 @@ public class GCAlbums {
      *
      * @param albumId The ID of the {@link AlbumModel} to be deleted.
      */
-    public static Observable<ResponseModel<AlbumModel>> deleteAlbum(String albumId) {
+    public static Observable<ResponseModel<Void>> delete(String albumId) {
       return RetrofitService.get().getAlbumService().deleteAlbumObservable(albumId);
     }
 
@@ -72,7 +72,7 @@ public class GCAlbums {
      *
      * @param albumId The ID of the {@link AlbumModel} whose details are to be returned.
      */
-    public static Observable<ResponseModel<AlbumModel>> getAlbum(String albumId) {
+    public static Observable<ResponseModel<AlbumModel>> get(String albumId) {
       return RetrofitService.get().getAlbumService().getAlbumObservable(albumId);
     }
 
@@ -82,7 +82,7 @@ public class GCAlbums {
      * @param albumId The ID of the {@link AlbumModel} that needs to be updated.
      * @param coverAssetId ID of the cover {@link AssetModel}
      */
-    public static Observable<ResponseModel<AlbumModel>> updateAlbum(String albumId,
+    public static Observable<ResponseModel<AlbumModel>> update(String albumId,
         String coverAssetId,
         String name) {
       AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
@@ -96,7 +96,7 @@ public class GCAlbums {
      *
      * @param perPage Number of responses per page
      */
-    public static Observable<ListResponseModel<AlbumModel>> listAlbums(String perPage) {
+    public static Observable<ListResponseModel<AlbumModel>> list(String perPage) {
       return RetrofitService.get().getAlbumService().listAlbumsObservable(perPage);
     }
 
@@ -105,7 +105,7 @@ public class GCAlbums {
      *
      * @param albumId ID of parent {@link AlbumModel}
      */
-    public static Observable<ListResponseModel<AlbumModel>> listNestedAlbums(String albumId) {
+    public static Observable<ListResponseModel<AlbumModel>> listNested(String albumId) {
       return RetrofitService.get().getAlbumService().listNestedAlbumsObservable(albumId);
     }
   }
@@ -121,7 +121,7 @@ public class GCAlbums {
      * @param name Name of the album
      * @param coverAssetId ID of the cover {@link AssetModel}
      */
-    public static Call<ResponseModel<AlbumModel>> createAlbum(String name, String coverAssetId) {
+    public static Call<ResponseModel<AlbumModel>> create(String name, String coverAssetId) {
       AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
       albumBodyRequestModel.setCoverAssetId(coverAssetId);
       albumBodyRequestModel.setName(name);
@@ -135,7 +135,7 @@ public class GCAlbums {
      *
      * @param albumId The ID of the {@link AlbumModel} to be deleted.
      */
-    public static Call<ResponseModel<AlbumModel>> deleteAlbum(String albumId) {
+    public static Call<ResponseModel<Void>> delete(String albumId) {
       return RetrofitService.get().getAlbumService().deleteAlbumCall(albumId);
     }
 
@@ -144,7 +144,7 @@ public class GCAlbums {
      *
      * @param albumId The ID of the {@link AlbumModel} whose details are to be returned.
      */
-    public static Call<ResponseModel<AlbumModel>> getAlbum(String albumId) {
+    public static Call<ResponseModel<AlbumModel>> get(String albumId) {
       return RetrofitService.get().getAlbumService().getAlbumCall(albumId);
     }
 
@@ -154,7 +154,7 @@ public class GCAlbums {
      * @param albumId The ID of the {@link AlbumModel} that needs to be updated.
      * @param coverAssetId ID of the cover {@link AssetModel}
      */
-    public static Call<ResponseModel<AlbumModel>> updateAlbum(String albumId, String coverAssetId,
+    public static Call<ResponseModel<AlbumModel>> update(String albumId, String coverAssetId,
         String name) {
       AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
       albumBodyRequestModel.setCoverAssetId(coverAssetId);
@@ -167,7 +167,7 @@ public class GCAlbums {
      *
      * @param perPage Number of responses per page
      */
-    public static Call<ListResponseModel<AlbumModel>> listAlbums(String perPage) {
+    public static Call<ListResponseModel<AlbumModel>> list(String perPage) {
       return RetrofitService.get().getAlbumService().listAlbumsCall(perPage);
     }
 
@@ -176,7 +176,7 @@ public class GCAlbums {
      *
      * @param albumId ID of parent {@link AlbumModel}
      */
-    public static Call<ListResponseModel<AlbumModel>> listNestedAlbums(String albumId) {
+    public static Call<ListResponseModel<AlbumModel>> listNested(String albumId) {
       return RetrofitService.get().getAlbumService().listNestedAlbumsCall(albumId);
     }
   }
