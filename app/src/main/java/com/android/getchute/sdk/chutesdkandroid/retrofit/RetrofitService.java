@@ -33,6 +33,7 @@ import com.android.getchute.sdk.chutesdkandroid.api.service.AssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.AuthService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.HeartService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.TagService;
+import com.android.getchute.sdk.chutesdkandroid.api.service.UserService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.VoteService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -107,5 +108,9 @@ public class RetrofitService {
 
   public TagService getTagService() {
     return retrofit.create(TagService.class);
+  }
+
+  public UserService getUserService() {
+    return retrofit.create(UserService.class);
   }
 }
