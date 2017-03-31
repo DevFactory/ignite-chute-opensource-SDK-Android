@@ -24,7 +24,7 @@
  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service.model;
+package com.android.getchute.sdk.chutesdkandroid.api.service.heart;
 
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.AssetModel;
@@ -56,7 +56,7 @@ public class GCHearts {
      * @param albumId The ID of the {@link AlbumModel} containing the hearted asset.
      * @param assetId The ID of the hearted {@link AssetModel}
      */
-    public static Observable<ResponseModel<HeartModel>> unheart(String albumId, String assetId) {
+    public static Observable<ResponseModel<Void>> unheart(String albumId, String assetId) {
       return RetrofitService.get().getHeartService().unheartObservable(albumId, assetId);
     }
 
@@ -93,7 +93,7 @@ public class GCHearts {
      * @param albumId The ID of the {@link AlbumModel} containing the hearted asset.
      * @param assetId The ID of the hearted {@link AssetModel}
      */
-    public static Call<ResponseModel<HeartModel>> unheart(String albumId, String assetId) {
+    public static Call<ResponseModel<Void>> unheart(String albumId, String assetId) {
       return RetrofitService.get().getHeartService().unheartCall(albumId, assetId);
     }
 

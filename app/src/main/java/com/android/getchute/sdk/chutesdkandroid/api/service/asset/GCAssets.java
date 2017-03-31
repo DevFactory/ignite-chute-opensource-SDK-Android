@@ -24,16 +24,14 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service.model;
+package com.android.getchute.sdk.chutesdkandroid.api.service.asset;
 
 import android.support.annotation.Nullable;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.AssetModel;
-import com.android.getchute.sdk.chutesdkandroid.model.PaginationModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
-import com.android.getchute.sdk.chutesdkandroid.model.body.AssetBodyRequestModel;
-import com.android.getchute.sdk.chutesdkandroid.model.body.AssetRequestBody;
+import com.android.getchute.sdk.chutesdkandroid.model.body.AssetRequestModel;
 import com.android.getchute.sdk.chutesdkandroid.model.enums.AccountType;
 import com.android.getchute.sdk.chutesdkandroid.model.enums.AssetType;
 import com.android.getchute.sdk.chutesdkandroid.retrofit.RetrofitService;
@@ -52,11 +50,14 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} whose assets are being retrieved.
      * @param perPage Number of assets per page.
      */
-    public static Observable<ListResponseModel<AssetModel>> list(String albumId, String perPage,
+    public static Observable<ListResponseModel<AssetModel>> list(String albumId,
+        @Nullable String perPage,
         @Nullable AssetType type, @Nullable String username, @Nullable List<String> tags,
         @Nullable AccountType service) {
+      String assetType = (type != null ? type.name() : null);
+      String serviceType = (service != null ? service.getLoginMethod() : null);
       return RetrofitService.get().getAssetService()
-          .listObservable(albumId, perPage, type.name(), username, tags, service.getLoginMethod());
+          .listObservable(albumId, perPage, assetType, username, tags, serviceType);
     }
 
     /**
@@ -87,7 +88,7 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} holding the asset to be deleted.
      * @param assetId The ID of the {@link AssetModel} to be removed.
      */
-    public static Observable<ResponseModel<AssetModel>> delete(String albumId, String assetId) {
+    public static Observable<ResponseModel<Void>> delete(String albumId, String assetId) {
       return RetrofitService.get().getAssetService().deleteObservable(albumId, assetId);
     }
 
@@ -107,28 +108,13 @@ public class GCAssets {
      * Imports assets to an album.
      *
      * @param albumId The ID of the {@link AlbumModel} holding the asset to be imported.
-     * @param assetId The ID of the {@link AssetModel} to import assets into.
      * @param urls List of URL-s you want to import.
-     * @param instagramIds List of Instagram IDs you want to import.
      */
-    public static Observable<ResponseModel<AssetModel>> importAssets(String albumId, String assetId,
-        @Nullable List<String> urls, @Nullable List<String> instagramIds) {
-      return RetrofitService.get().getAssetService().importObservable(albumId, assetId, urls, instagramIds);
-    }
-
-    /**
-     * Updates the caption and/or tags of an asset.
-     *
-     * @param albumId The ID of the {@link AlbumModel} containing the asset to be updated.
-     * @param assetId The ID of the {@link AssetModel} that needs to be updated.
-     */
-    public static Observable<ResponseModel<AssetModel>> update(String albumId, String assetId,
-        List<String> tags) {
-      AssetRequestBody assetRequestBody = new AssetRequestBody();
-      AssetBodyRequestModel assetBodyRequestModel = new AssetBodyRequestModel();
-      assetBodyRequestModel.setTags(tags);
-      assetRequestBody.setAsset(assetBodyRequestModel);
-      return RetrofitService.get().getAssetService().updateObservable(albumId, assetId, assetRequestBody);
+    public static Observable<ListResponseModel<AssetModel>> importAssets(String albumId,
+        @Nullable List<String> urls) {
+      AssetRequestModel body = new AssetRequestModel();
+      body.setUrls(urls);
+      return RetrofitService.get().getAssetService().importObservable(albumId, body);
     }
 
     /**
@@ -147,11 +133,10 @@ public class GCAssets {
     }
 
     /**
-     * @param paginationModel {@link PaginationModel} that holds the next page of assets URL
+     * @param nextPage URL of assets next page
      */
-    public static Observable<ListResponseModel<AssetModel>> getNextPage(
-        PaginationModel paginationModel) {
-      return RetrofitService.get().getAssetService().getNextPageObservable(paginationModel.getNextPage());
+    public static Observable<ListResponseModel<AssetModel>> getNextPage(String nextPage) {
+      return RetrofitService.get().getAssetService().getNextPageObservable(nextPage);
     }
   }
 
@@ -166,8 +151,10 @@ public class GCAssets {
     public static Call<ListResponseModel<AssetModel>> list(String albumId, String perPage,
         @Nullable AssetType type, @Nullable String username, @Nullable List<String> tags,
         @Nullable AccountType service) {
+      String assetType = (type != null ? type.name() : null);
+      String serviceType = (service != null ? service.getLoginMethod() : null);
       return RetrofitService.get().getAssetService()
-          .listCall(albumId, perPage, type.name(), username, tags, service.getLoginMethod());
+          .listCall(albumId, perPage, assetType, username, tags, serviceType);
     }
 
     /**
@@ -196,13 +183,13 @@ public class GCAssets {
      * Imports assets to an album.
      *
      * @param albumId The ID of the {@link AlbumModel} holding the asset to be imported.
-     * @param assetId The ID of the {@link AssetModel} to import assets into.
      * @param urls List of URL-s you want to import.
-     * @param instagramIds List of Instagram IDs you want to import.
      */
-    public static Call<ResponseModel<AssetModel>> importAssets(String albumId, String assetId,
-        @Nullable List<String> urls, @Nullable List<String> instagramIds) {
-      return RetrofitService.get().getAssetService().importCall(albumId, assetId, urls, instagramIds);
+    public static Call<ListResponseModel<AssetModel>> importAssets(String albumId,
+        @Nullable List<String> urls) {
+      AssetRequestModel body = new AssetRequestModel();
+      body.setUrls(urls);
+      return RetrofitService.get().getAssetService().importCall(albumId, body);
     }
 
     /**
@@ -211,7 +198,7 @@ public class GCAssets {
      * @param albumId The ID of the {@link AlbumModel} holding the asset to be deleted.
      * @param assetId The ID of the {@link AssetModel} to be removed.
      */
-    public static Call<ResponseModel<AssetModel>> delete(String albumId, String assetId) {
+    public static Call<ResponseModel<Void>> delete(String albumId, String assetId) {
       return RetrofitService.get().getAssetService().deleteCall(albumId, assetId);
     }
 
@@ -225,21 +212,6 @@ public class GCAssets {
     public static Call<ResponseModel<AssetModel>> move(String albumId, String assetId,
         String newAlbumId) {
       return RetrofitService.get().getAssetService().moveCall(albumId, assetId, newAlbumId);
-    }
-
-    /**
-     * Updates the caption and/or tags of an asset.
-     *
-     * @param albumId The ID of the {@link AlbumModel} containing the asset to be updated.
-     * @param assetId The ID of the {@link AssetModel} that needs to be updated.
-     */
-    public static Call<ResponseModel<AssetModel>> update(String albumId, String assetId,
-        List<String> tags) {
-      AssetRequestBody assetRequestBody = new AssetRequestBody();
-      AssetBodyRequestModel assetBodyRequestModel = new AssetBodyRequestModel();
-      assetBodyRequestModel.setTags(tags);
-      assetRequestBody.setAsset(assetBodyRequestModel);
-      return RetrofitService.get().getAssetService().updateCall(albumId, assetId, assetRequestBody);
     }
 
     /**
@@ -258,11 +230,10 @@ public class GCAssets {
     }
 
     /**
-     * @param paginationModel {@link PaginationModel} that holds the next page of assets URL
+     * @param nextPage URL of assets next page
      */
-    public static Call<ListResponseModel<AssetModel>> getNextPage(
-        PaginationModel paginationModel) {
-      return RetrofitService.get().getAssetService().getNextPageCall(paginationModel.getNextPage());
+    public static Call<ListResponseModel<AssetModel>> getNextPage(String nextPage) {
+      return RetrofitService.get().getAssetService().getNextPageCall(nextPage);
     }
   }
 }

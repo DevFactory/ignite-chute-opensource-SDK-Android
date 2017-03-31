@@ -24,40 +24,22 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.model.body;
+package com.android.getchute.sdk.chutesdkandroid.api.service.auth;
 
-public class AlbumBodyRequestModel {
+import com.android.getchute.sdk.chutesdkandroid.model.LoginRequestModel;
+import com.android.getchute.sdk.chutesdkandroid.model.LoginResponseModel;
+import io.reactivex.Observable;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
 
-    /*
-    Album name
-     */
-    private String name;
-    /*
-    Asset Id
-     */
-    private String coverAssetId;
+public interface AuthService {
 
-    public String getName() {
-        return name;
-    }
+    @POST("oauth/token")
+    Observable<LoginResponseModel> loginObservable(
+            @Body LoginRequestModel loginRequestModel);
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCoverAssetId() {
-        return coverAssetId;
-    }
-
-    public void setCoverAssetId(String coverAssetId) {
-        this.coverAssetId = coverAssetId;
-    }
-
-    @Override
-    public String toString() {
-        return "AlbumBodyRequestModel{" +
-                "name='" + name + '\'' +
-                ", coverAssetId='" + coverAssetId + '\'' +
-                '}';
-    }
+    @POST("oauth/token")
+    Call<LoginResponseModel> loginCall(
+            @Body LoginRequestModel loginRequestModel);
 }

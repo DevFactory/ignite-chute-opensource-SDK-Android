@@ -1,4 +1,4 @@
-package com.android.getchute.sdk.chutesdkandroid.api.service;
+package com.android.getchute.sdk.chutesdkandroid.api.service.vote;
 
 import com.android.getchute.sdk.chutesdkandroid.model.VoteModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
@@ -17,7 +17,7 @@ public interface VoteService {
   Observable<ResponseModel<VoteModel>> voteCountObservable(@Path("album_id") String albumId,
       @Path("asset_id") String assetId);
 
-  @DELETE("albums/{album_id}/assets/{asset_id}/votes") Observable<Void> unvoteObservable(
+  @DELETE("albums/{album_id}/assets/{asset_id}/votes") Observable<ResponseModel<Void>> unvoteObservable(
       @Path("album_id") String albumId,
       @Path("asset_id") String assetId);
 
@@ -32,7 +32,7 @@ public interface VoteService {
   Call<ResponseModel<VoteModel>> voteCountCall(@Path("album_id") String albumId,
       @Path("asset_id") String assetId);
 
-  @DELETE("albums/{album_id}/assets/{asset_id}/votes") Call<Void> unvoteCall(
+  @DELETE("albums/{album_id}/assets/{asset_id}/votes") Call<ResponseModel<Void>> unvoteCall(
       @Path("album_id") String albumId,
       @Path("asset_id") String assetId);
 

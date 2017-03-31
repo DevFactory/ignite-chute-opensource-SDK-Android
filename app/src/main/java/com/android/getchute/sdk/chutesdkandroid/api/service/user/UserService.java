@@ -24,12 +24,11 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service;
+package com.android.getchute.sdk.chutesdkandroid.api.service.user;
 
 import com.android.getchute.sdk.chutesdkandroid.model.UserModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
-import com.android.getchute.sdk.chutesdkandroid.model.body.UserCreateRequestBody;
-import com.android.getchute.sdk.chutesdkandroid.model.body.UserUpdateRequestBody;
+import com.android.getchute.sdk.chutesdkandroid.model.body.UserRequestModel;
 import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -43,24 +42,24 @@ public interface UserService {
   /** Observables **/
 
   @POST("users") Observable<ResponseModel<UserModel>> createUserObservable(@Body
-      UserCreateRequestBody body);
+      UserRequestModel body);
 
   @GET("users/{id}") Observable<ResponseModel<UserModel>> getUserObservable(@Path("id") String id);
 
   @GET("me") Observable<ResponseModel<UserModel>> getCurrentUserObservable();
 
   @PUT("me") Observable<ResponseModel<UserModel>> updateCurrentUserObservable(
-      @Body UserUpdateRequestBody body);
+      @Body UserRequestModel body);
 
   /** Calls **/
 
   @POST("users") Call<ResponseModel<UserModel>> createUserCall(@Body
-      UserCreateRequestBody body);
+      UserRequestModel body);
 
   @GET("users/{id}") Call<ResponseModel<UserModel>> getUserCall(@Path("id") String id);
 
   @GET("me") Call<ResponseModel<UserModel>> getCurrentUserCall();
 
   @PUT("me") Call<ResponseModel<UserModel>> updateCurrentUserCall(
-      @Body UserUpdateRequestBody body);
+      @Body UserRequestModel body);
 }

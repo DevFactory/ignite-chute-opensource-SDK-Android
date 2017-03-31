@@ -26,24 +26,24 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.model.body;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
-public class UserCreateRequestBody {
+public class AssetRequestModel {
 
-  @SerializedName("user")
-  private UserBodyCreateRequestModel user;
+  /* List of URL-s to be imported */
+  private List<String> urls;
 
-  public UserBodyCreateRequestModel getUser() {
-    return user;
+  public List<String> getUrls() {
+    return urls;
   }
 
-  public void setUser(UserBodyCreateRequestModel user) {
-    this.user = user;
+  public void setUrls(List<String> urls) {
+    this.urls = urls;
   }
 
   @Override public String toString() {
-    return "UserCreateRequestBody{" +
-        "user=" + user +
+    return "AssetRequestModel{" +
+        "urls=" + urls +
         '}';
   }
 }

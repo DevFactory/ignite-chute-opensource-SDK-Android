@@ -24,12 +24,12 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service;
+package com.android.getchute.sdk.chutesdkandroid.api.service.asset;
 
 import com.android.getchute.sdk.chutesdkandroid.model.AssetModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
-import com.android.getchute.sdk.chutesdkandroid.model.body.AssetRequestBody;
+import com.android.getchute.sdk.chutesdkandroid.model.body.AssetRequestModel;
 import io.reactivex.Observable;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +38,6 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -57,13 +56,8 @@ public interface AssetService {
 
   @GET Observable<ListResponseModel<AssetModel>> getNextPageObservable(@Url String url);
 
-  @PUT("albums/{album_id}/assets/{asset_id}")
-  Observable<ResponseModel<AssetModel>> updateObservable(
-      @Path("album_id") String albumId, @Path("asset_id") String assetId, @Body
-      AssetRequestBody assetRequestBody);
-
   @DELETE("albums/{album_id}/assets/{asset_id}")
-  Observable<ResponseModel<AssetModel>> deleteObservable(@Path("album_id") String albumId,
+  Observable<ResponseModel<Void>> deleteObservable(@Path("album_id") String albumId,
       @Path("asset_id") String assetId);
 
   @POST("albums/{album_id}/assets/{asset_id}/copy/{new_album_id}")
@@ -74,10 +68,9 @@ public interface AssetService {
   Observable<ResponseModel<AssetModel>> moveObservable(@Path("album_id") String albumId,
       @Path("asset_id") String assetId, @Path("new_album_id") String newAlbumId);
 
-  @POST("albums/{album_id}/assets/{asset_id}/import")
-  Observable<ResponseModel<AssetModel>> importObservable(@Path("album_id") String albumId,
-      @Path("asset_id") String assetId, @Query("urls") List<String> urls,
-      @Query("instagram_ids") List<String> instagramIds);
+  @POST("albums/{album_id}/assets/import")
+  Observable<ListResponseModel<AssetModel>> importObservable(@Path("album_id") String albumId,
+      @Body AssetRequestModel body);
 
   @GET("albums/{album_id}/assets/{asset_id}/exif")
   Observable<ResponseModel<HashMap<String, String>>> exifObservable(
@@ -96,12 +89,8 @@ public interface AssetService {
 
   @GET Call<ListResponseModel<AssetModel>> getNextPageCall(@Url String url);
 
-  @PUT("albums/{album_id}/assets/{asset_id}") Call<ResponseModel<AssetModel>> updateCall(
-      @Path("album_id") String albumId, @Path("asset_id") String assetId, @Body
-      AssetRequestBody assetRequestBody);
-
   @DELETE("albums/{album_id}/assets/{asset_id}")
-  Call<ResponseModel<AssetModel>> deleteCall(@Path("album_id") String albumId,
+  Call<ResponseModel<Void>> deleteCall(@Path("album_id") String albumId,
       @Path("asset_id") String assetId);
 
   @POST("albums/{album_id}/assets/{asset_id}/copy/{new_album_id}")
@@ -112,10 +101,9 @@ public interface AssetService {
   Call<ResponseModel<AssetModel>> moveCall(@Path("album_id") String albumId,
       @Path("asset_id") String assetId, @Path("new_album_id") String newAlbumId);
 
-  @POST("albums/{album_id}/assets/{asset_id}/import")
-  Call<ResponseModel<AssetModel>> importCall(@Path("album_id") String albumId,
-      @Path("asset_id") String assetId, @Query("urls") List<String> urls,
-      @Query("instagram_ids") List<String> instagramIds);
+  @POST("albums/{album_id}/assets/import")
+  Call<ListResponseModel<AssetModel>> importCall(@Path("album_id") String albumId,
+      @Body AssetRequestModel body);
 
   @GET("albums/{album_id}/assets/{asset_id}/exif")
   Call<ResponseModel<HashMap<String, String>>> exifCall(@Path("album_id") String albumId,

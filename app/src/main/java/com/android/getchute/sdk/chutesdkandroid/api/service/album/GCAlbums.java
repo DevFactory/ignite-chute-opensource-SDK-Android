@@ -24,13 +24,14 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service.model;
+package com.android.getchute.sdk.chutesdkandroid.api.service.album;
 
+import android.support.annotation.Nullable;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.AssetModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
-import com.android.getchute.sdk.chutesdkandroid.model.body.AlbumBodyRequestModel;
+import com.android.getchute.sdk.chutesdkandroid.model.body.AlbumRequestModel;
 import com.android.getchute.sdk.chutesdkandroid.retrofit.RetrofitService;
 import io.reactivex.Observable;
 import retrofit2.Call;
@@ -47,13 +48,15 @@ public class GCAlbums {
      *
      * @param name Name of the album
      * @param coverAssetId ID of the cover {@link AssetModel}
+     * @param parentId ID of the parent album.
      */
     public static Observable<ResponseModel<AlbumModel>> create(String name,
-        String coverAssetId) {
-      AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
-      albumBodyRequestModel.setCoverAssetId(coverAssetId);
-      albumBodyRequestModel.setName(name);
-      return RetrofitService.get().getAlbumService().createAlbumObservable(albumBodyRequestModel);
+        String coverAssetId, String parentId) {
+      AlbumRequestModel albumRequestModel = new AlbumRequestModel();
+      albumRequestModel.setName(name);
+      albumRequestModel.setCoverAssetId(coverAssetId);
+      albumRequestModel.setParentId(parentId);
+      return RetrofitService.get().getAlbumService().createAlbumObservable(albumRequestModel);
     }
 
     /**
@@ -81,14 +84,17 @@ public class GCAlbums {
      *
      * @param albumId The ID of the {@link AlbumModel} that needs to be updated.
      * @param coverAssetId ID of the cover {@link AssetModel}
+     * @param parentId ID of the parent album.
      */
     public static Observable<ResponseModel<AlbumModel>> update(String albumId,
-        String coverAssetId,
+        String coverAssetId, String parentId,
         String name) {
-      AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
-      albumBodyRequestModel.setCoverAssetId(coverAssetId);
-      albumBodyRequestModel.setName(name);
-      return RetrofitService.get().getAlbumService().updateAlbumObservable(albumId, albumBodyRequestModel);
+      AlbumRequestModel albumRequestModel = new AlbumRequestModel();
+      albumRequestModel.setName(name);
+      albumRequestModel.setCoverAssetId(coverAssetId);
+      albumRequestModel.setParentId(parentId);
+      return RetrofitService.get().getAlbumService().updateAlbumObservable(albumId,
+          albumRequestModel);
     }
 
     /**
@@ -105,8 +111,8 @@ public class GCAlbums {
      *
      * @param albumId ID of parent {@link AlbumModel}
      */
-    public static Observable<ListResponseModel<AlbumModel>> listNested(String albumId) {
-      return RetrofitService.get().getAlbumService().listNestedAlbumsObservable(albumId);
+    public static Observable<ListResponseModel<AlbumModel>> listNested(String albumId, @Nullable String perPage) {
+      return RetrofitService.get().getAlbumService().listNestedAlbumsObservable(albumId, perPage);
     }
   }
 
@@ -120,12 +126,14 @@ public class GCAlbums {
      *
      * @param name Name of the album
      * @param coverAssetId ID of the cover {@link AssetModel}
+     * @param parentId ID of the parent album.
      */
-    public static Call<ResponseModel<AlbumModel>> create(String name, String coverAssetId) {
-      AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
-      albumBodyRequestModel.setCoverAssetId(coverAssetId);
-      albumBodyRequestModel.setName(name);
-      return RetrofitService.get().getAlbumService().createAlbumCall(albumBodyRequestModel);
+    public static Call<ResponseModel<AlbumModel>> create(String name, String coverAssetId, String parentId) {
+      AlbumRequestModel albumRequestModel = new AlbumRequestModel();
+      albumRequestModel.setName(name);
+      albumRequestModel.setCoverAssetId(coverAssetId);
+      albumRequestModel.setParentId(parentId);
+      return RetrofitService.get().getAlbumService().createAlbumCall(albumRequestModel);
     }
 
     /**
@@ -153,13 +161,15 @@ public class GCAlbums {
      *
      * @param albumId The ID of the {@link AlbumModel} that needs to be updated.
      * @param coverAssetId ID of the cover {@link AssetModel}
+     * @param parentId ID of the parent album.
      */
     public static Call<ResponseModel<AlbumModel>> update(String albumId, String coverAssetId,
-        String name) {
-      AlbumBodyRequestModel albumBodyRequestModel = new AlbumBodyRequestModel();
-      albumBodyRequestModel.setCoverAssetId(coverAssetId);
-      albumBodyRequestModel.setName(name);
-      return RetrofitService.get().getAlbumService().updateAlbumCall(albumId, albumBodyRequestModel);
+        String name, String parentId) {
+      AlbumRequestModel albumRequestModel = new AlbumRequestModel();
+      albumRequestModel.setName(name);
+      albumRequestModel.setCoverAssetId(coverAssetId);
+      albumRequestModel.setParentId(parentId);
+      return RetrofitService.get().getAlbumService().updateAlbumCall(albumId, albumRequestModel);
     }
 
     /**
@@ -176,8 +186,8 @@ public class GCAlbums {
      *
      * @param albumId ID of parent {@link AlbumModel}
      */
-    public static Call<ListResponseModel<AlbumModel>> listNested(String albumId) {
-      return RetrofitService.get().getAlbumService().listNestedAlbumsCall(albumId);
+    public static Call<ListResponseModel<AlbumModel>> listNested(String albumId, @Nullable String perPage) {
+      return RetrofitService.get().getAlbumService().listNestedAlbumsCall(albumId, perPage);
     }
   }
 }

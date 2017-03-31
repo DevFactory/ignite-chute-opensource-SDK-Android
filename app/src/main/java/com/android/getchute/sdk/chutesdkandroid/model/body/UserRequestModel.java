@@ -28,21 +28,27 @@ package com.android.getchute.sdk.chutesdkandroid.model.body;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UserBodyUpdateRequestModel {
+public class UserRequestModel {
 
   @SerializedName("profile")
-  private ProfileBodyRequestModel profile;
+  private ProfileRequestModel profile;
   @SerializedName("email")
   private String email;
   @SerializedName("name")
   private String name;
+  @SerializedName("username")
+  private String username;
+  @SerializedName("password")
+  private String password;
+  @SerializedName("confirm_password")
+  private String confirmPassword;
 
-  public ProfileBodyRequestModel getProfile() {
+  public ProfileRequestModel getProfile() {
     return profile;
   }
 
   public void setProfile(
-      ProfileBodyRequestModel profile) {
+      ProfileRequestModel profile) {
     this.profile = profile;
   }
 
@@ -62,11 +68,38 @@ public class UserBodyUpdateRequestModel {
     this.name = name;
   }
 
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getConfirmPassword() {
+    return confirmPassword;
+  }
+
+  public void setConfirmPassword(String confirmPassword) {
+    this.confirmPassword = confirmPassword;
+  }
+
   @Override public String toString() {
-    return "UserBodyUpdateRequestModel{" +
+    return "UserRequestModel{" +
         "profile=" + profile +
         ", email='" + email + '\'' +
         ", name='" + name + '\'' +
+        ", username='" + username + '\'' +
+        ", password='" + password + '\'' +
+        ", confirmPassword='" + confirmPassword + '\'' +
         '}';
   }
 }

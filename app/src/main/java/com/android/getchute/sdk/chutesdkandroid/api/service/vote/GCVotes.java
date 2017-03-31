@@ -24,7 +24,7 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service.model;
+package com.android.getchute.sdk.chutesdkandroid.api.service.vote;
 
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.AssetModel;
@@ -57,7 +57,7 @@ public class GCVotes {
      * deleted.
      * @param assetId The ID of the {@link AssetModel} containing the vote to be deleted.
      */
-    public static Observable<Void> unvote(String albumId, String assetId) {
+    public static Observable<ResponseModel<Void>> unvote(String albumId, String assetId) {
       return RetrofitService.get().getVoteService().unvoteObservable(albumId, assetId);
     }
 
@@ -95,7 +95,7 @@ public class GCVotes {
      * deleted.
      * @param assetId The ID of the {@link AssetModel} containing the vote to be deleted.
      */
-    public static Call<Void> unvote(String albumId, String assetId) {
+    public static Call<ResponseModel<Void>> unvote(String albumId, String assetId) {
       return RetrofitService.get().getVoteService().unvoteCall(albumId, assetId);
     }
 

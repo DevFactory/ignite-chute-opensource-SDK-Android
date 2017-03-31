@@ -24,40 +24,50 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service.model;
+package com.android.getchute.sdk.chutesdkandroid.model.body;
 
-import com.android.getchute.sdk.chutesdkandroid.model.LoginRequestModel;
-import com.android.getchute.sdk.chutesdkandroid.model.LoginResponseModel;
-import com.android.getchute.sdk.chutesdkandroid.retrofit.RetrofitService;
-import io.reactivex.Observable;
-import retrofit2.Call;
+public class AlbumRequestModel {
 
-public class GCAuthentication {
+  /*
+  Album name
+   */
+  private String name;
+  /*
+  Asset Id
+   */
+  private String coverAssetId;
 
-  public static class Observables {
+  private String parentId;
 
-    /**
-     * Authenticates user with given client ID and secret.
-     */
-    public static Observable<LoginResponseModel> login(String username, String password,
-        String clientId, String clientSecret) {
-      LoginRequestModel loginRequestModel =
-          new LoginRequestModel(username, password, clientId, clientSecret);
-      return RetrofitService.get().getAuthService().loginObservable(loginRequestModel);
-    }
+  public String getName() {
+    return name;
   }
 
-  public static class Calls {
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    /**
-     * Authenticates user with given client ID and secret.
-     */
-    public static Call<LoginResponseModel> login(String username, String password,
-        String clientId,
-        String clientSecret) {
-      LoginRequestModel loginRequestModel =
-          new LoginRequestModel(username, password, clientId, clientSecret);
-      return RetrofitService.get().getAuthService().loginCall(loginRequestModel);
-    }
+  public String getCoverAssetId() {
+    return coverAssetId;
+  }
+
+  public void setCoverAssetId(String coverAssetId) {
+    this.coverAssetId = coverAssetId;
+  }
+
+  public String getParentId() {
+    return parentId;
+  }
+
+  public void setParentId(String parentId) {
+    this.parentId = parentId;
+  }
+
+  @Override public String toString() {
+    return "AlbumRequestModel{" +
+        "name='" + name + '\'' +
+        ", coverAssetId='" + coverAssetId + '\'' +
+        ", parentId='" + parentId + '\'' +
+        '}';
   }
 }

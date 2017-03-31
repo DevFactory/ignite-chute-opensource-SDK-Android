@@ -24,12 +24,12 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service;
+package com.android.getchute.sdk.chutesdkandroid.api.service.album;
 
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
-import com.android.getchute.sdk.chutesdkandroid.model.body.AlbumBodyRequestModel;
+import com.android.getchute.sdk.chutesdkandroid.model.body.AlbumRequestModel;
 import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -45,7 +45,7 @@ public interface AlbumService {
   /** Observables **/
 
   @POST("albums") Observable<ResponseModel<AlbumModel>> createAlbumObservable(
-      @Body AlbumBodyRequestModel albumBodyRequestModel);
+      @Body AlbumRequestModel albumRequestModel);
 
   @DELETE("albums/{album_id}") Observable<ResponseModel<Void>> deleteAlbumObservable(
       @Path("album_id") String albumId);
@@ -58,16 +58,16 @@ public interface AlbumService {
 
   @GET("albums/{album_id}/albums")
   Observable<ListResponseModel<AlbumModel>> listNestedAlbumsObservable(
-      @Path("album_id") String albumId);
+      @Path("album_id") String albumId, @Query("per_page") String perPage);
 
   @PUT("albums/{id}") Observable<ResponseModel<AlbumModel>> updateAlbumObservable(
       @Path("id") String id,
-      @Body AlbumBodyRequestModel albumBodyRequestModel);
+      @Body AlbumRequestModel albumRequestModel);
 
   /** Calls **/
 
   @POST("albums") Call<ResponseModel<AlbumModel>> createAlbumCall(
-      @Body AlbumBodyRequestModel albumBodyRequestModel);
+      @Body AlbumRequestModel albumRequestModel);
 
   @DELETE("albums/{album_id}") Call<ResponseModel<Void>> deleteAlbumCall(
       @Path("album_id") String albumId);
@@ -79,8 +79,8 @@ public interface AlbumService {
       @Query("per_page") String perPage);
 
   @GET("albums/{album_id}/albums") Call<ListResponseModel<AlbumModel>> listNestedAlbumsCall(
-      @Path("album_id") String albumId);
+      @Path("album_id") String albumId, @Query("per_page") String perPage);
 
   @PUT("albums/{id}") Call<ResponseModel<AlbumModel>> updateAlbumCall(@Path("id") String id,
-      @Body AlbumBodyRequestModel albumBodyRequestModel);
+      @Body AlbumRequestModel albumRequestModel);
 }

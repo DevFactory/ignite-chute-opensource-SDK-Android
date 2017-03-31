@@ -24,37 +24,40 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.model.body;
+package com.android.getchute.sdk.chutesdkandroid.api.service.auth;
 
-import com.google.gson.annotations.SerializedName;
+import com.android.getchute.sdk.chutesdkandroid.model.LoginRequestModel;
+import com.android.getchute.sdk.chutesdkandroid.model.LoginResponseModel;
+import com.android.getchute.sdk.chutesdkandroid.retrofit.RetrofitService;
+import io.reactivex.Observable;
+import retrofit2.Call;
 
-public class ProfileBodyRequestModel {
+public class GCAuthentication {
 
-  @SerializedName("title")
-  private String title;
-  @SerializedName("company")
-  private String company;
+  public static class Observables {
 
-  public String getTitle() {
-    return title;
+    /**
+     * Authenticates user with given client ID and secret.
+     */
+    public static Observable<LoginResponseModel> login(String username, String password,
+        String clientId, String clientSecret) {
+      LoginRequestModel loginRequestModel =
+          new LoginRequestModel(username, password, clientId, clientSecret);
+      return RetrofitService.get().getAuthService().loginObservable(loginRequestModel);
+    }
   }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+  public static class Calls {
 
-  public String getCompany() {
-    return company;
-  }
-
-  public void setCompany(String company) {
-    this.company = company;
-  }
-
-  @Override public String toString() {
-    return "ProfileBodyRequestModel{" +
-        "title='" + title + '\'' +
-        ", company='" + company + '\'' +
-        '}';
+    /**
+     * Authenticates user with given client ID and secret.
+     */
+    public static Call<LoginResponseModel> login(String username, String password,
+        String clientId,
+        String clientSecret) {
+      LoginRequestModel loginRequestModel =
+          new LoginRequestModel(username, password, clientId, clientSecret);
+      return RetrofitService.get().getAuthService().loginCall(loginRequestModel);
+    }
   }
 }

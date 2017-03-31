@@ -28,23 +28,33 @@ package com.android.getchute.sdk.chutesdkandroid.model.body;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AssetRequestBody {
+public class ProfileRequestModel {
 
-    @SerializedName("asset")
-    private AssetBodyRequestModel asset;
+  @SerializedName("title")
+  private String title;
+  @SerializedName("company")
+  private String company;
 
-    @Override public String toString() {
-        final StringBuilder sb = new StringBuilder("AssetRequestBody{");
-        sb.append("asset=").append(asset);
-        sb.append('}');
-        return sb.toString();
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public AssetBodyRequestModel getAsset() {
-        return asset;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public void setAsset(AssetBodyRequestModel asset) {
-        this.asset = asset;
-    }
+  public String getCompany() {
+    return company;
+  }
+
+  public void setCompany(String company) {
+    this.company = company;
+  }
+
+  @Override public String toString() {
+    return "ProfileRequestModel{" +
+        "title='" + title + '\'' +
+        ", company='" + company + '\'' +
+        '}';
+  }
 }

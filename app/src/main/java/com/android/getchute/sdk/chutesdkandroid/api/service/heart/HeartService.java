@@ -24,7 +24,7 @@
  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service;
+package com.android.getchute.sdk.chutesdkandroid.api.service.heart;
 
 import com.android.getchute.sdk.chutesdkandroid.model.HeartModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
@@ -44,7 +44,7 @@ public interface HeartService {
       @Path("asset_id") String assetId);
 
   @DELETE("albums/{album_id}/assets/{asset_id}/hearts")
-  Observable<ResponseModel<HeartModel>> unheartObservable(@Path("album_id") String albumId,
+  Observable<ResponseModel<Void>> unheartObservable(@Path("album_id") String albumId,
       @Path("asset_id") String assetId);
 
   @POST("albums/{album_id}/assets/{asset_id}/hearts")
@@ -58,7 +58,7 @@ public interface HeartService {
       @Path("asset_id") String assetId);
 
   @DELETE("albums/{album_id}/assets/{asset_id}/hearts")
-  Call<ResponseModel<HeartModel>> unheartCall(@Path("album_id") String albumId,
+  Call<ResponseModel<Void>> unheartCall(@Path("album_id") String albumId,
       @Path("asset_id") String assetId);
 
   @POST("albums/{album_id}/assets/{asset_id}/hearts") Call<ResponseModel<HeartModel>> heartCall(

@@ -24,7 +24,7 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.service.model;
+package com.android.getchute.sdk.chutesdkandroid.api.service.tag;
 
 import android.text.TextUtils;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
