@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/textViewLoginSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:text="@string/login_header"
+        android:textSize="@dimen/abc_text_size_body_2_material" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCredentials"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_login_fields_background"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/login_email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColor="@color/login_edit_text" />
+
+        <ImageView
+            android:id="@+id/dividerLogin"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/login_border" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/login_password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="@color/login_edit_text" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_button_login"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:text="@string/login_button"
+        android:textColor="@android:color/white" />
+
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Sample</string>
+    <string name="login_header">Log in with Chute</string>
+    <string name="login_email">E-mail</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">LOGIN</string>
+    <string name="edittext_username_error">Please insert valid e-mail</string>
+    <string name="edittext_password_error">Please insert password</string>
+    <string name="button_execute_request">Execute Request</string>
+    <string name="snackbar_response_success">Successfully executed request</string>
+    <string name="snackbar_response_error">An error occurred, please try again</string>
+    <string name="snackbar_empty_token">The token is empty</string>
+</resources>
