@@ -1,0 +1,7 @@
+{
+  "grant_type": "password",
+  "username": "olga@getchute.com",
+  "password": "password1",
+  "client_id": "123456id",
+  "client_secret": "123456secret"
+}

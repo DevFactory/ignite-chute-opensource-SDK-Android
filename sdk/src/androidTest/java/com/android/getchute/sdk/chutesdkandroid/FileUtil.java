@@ -9,7 +9,7 @@
  * Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation
  * and/or other materials provided with the distribution.
- * Neither the name of the Chute Corporation nor the names
+ * Neither the name of the  Chute Corporation nor the names
  * of its contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
  *
@@ -24,59 +24,32 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.model;
+package com.android.getchute.sdk.chutesdkandroid;
 
-import com.google.gson.annotations.SerializedName;
+import android.content.Context;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-public class LoginResponseModel {
+public class FileUtil {
 
-  @SerializedName("access_token")
-  private String accessToken;
-  @SerializedName("token_type")
-  private String tokenType;
-  @SerializedName("error")
-  private String error;
-  @SerializedName("error_description")
-  private String errorDescription;
-
-  public String getAccessToken() {
-    return accessToken;
+  public static String convertStreamToString(InputStream is) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+    StringBuilder sb = new StringBuilder();
+    String line;
+    while ((line = reader.readLine()) != null) {
+      sb.append(line).append("\n");
+    }
+    reader.close();
+    return sb.toString();
   }
 
-  public void setAccessToken(String accessToken) {
-    this.accessToken = accessToken;
-  }
+  public static String getStringFromFile(Context context, String filePath) throws Exception {
+    final InputStream stream = context.getResources().getAssets().open(filePath);
 
-  public String getTokenType() {
-    return tokenType;
-  }
-
-  public void setTokenType(String tokenType) {
-    this.tokenType = tokenType;
-  }
-
-  public String getError() {
-    return error;
-  }
-
-  public void setError(String error) {
-    this.error = error;
-  }
-
-  public String getErrorDescription() {
-    return errorDescription;
-  }
-
-  public void setErrorDescription(String errorDescription) {
-    this.errorDescription = errorDescription;
-  }
-
-  @Override public String toString() {
-    return "LoginResponseModel{" +
-        "accessToken='" + accessToken + '\'' +
-        ", tokenType='" + tokenType + '\'' +
-        ", error='" + error + '\'' +
-        ", errorDescription='" + errorDescription + '\'' +
-        '}';
+    String ret = convertStreamToString(stream);
+    stream.close();
+    return ret;
   }
 }
+
