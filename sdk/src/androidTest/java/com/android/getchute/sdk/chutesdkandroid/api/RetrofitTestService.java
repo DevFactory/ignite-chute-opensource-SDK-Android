@@ -26,8 +26,11 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.api;
 
+import com.android.getchute.sdk.chutesdkandroid.api.album.MockAlbumService;
+import com.android.getchute.sdk.chutesdkandroid.api.album.MockFailedAlbumService;
 import com.android.getchute.sdk.chutesdkandroid.api.auth.MockAuthService;
 import com.android.getchute.sdk.chutesdkandroid.api.auth.MockFailedAuthService;
+import com.android.getchute.sdk.chutesdkandroid.api.service.album.AlbumService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.auth.AuthService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -44,6 +47,7 @@ public class RetrofitTestService {
 
   private static RetrofitTestService instance;
   private MockRetrofit mockRetrofit;
+  private Gson gson;
 
   private RetrofitTestService() {
     createMockRetrofit();
@@ -60,17 +64,17 @@ public class RetrofitTestService {
     return instance;
   }
 
-  private Gson gson() {
-    Gson gson = new GsonBuilder().setFieldNamingPolicy(
-        FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).setLenient().create();
+  public Gson getGson() {
     return gson;
   }
 
   private MockRetrofit createMockRetrofit() {
+    gson = new GsonBuilder().setFieldNamingPolicy(
+        FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).setLenient().create();
     Retrofit retrofit = new Retrofit.Builder().baseUrl("http://test.com")
         .client(new OkHttpClient())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .addConverterFactory(GsonConverterFactory.create(gson()))
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .build();
 
     NetworkBehavior networkBehavior = NetworkBehavior.create();
@@ -86,11 +90,23 @@ public class RetrofitTestService {
     return mockRetrofit.create(AuthService.class);
   }
 
+  private BehaviorDelegate<AlbumService> getAlbumBehaviorDelegate() {
+    return mockRetrofit.create(AlbumService.class);
+  }
+
   public AuthService getMockAuthService() {
     return new MockAuthService(getAuthBehaviorDelegate());
   }
 
   public AuthService getMockFailedAuthService() {
     return new MockFailedAuthService(getAuthBehaviorDelegate());
+  }
+
+  public AlbumService getMockAlbumService() {
+    return new MockAlbumService(getAlbumBehaviorDelegate());
+  }
+
+  public AlbumService getMockFailedAlbumService() {
+    return new MockFailedAlbumService(getAlbumBehaviorDelegate());
   }
 }

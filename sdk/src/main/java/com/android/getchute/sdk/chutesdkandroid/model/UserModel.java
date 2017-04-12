@@ -62,12 +62,12 @@ public class UserModel implements Serializable {
   /**
    * Time and date of creation.
    */
-  private String created_at;
+  private String createdAt;
 
   /**
    * Time and date of update.
    */
-  private String updated_at;
+  private String updatedAt;
 
   /**
    * User e-mail.
@@ -132,20 +132,20 @@ public class UserModel implements Serializable {
     this.avatar = avatar;
   }
 
-  public String getCreated_at() {
-    return created_at;
+  public String getCreatedAt() {
+    return createdAt;
   }
 
-  public void setCreated_at(String created_at) {
-    this.created_at = created_at;
+  public void setCreatedAt(String createdAt) {
+    this.createdAt = createdAt;
   }
 
-  public String getUpdated_at() {
-    return updated_at;
+  public String getUpdatedAt() {
+    return updatedAt;
   }
 
-  public void setUpdated_at(String updated_at) {
-    this.updated_at = updated_at;
+  public void setUpdatedAt(String updatedAt) {
+    this.updatedAt = updatedAt;
   }
 
   public String getEmail() {
@@ -205,21 +205,20 @@ public class UserModel implements Serializable {
   }
 
   @Override public String toString() {
-    return "UserModel{" +
-        "id='" + id + '\'' +
-        ", links=" + links +
-        ", name='" + name + '\'' +
-        ", username='" + username + '\'' +
-        ", avatar='" + avatar + '\'' +
-        ", created_at='" + created_at + '\'' +
-        ", updated_at='" + updated_at + '\'' +
-        ", email='" + email + '\'' +
-        ", oauthToken='" + oauthToken + '\'' +
-        ", status='" + status + '\'' +
-        ", profileModel=" + profileModel +
-        ", lastLogin='" + lastLogin + '\'' +
-        ", admin=" + admin +
-        ", oauthApp=" + oauthApp +
-        '}';
+    return getClass().getSimpleName() + "[" +
+        "id=" + id + ", " +
+        "links=" + links + ", " +
+        "name=" + name + ", " +
+        "username=" + username + ", " +
+        "avatar=" + avatar + ", " +
+        "createdAt=" + createdAt + ", " +
+        "updatedAt=" + updatedAt + ", " +
+        "email=" + email + ", " +
+        "oauthToken=" + oauthToken + ", " +
+        "status=" + status + ", " +
+        "profileModel=" + profileModel + ", " +
+        "lastLogin=" + lastLogin + ", " +
+        "admin=" + admin + ", " +
+        "oauthApp=" + oauthApp + "]";
   }
 }

@@ -24,12 +24,32 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid;
+package com.android.getchute.sdk.chutesdkandroid.api;
 
-public class FileNames {
+import android.support.test.filters.LargeTest;
+import android.support.test.runner.AndroidJUnit4;
+import com.android.getchute.sdk.chutesdkandroid.ImmediateSchedulersRule;
+import com.android.getchute.sdk.chutesdkandroid.api.service.album.AlbumService;
+import com.google.gson.Gson;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.runner.RunWith;
 
-  public static final String AUTH_RESPONSE_SUCCESS = "auth_response_ok.json";
-  public static final String AUTH_RESPONSE_FAIL = "auth_response_error.json";
-  public static final String AUTH_REQUEST_SUCCESS = "auth_request_ok.json";
-  public static final String AUTH_REQUEST_FAIL = "auth_request_error.json";
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public abstract class BaseMockAdapterTest {
+
+  protected AlbumService mockAlbumService;
+  protected AlbumService mockFailedAlbumService;
+  protected Gson gson;
+
+  @Before
+  public void setUp() throws Exception {
+    mockAlbumService = RetrofitTestService.get().getMockAlbumService();
+    mockFailedAlbumService = RetrofitTestService.get().getMockFailedAlbumService();
+    gson = RetrofitTestService.get().getGson();
+  }
+
+  @Rule
+  public final ImmediateSchedulersRule schedulers = new ImmediateSchedulersRule();
 }

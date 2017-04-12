@@ -1,0 +1,10 @@
+{
+  "response": {
+    "error": "Unauthorized",
+    "version": 2,
+    "code": 401,
+    "method": "GET",
+    "href": "https://api.getchute.com/v2/albums"
+  }
+}
+

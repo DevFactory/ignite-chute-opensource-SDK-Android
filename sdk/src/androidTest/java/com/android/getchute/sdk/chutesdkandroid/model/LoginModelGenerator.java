@@ -24,38 +24,38 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid;
+package com.android.getchute.sdk.chutesdkandroid.model;
 
 import android.support.test.InstrumentationRegistry;
 import android.util.Log;
-import com.android.getchute.sdk.chutesdkandroid.model.LoginRequestModel;
-import com.android.getchute.sdk.chutesdkandroid.model.LoginResponseModel;
+import com.android.getchute.sdk.chutesdkandroid.Constants;
+import com.android.getchute.sdk.chutesdkandroid.FileUtil;
+import com.android.getchute.sdk.chutesdkandroid.api.RetrofitTestService;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.json.JSONObject;
 
-public class ModelGenerator {
+public class LoginModelGenerator {
 
-  private static final String TAG = ModelGenerator.class.getSimpleName();
-  private static Gson gson = new GsonBuilder().setLenient().create();
+  private static final String TAG = LoginModelGenerator.class.getSimpleName();
+  private static Gson gson = RetrofitTestService.get().getGson();
 
-  public static LoginRequestModel getLoginRequestModel() throws Exception {
+  public static LoginRequestModel getRequestModel() throws Exception {
     return gson.fromJson(
         FileUtil.getStringFromFile(InstrumentationRegistry.getContext(),
-            FileNames.AUTH_REQUEST_SUCCESS), LoginRequestModel.class);
+            Constants.FilePaths.Login.REQUEST_SUCCESS), LoginRequestModel.class);
   }
 
-  public static LoginRequestModel getLoginFailedRequestModel() throws Exception {
+  public static LoginRequestModel getFailedRequestModel() throws Exception {
     return gson.fromJson(
         FileUtil.getStringFromFile(InstrumentationRegistry.getContext(),
-            FileNames.AUTH_REQUEST_FAIL), LoginRequestModel.class);
+            Constants.FilePaths.Login.REQUEST_FAIL), LoginRequestModel.class);
   }
 
-  public static LoginResponseModel getLoginResponseModel() {
+  public static LoginResponseModel getResponseModel() {
     LoginResponseModel loginResponseModel = new LoginResponseModel();
     try {
       String jsonString = FileUtil.getStringFromFile(
-          InstrumentationRegistry.getContext(), FileNames.AUTH_RESPONSE_SUCCESS);
+          InstrumentationRegistry.getContext(), Constants.FilePaths.Login.RESPONSE_SUCCESS);
       JSONObject json = new JSONObject(jsonString);
       loginResponseModel = gson.fromJson(json.toString(), LoginResponseModel.class);
     } catch (Exception e) {
@@ -64,11 +64,11 @@ public class ModelGenerator {
     return loginResponseModel;
   }
 
-  public static LoginResponseModel getLoginFailedResponseModel() {
+  public static LoginResponseModel getFailedResponseModel() {
     LoginResponseModel loginResponseModel = new LoginResponseModel();
     try {
       loginResponseModel = gson.fromJson(FileUtil.getStringFromFile(
-          InstrumentationRegistry.getContext(), FileNames.AUTH_RESPONSE_FAIL),
+          InstrumentationRegistry.getContext(), Constants.FilePaths.Login.RESPONSE_FAIL),
           LoginResponseModel.class);
     } catch (Exception e) {
       Log.e(TAG, "Failed to create LoginResponseModel: " + e.getMessage());

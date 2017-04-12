@@ -1,0 +1,98 @@
+{
+  "response": {
+    "title": "Album Details",
+    "version": 2,
+    "code": 200,
+    "method": "PUT",
+    "href": "https://api.getchute.com/v2/albums/2586173"
+  },
+  "data": {
+    "id": 2586173,
+    "links": {
+      "self": {
+        "href": "https://getchute.com/v2/albums/2586173",
+        "title": "Album Details"
+      },
+      "assets": {
+        "href": "https://getchute.com/v2/albums/2586173/assets",
+        "title": "Asset Listing"
+      }
+    },
+    "created_at": "2017-03-14T09:20:59.038Z",
+    "updated_at": "2017-04-10T15:43:32.299Z",
+    "shortcut": "aQMtbrwz",
+    "name": "Test Album",
+    "description": null,
+    "type": null,
+    "moderate_media": false,
+    "moderate_comments": false,
+    "has_new_assets": false,
+    "parent_id": null,
+    "sortable": false,
+    "user": {
+      "id": 86004443,
+      "links": {
+        "self": {
+          "href": "https://getchute.com/v2/users/86004443",
+          "title": "User Details"
+        },
+        "apps": {
+          "href": "https://getchute.com/v2/apps",
+          "title": "Apps List"
+        }
+      },
+      "created_at": "2015-05-05T11:04:29.166Z",
+      "updated_at": "2017-03-30T12:03:58.598Z",
+      "name": "olga",
+      "username": "olala00",
+      "avatar": "https://instagram.fotp1-1.fna.fbcdn.net/t51.2885-19/11906329_960233084022564_1448528159_a.jpg",
+      "profile": {},
+      "last_login": "2017-03-20T10:09:27.379Z",
+      "admin": true
+    },
+    "cover_asset": {
+      "id": 3517506078,
+      "links": {
+        "self": {
+          "href": "https://getchute.com/v2/albums/2586173/assets/3517506078",
+          "title": "AlbumAsset Details"
+        },
+        "exif": {
+          "href": "https://getchute.com/v2/albums/2586173/assets/3517506078/exif",
+          "title": "Exif Details"
+        },
+        "geo": {
+          "href": "https://getchute.com/v2/albums/2586173/assets/3517506078/geo",
+          "title": "Geo Details"
+        },
+        "heart": {
+          "href": "https://getchute.com/v2/albums/2586173/assets/3517506078/hearts",
+          "title": "Hearts"
+        },
+        "vote": {
+          "href": "https://getchute.com/v2/albums/2586173/assets/3517506078/votes",
+          "title": "Votes"
+        }
+      },
+      "created_at": "2017-03-14T09:49:43.280Z",
+      "updated_at": "2017-03-29T15:40:45.914Z",
+      "chute_asset_id": 3517506078,
+      "shortcut": "3Q3610tmhq",
+      "type": "image",
+      "album_id": 2586173,
+      "source": {
+        "source": "import",
+        "source_url": "http%3A%2F%2Ffarm5.static.flickr.com%2F4138%2F4758470218_b0f3cf0d44.jpg"
+      },
+      "tags": [
+        "mwa"
+      ],
+      "metadata": {},
+      "hearts": 0,
+      "votes": 0,
+      "thumbnail": "http://media.getchute.com/media/3Q3610tmhq/75x75",
+      "url": "https://media.getchute.com/media/3Q3610tmhq",
+      "dimensions": {}
+    }
+  }
+}

@@ -26,7 +26,7 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.api.auth;
 
-import com.android.getchute.sdk.chutesdkandroid.ModelGenerator;
+import com.android.getchute.sdk.chutesdkandroid.model.LoginModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.api.service.auth.AuthService;
 import com.android.getchute.sdk.chutesdkandroid.model.LoginRequestModel;
 import com.android.getchute.sdk.chutesdkandroid.model.LoginResponseModel;
@@ -42,7 +42,7 @@ public class MockAuthService implements AuthService {
 
   public MockAuthService(BehaviorDelegate<AuthService> service) {
     this.delegate = service;
-    this.loginResponseModel = ModelGenerator.getLoginResponseModel();
+    this.loginResponseModel = LoginModelGenerator.getResponseModel();
   }
 
   @Override

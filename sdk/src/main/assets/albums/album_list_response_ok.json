@@ -1,0 +1,56 @@
+{
+  "response": {
+    "title": "Album Details",
+    "version": 2,
+    "code": 200,
+    "method": "GET",
+    "href": "https://api.getchute.com/v2/albums"
+  },
+  "data": [
+    {
+      "id": 2586435,
+      "links": {
+        "self": {
+          "href": "https://getchute.com/v2/albums/2586435",
+          "title": "Album Details"
+        },
+        "assets": {
+          "href": "https://getchute.com/v2/albums/2586435/assets",
+          "title": "Asset Listing"
+        }
+      },
+      "created_at": "2017-03-21T09:48:53.435Z",
+      "updated_at": "2017-03-30T15:49:09.621Z",
+      "shortcut": "aQQHrbmf",
+      "name": "Album name",
+      "description": null,
+      "type": null,
+      "moderate_media": false,
+      "moderate_comments": false,
+      "has_new_assets": false,
+      "parent_id": null,
+      "sortable": false,
+      "user": {
+        "id": 86004443,
+        "links": {
+          "self": {
+            "href": "https://getchute.com/v2/users/86004443",
+            "title": "User Details"
+          },
+          "apps": {
+            "href": "https://getchute.com/v2/apps",
+            "title": "Apps List"
+          }
+        },
+        "created_at": "2015-05-05T11:04:29.166Z",
+        "updated_at": "2017-03-30T12:03:58.598Z",
+        "name": "olga",
+        "username": "olala00",
+        "avatar": "https://instagram.fotp1-1.fna.fbcdn.net/t51.2885-19/11906329_960233084022564_1448528159_a.jpg",
+        "profile": {},
+        "last_login": "2017-03-20T10:09:27.379Z",
+        "admin": true
+      }
+    }
+  ]
+}

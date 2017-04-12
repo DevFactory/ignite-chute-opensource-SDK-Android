@@ -1,0 +1,9 @@
+{
+  "response": {
+    "title": "Album Deleted",
+    "version": 2,
+    "code": 200,
+    "method": "DELETE",
+    "href": "https://api.getchute.com/v2/albums/2586434"
+  }
+}
