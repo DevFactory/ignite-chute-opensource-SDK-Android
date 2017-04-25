@@ -1,0 +1,16 @@
+{
+  "response": {
+    "title": "Exif Details",
+    "version": 2,
+    "code": 200,
+    "href": "http://api.getchute.com/v2/albums/2586175/assets/3517506078/exif"
+  },
+  "data": {
+    "Camera": "Nokia N95",
+    "Altitude": "61",
+    "GPS Date": "0000:01:01",
+    "Latitude": "S 36° 52' 53.61\"",
+    "Longitude": "E 174° 42' 28.48\"",
+    "GPS Time (atomic clock)": "0/1, 0/1, 0/1"
+  }
+}

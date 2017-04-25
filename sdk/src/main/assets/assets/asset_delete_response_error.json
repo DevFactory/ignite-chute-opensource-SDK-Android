@@ -1,0 +1,9 @@
+{
+  "response": {
+    "error": "Not Found",
+    "version": 2,
+    "code": 404,
+    "method": "DELETE",
+    "href": "https://api.getchute.com/v2/albums/2586173/assets/352797845"
+  }
+}

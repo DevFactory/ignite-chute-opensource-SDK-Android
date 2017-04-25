@@ -27,7 +27,6 @@
 package com.android.getchute.sdk.chutesdkandroid.api.album;
 
 import com.android.getchute.sdk.chutesdkandroid.Constants;
-import com.android.getchute.sdk.chutesdkandroid.api.BaseMockAdapterTest;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.LinkInfoModel;
@@ -46,7 +45,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class AlbumCreateMockAdapterTest extends BaseMockAdapterTest {
+public class AlbumCreateMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumCreateCall() throws Exception {
@@ -116,7 +115,7 @@ public class AlbumCreateMockAdapterTest extends BaseMockAdapterTest {
         ModelBluePrint.createLinkInfoModel("https://getchute.com/v2/albums/2587833/assets",
             "Asset Listing");
     LinkModel linkModel =
-        ModelBluePrint.createLinkModel(self, assets);
+        ModelBluePrint.createLinkModel(self, assets, null, null, null, null);
     UserModel userModel = ModelBluePrint.createUserModel("86004443", "2015-05-05T11:04:29.166Z",
         "2017-03-30T12:03:58.598Z", "Oliver", "oli0290",
         "https://instagram.fotp1-1.fna.fbcdn.net/t51.2885-19/11906329_960233084022564_1448528159_a.jpg",

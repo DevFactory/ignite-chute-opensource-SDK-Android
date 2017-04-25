@@ -28,9 +28,12 @@ package com.android.getchute.sdk.chutesdkandroid.api;
 
 import com.android.getchute.sdk.chutesdkandroid.api.album.MockAlbumService;
 import com.android.getchute.sdk.chutesdkandroid.api.album.MockFailedAlbumService;
+import com.android.getchute.sdk.chutesdkandroid.api.asset.MockAssetFailedService;
+import com.android.getchute.sdk.chutesdkandroid.api.asset.MockAssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.auth.MockAuthService;
 import com.android.getchute.sdk.chutesdkandroid.api.auth.MockFailedAuthService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.album.AlbumService;
+import com.android.getchute.sdk.chutesdkandroid.api.service.asset.AssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.auth.AuthService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -94,6 +97,10 @@ public class RetrofitTestService {
     return mockRetrofit.create(AlbumService.class);
   }
 
+  private BehaviorDelegate<AssetService> getAssetBehaviorDelegate() {
+    return mockRetrofit.create(AssetService.class);
+  }
+
   public AuthService getMockAuthService() {
     return new MockAuthService(getAuthBehaviorDelegate());
   }
@@ -108,5 +115,13 @@ public class RetrofitTestService {
 
   public AlbumService getMockFailedAlbumService() {
     return new MockFailedAlbumService(getAlbumBehaviorDelegate());
+  }
+
+  public AssetService getMockAssetService() {
+    return new MockAssetService(getAssetBehaviorDelegate());
+  }
+
+  public AssetService getMockFailedAssetService() {
+    return new MockAssetFailedService(getAssetBehaviorDelegate());
   }
 }

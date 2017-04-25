@@ -1,13 +1,19 @@
 package com.android.getchute.sdk.chutesdkandroid.model;
 
 import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModelBluePrint {
 
-  public static LinkModel createLinkModel(LinkInfoModel self, LinkInfoModel assets) {
+  public static LinkModel createLinkModel(LinkInfoModel self, LinkInfoModel assets, LinkInfoModel geo, LinkInfoModel exif, LinkInfoModel heart, LinkInfoModel vote) {
     LinkModel linkModel = new LinkModel();
     if (self != null) { linkModel.setSelf(self); }
     if (assets != null) { linkModel.setAssets(assets); }
+    if (geo != null) { linkModel.setGeo(geo); }
+    if (exif != null) { linkModel.setExif(exif); }
+    if (heart != null) { linkModel.setHeart(heart); }
+    if (vote != null) { linkModel.setVote(vote); }
     return linkModel;
   }
 
@@ -45,6 +51,26 @@ public class ModelBluePrint {
     albumModel.setHasNewAssets(hasNewAssets);
     if (userModel != null) { albumModel.setUser(userModel); }
     return albumModel;
+  }
+
+  public static AssetModel createAssetModel(String id, LinkModel linkModel, String createdAt,
+      String updatedAt, String shortcut, String type, String chuteAssetId, List<String> tags,
+      int hearts, int votes, String thumbnail, String url, UserModel userModel) {
+    AssetModel assetModel = new AssetModel();
+    assetModel.setId(id);
+    if (linkModel != null) { assetModel.setLinks(linkModel); }
+    assetModel.setCreatedAt(createdAt);
+    assetModel.setUpdatedAt(updatedAt);
+    assetModel.setShortcut(shortcut);
+    assetModel.setType(type);
+    assetModel.setHearts(hearts);
+    assetModel.setVotes(votes);
+    assetModel.setThumbnail(thumbnail);
+    assetModel.setUrl(url);
+    assetModel.setTags((ArrayList<String>) tags);
+    assetModel.setChuteAssetId(chuteAssetId);
+    if (userModel != null) { assetModel.setUser(userModel); }
+    return assetModel;
   }
 
   public static ResponseStatusModel createResponseStatusModel(String error, int code, int version,

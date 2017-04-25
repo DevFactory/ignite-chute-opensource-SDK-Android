@@ -1,0 +1,8 @@
+{
+  "response": {
+    "title": "Asset Deleted",
+    "version": 2,
+    "code": 200,
+    "href": "http://api.getchute.com/v2/albums/2586173/assets/3517514423"
+  }
+}

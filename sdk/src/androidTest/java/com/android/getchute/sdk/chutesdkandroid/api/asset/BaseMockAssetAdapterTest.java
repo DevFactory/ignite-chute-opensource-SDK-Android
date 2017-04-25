@@ -24,12 +24,15 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api;
+package com.android.getchute.sdk.chutesdkandroid.api.asset;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 import com.android.getchute.sdk.chutesdkandroid.ImmediateSchedulersRule;
-import com.android.getchute.sdk.chutesdkandroid.api.service.album.AlbumService;
+import com.android.getchute.sdk.chutesdkandroid.api.RetrofitTestService;
+import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
+import com.android.getchute.sdk.chutesdkandroid.api.service.asset.AssetService;
 import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Rule;
@@ -37,17 +40,18 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public abstract class BaseMockAdapterTest {
+public abstract class BaseMockAssetAdapterTest {
 
-  protected AlbumService mockAlbumService;
-  protected AlbumService mockFailedAlbumService;
+  protected AssetService mockAssetService;
+  protected AssetService mockFailedAssetService;
   protected Gson gson;
 
   @Before
   public void setUp() throws Exception {
-    mockAlbumService = RetrofitTestService.get().getMockAlbumService();
-    mockFailedAlbumService = RetrofitTestService.get().getMockFailedAlbumService();
+    mockAssetService = RetrofitTestService.get().getMockAssetService();
+    mockFailedAssetService = RetrofitTestService.get().getMockFailedAssetService();
     gson = RetrofitTestService.get().getGson();
+    TokenAuthenticationProvider.init(InstrumentationRegistry.getContext());
   }
 
   @Rule

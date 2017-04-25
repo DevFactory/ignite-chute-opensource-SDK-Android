@@ -1,0 +1,74 @@
+{
+  "response": {
+    "title": "AlbumAsset Details",
+    "version": 2,
+    "code": 200,
+    "method": "GET",
+    "href": "https://api.getchute.com/v2/albums/2586175/assets/3527978451"
+  },
+  "data": {
+    "id": 3527978451,
+    "links": {
+      "self": {
+        "href": "https://getchute.com/v2/albums/2586175/assets/3527978451",
+        "title": "AlbumAsset Details"
+      },
+      "exif": {
+        "href": "https://getchute.com/v2/albums/2586175/assets/3527978451/exif",
+        "title": "Exif Details"
+      },
+      "geo": {
+        "href": "https://getchute.com/v2/albums/2586175/assets/3527978451/geo",
+        "title": "Geo Details"
+      },
+      "heart": {
+        "href": "https://getchute.com/v2/albums/2586175/assets/3527978451/hearts",
+        "title": "Hearts"
+      },
+      "vote": {
+        "href": "https://getchute.com/v2/albums/2586175/assets/3527978451/votes",
+        "title": "Votes"
+      }
+    },
+    "created_at": "2017-03-30T10:54:36.615Z",
+    "updated_at": "2017-04-18T16:52:33.405Z",
+    "chute_asset_id": 3527978451,
+    "shortcut": "3QnPU1mitx",
+    "type": "image",
+    "album_id": 2586175,
+    "source": {
+      "source": "import",
+      "source_url": "https://www.w3schools.com/css/img_fjords.jpg"
+    },
+    "tags": [],
+    "metadata": {},
+    "hearts": 0,
+    "votes": 0,
+    "thumbnail": "http://media.getchute.com/media/3QnPU1mitx/75x75",
+    "url": "https://media.getchute.com/media/3QnPU1mitx",
+    "dimensions": {},
+    "user": {
+      "id": 86004443,
+      "links": {
+        "self": {
+          "href": "https://getchute.com/v2/users/86004443",
+          "title": "User Details"
+        },
+        "apps": {
+          "href": "https://getchute.com/v2/apps",
+          "title": "Apps List"
+        }
+      },
+      "created_at": "2015-05-05T11:04:29.166Z",
+      "updated_at": "2017-04-21T21:08:38.035Z",
+      "name": "olga",
+      "username": "olala00",
+      "avatar": "https://instagram.fotp1-1.fna.fbcdn.net/t51.2885-19/11906329_960233084022564_1448528159_a.jpg",
+      "profile": {
+        "title": "Software engineer"
+      },
+      "last_login": "2017-03-20T10:09:27.379Z",
+      "admin": true
+    }
+  }
+}

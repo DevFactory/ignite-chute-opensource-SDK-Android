@@ -29,6 +29,7 @@ package com.android.getchute.sdk.chutesdkandroid;
 public class Constants {
 
   public static final String DEFAULT_PER_PAGE = "50";
+  public static final String TEST_IMAGE_URL = "https://goo.gl/Q5MaKv";
 
   public static class FilePaths {
 
@@ -72,6 +73,27 @@ public class Constants {
           "albums/album_delete_response_ok.json";
       public static final String DELETE_RESPONSE_FAIL_NONEXISTENT_ALBUM =
           "albums/album_delete_response_error.json";
+    }
+
+    public static class Asset {
+
+      public static final String LIST_RESPONSE_SUCCESS = "assets/asset_list_response_ok.json";
+      public static final String LIST_RESPONSE_FAIL_MISSING_TOKEN =
+          "assets/asset_list_response_error.json";
+      public static final String GET_RESPONSE_SUCCESS = "assets/asset_get_response_ok.json";
+      public static final String GET_RESPONSE_FAIL_ALBUM_NOT_FOUND = "assets/asset_get_response_error.json";
+      public static final String IMPORT_RESPONSE_SUCCESS = "assets/asset_import_response_ok.json";
+      public static final String IMPORT_RESPONSE_FAIL_WRONG_TOKEN = "assets/asset_import_response_error.json";
+      public static final String MOVE_RESPONSE_SUCCESS = "assets/asset_move_response_ok.json";
+      public static final String MOVE_RESPONSE_FAIL_WRONG_TOKEN = "assets/asset_move_response_error.json";
+      public static final String COPY_RESPONSE_SUCCESS = "assets/asset_copy_response_ok.json";
+      public static final String COPY_RESPONSE_FAIL_MISSING_TOKEN = "assets/asset_copy_response_error.json";
+      public static final String EXIF_RESPONSE_SUCCESS = "assets/asset_exif_response_ok.json";
+      public static final String EXIF_RESPONSE_FAIL_NONEXISTENT_ASSET = "assets/asset_exif_response_error.json";
+      public static final String NEXT_PAGE_RESPONSE_SUCCESS = "assets/asset_next_page_response_ok.json";
+      public static final String NEXT_PAGE_RESPONSE_FAIL_MISSING_TOKEN = "assets/asset_next_page_response_error.json";
+      public static final String DELETE_RESPONSE_SUCCESS = "assets/asset_delete_response_ok.json";
+      public static final String DELETE_RESPONSE_FAIL_ASSET_NOT_FOUND = "assets/asset_delete_response_error.json";
     }
   }
 }

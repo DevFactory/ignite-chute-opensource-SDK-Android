@@ -24,7 +24,7 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.album;
+package com.android.getchute.sdk.chutesdkandroid.api.asset;
 
 import com.android.getchute.sdk.chutesdkandroid.model.ModelBluePrint;
 import com.android.getchute.sdk.chutesdkandroid.model.ResponseStatusModel;
@@ -32,77 +32,83 @@ import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseMode
 import io.reactivex.Observable;
 import io.reactivex.observers.TestObserver;
 import io.reactivex.schedulers.Schedulers;
+import java.util.HashMap;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class AlbumDeleteMockAdapterTest extends BaseMockAlbumAdapterTest {
+public class AssetExifMockAdapterTest extends BaseMockAssetAdapterTest {
 
-  private static final String ALBUM_ID = "2586434";
-  private static final String ALBUM_ID_ERRONEOUS = "2586174";
+  private static final String ALBUM_ID = "2586175";
+  private static final String ASSET_ID = "3517506078";
+  private static final String ASSET_ID_ERRONEOUS = "35";
 
   @Test
-  public void testAlbumDeleteCall() throws Exception {
-    Call<ResponseModel<Void>> call =
-        mockAlbumService.deleteAlbumCall(ALBUM_ID);
-    Response<ResponseModel<Void>> response = call.execute();
+  public void testAssetExifCall() throws Exception {
+    Call<ResponseModel<HashMap<String, String>>> call =
+        mockAssetService.exifCall(ALBUM_ID, ASSET_ID);
+    Response<ResponseModel<HashMap<String, String>>> response = call.execute();
+    HashMap<String, String> actual = response.body().getData();
     Assert.assertTrue(response.isSuccessful());
-    ResponseStatusModel actual = response.body().getResponse();
-    JSONAssert.assertEquals(gson.toJson(getExpectedResponseStatusModelSucceed()),
-        gson.toJson(actual), false);
+    Assert.assertEquals(200, response.body().getResponse().getCode());
+    JSONAssert.assertEquals(gson.toJson(getExpectedModel()), gson.toJson(actual), false);
   }
 
   @Test
-  public void testAlbumDeleteFailedNonexistentAlbumCall() throws Exception {
-    Call<ResponseModel<Void>> call =
-        mockFailedAlbumService.deleteAlbumCall(ALBUM_ID_ERRONEOUS);
-    Response<ResponseModel<Void>> response = call.execute();
+  public void testAssetExifFailedWrongAssetCall() throws Exception {
+    Call<ResponseModel<HashMap<String, String>>> call =
+        mockFailedAssetService.exifCall(ALBUM_ID, ASSET_ID_ERRONEOUS);
+    Response<ResponseModel<HashMap<String, String>>> response = call.execute();
     ResponseStatusModel actual = response.body().getResponse();
-    JSONAssert.assertEquals(gson.toJson(getExpectedResponseStatusModelFailed()),
-        gson.toJson(actual), false);
+    JSONAssert.assertEquals(gson.toJson(getExpectedStatusResponseModel()), gson.toJson(actual),
+        false);
   }
 
   @Test
-  public void testAlbumDeleteObserver() throws Exception {
-
-    Observable<ResponseModel<Void>> observable =
-        mockAlbumService.deleteAlbumObservable(ALBUM_ID);
-    TestObserver<ResponseModel<Void>> testObserver = observable.test();
+  public void testAssetExifObserver() throws Exception {
+    Observable<ResponseModel<HashMap<String, String>>> observable =
+        mockAssetService.exifObservable(ALBUM_ID, ASSET_ID);
+    TestObserver<ResponseModel<HashMap<String, String>>> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
         .subscribe(testObserver);
 
+    HashMap<String, String> actual = testObserver.values().get(0).getData();
     testObserver.assertComplete();
     testObserver.assertNoErrors();
-    ResponseStatusModel actual = testObserver.values().get(0).getResponse();
-    JSONAssert.assertEquals(gson.toJson(getExpectedResponseStatusModelSucceed()),
-        gson.toJson(actual), false);
+    JSONAssert.assertEquals(gson.toJson(getExpectedModel()), gson.toJson(actual), false);
     Assert.assertTrue(testObserver.isDisposed());
   }
 
   @Test
-  public void testAlbumDeleteFailedNonexistentAlbumObserver() throws Exception {
-    Observable<ResponseModel<Void>> observable =
-        mockFailedAlbumService.deleteAlbumObservable(ALBUM_ID_ERRONEOUS);
-    TestObserver<ResponseModel<Void>> testObserver = observable.test();
+  public void testAssetExifFailedWrongAssetObserver() throws Exception {
+    Observable<ResponseModel<HashMap<String, String>>> observable =
+        mockFailedAssetService.exifObservable(ALBUM_ID, ASSET_ID_ERRONEOUS);
+    TestObserver<ResponseModel<HashMap<String, String>>> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
         .subscribe(testObserver);
 
     testObserver.assertComplete();
     ResponseStatusModel actual = testObserver.values().get(0).getResponse();
-    JSONAssert.assertEquals(gson.toJson(getExpectedResponseStatusModelFailed()),
-        gson.toJson(actual), false);
+    JSONAssert.assertEquals(gson.toJson(getExpectedStatusResponseModel()), gson.toJson(actual),
+        false);
     Assert.assertTrue(testObserver.isDisposed());
   }
 
-  private ResponseStatusModel getExpectedResponseStatusModelFailed() {
-    return ModelBluePrint.createResponseStatusModel("Not Found", 404, 2,
-        "https://api.getchute.com/v2/albums/2586174", null);
+  private HashMap<String, String> getExpectedModel() {
+    HashMap<String, String> data = new HashMap<>();
+    data.put("Camera", "Nokia N95");
+    data.put("Altitude", "61");
+    data.put("GPS Date", "0000:01:01");
+    data.put("Latitude", "S 36° 52' 53.61\"");
+    data.put("Longitude", "E 174° 42' 28.48\"");
+    data.put("GPS Time (atomic clock)", "0/1, 0/1, 0/1");
+    return data;
   }
 
-  private ResponseStatusModel getExpectedResponseStatusModelSucceed() {
-    return ModelBluePrint.createResponseStatusModel(null, 200, 2,
-        "https://api.getchute.com/v2/albums/2586434", "Album Deleted");
+  private ResponseStatusModel getExpectedStatusResponseModel() {
+    return ModelBluePrint.createResponseStatusModel("Not Found", 404, 2,
+        "https://api.getchute.com/v2/albums/2586175/assets/35/exif", null);
   }
 }

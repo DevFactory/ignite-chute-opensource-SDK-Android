@@ -24,7 +24,7 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.api.album;
+package com.android.getchute.sdk.chutesdkandroid.api.asset;
 
 import com.android.getchute.sdk.chutesdkandroid.model.ModelBluePrint;
 import com.android.getchute.sdk.chutesdkandroid.model.ResponseStatusModel;
@@ -38,71 +38,61 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class AlbumDeleteMockAdapterTest extends BaseMockAlbumAdapterTest {
+public class AssetDeleteMockAdapterTest extends BaseMockAssetAdapterTest {
 
-  private static final String ALBUM_ID = "2586434";
-  private static final String ALBUM_ID_ERRONEOUS = "2586174";
+  private static final String ALBUM_ID = "2586173";
+  private static final String ASSET_ID = "3517514423";
+  private static final String ASSET_ID_ERRONEOUS = "352797845";
 
   @Test
-  public void testAlbumDeleteCall() throws Exception {
+  public void testAssetDeleteCall() throws Exception {
     Call<ResponseModel<Void>> call =
-        mockAlbumService.deleteAlbumCall(ALBUM_ID);
+        mockAssetService.deleteCall(ALBUM_ID, ASSET_ID);
     Response<ResponseModel<Void>> response = call.execute();
     Assert.assertTrue(response.isSuccessful());
-    ResponseStatusModel actual = response.body().getResponse();
-    JSONAssert.assertEquals(gson.toJson(getExpectedResponseStatusModelSucceed()),
-        gson.toJson(actual), false);
+    Assert.assertEquals(200, response.body().getResponse().getCode());
   }
 
   @Test
-  public void testAlbumDeleteFailedNonexistentAlbumCall() throws Exception {
+  public void testAssetDeleteFailedAssetNotFoundCall() throws Exception {
     Call<ResponseModel<Void>> call =
-        mockFailedAlbumService.deleteAlbumCall(ALBUM_ID_ERRONEOUS);
+        mockFailedAssetService.deleteCall(ALBUM_ID, ASSET_ID_ERRONEOUS);
     Response<ResponseModel<Void>> response = call.execute();
     ResponseStatusModel actual = response.body().getResponse();
-    JSONAssert.assertEquals(gson.toJson(getExpectedResponseStatusModelFailed()),
-        gson.toJson(actual), false);
+    JSONAssert.assertEquals(gson.toJson(getExpectedStatusResponseModel()), gson.toJson(actual),
+        false);
   }
 
   @Test
-  public void testAlbumDeleteObserver() throws Exception {
-
+  public void testAssetDeleteObserver() throws Exception {
     Observable<ResponseModel<Void>> observable =
-        mockAlbumService.deleteAlbumObservable(ALBUM_ID);
+        mockAssetService.deleteObservable(ALBUM_ID, ASSET_ID);
     TestObserver<ResponseModel<Void>> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
         .subscribe(testObserver);
 
     testObserver.assertComplete();
     testObserver.assertNoErrors();
-    ResponseStatusModel actual = testObserver.values().get(0).getResponse();
-    JSONAssert.assertEquals(gson.toJson(getExpectedResponseStatusModelSucceed()),
-        gson.toJson(actual), false);
     Assert.assertTrue(testObserver.isDisposed());
   }
 
   @Test
-  public void testAlbumDeleteFailedNonexistentAlbumObserver() throws Exception {
+  public void testAssetDeleteFailedAssetNotFoundObserver() throws Exception {
     Observable<ResponseModel<Void>> observable =
-        mockFailedAlbumService.deleteAlbumObservable(ALBUM_ID_ERRONEOUS);
+        mockFailedAssetService.deleteObservable(ALBUM_ID, ASSET_ID_ERRONEOUS);
     TestObserver<ResponseModel<Void>> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
         .subscribe(testObserver);
 
     testObserver.assertComplete();
     ResponseStatusModel actual = testObserver.values().get(0).getResponse();
-    JSONAssert.assertEquals(gson.toJson(getExpectedResponseStatusModelFailed()),
-        gson.toJson(actual), false);
+    JSONAssert.assertEquals(gson.toJson(getExpectedStatusResponseModel()), gson.toJson(actual),
+        false);
     Assert.assertTrue(testObserver.isDisposed());
   }
 
-  private ResponseStatusModel getExpectedResponseStatusModelFailed() {
+  private ResponseStatusModel getExpectedStatusResponseModel() {
     return ModelBluePrint.createResponseStatusModel("Not Found", 404, 2,
-        "https://api.getchute.com/v2/albums/2586174", null);
-  }
-
-  private ResponseStatusModel getExpectedResponseStatusModelSucceed() {
-    return ModelBluePrint.createResponseStatusModel(null, 200, 2,
-        "https://api.getchute.com/v2/albums/2586434", "Album Deleted");
+        "https://api.getchute.com/v2/albums/2586173/assets/352797845", null);
   }
 }
