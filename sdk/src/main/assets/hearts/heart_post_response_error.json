@@ -1,0 +1,9 @@
+{
+  "response": {
+    "error": "Not Found",
+    "version": 2,
+    "code": 404,
+    "method": "POST",
+    "href": "https://api.getchute.com/v2/albums/2586175/assets/35/hearts"
+  }
+}

@@ -32,9 +32,12 @@ import com.android.getchute.sdk.chutesdkandroid.api.asset.MockAssetFailedService
 import com.android.getchute.sdk.chutesdkandroid.api.asset.MockAssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.auth.MockAuthService;
 import com.android.getchute.sdk.chutesdkandroid.api.auth.MockFailedAuthService;
+import com.android.getchute.sdk.chutesdkandroid.api.heart.MockHeartFailedService;
+import com.android.getchute.sdk.chutesdkandroid.api.heart.MockHeartService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.album.AlbumService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.asset.AssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.auth.AuthService;
+import com.android.getchute.sdk.chutesdkandroid.api.service.heart.HeartService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -101,6 +104,10 @@ public class RetrofitTestService {
     return mockRetrofit.create(AssetService.class);
   }
 
+  private BehaviorDelegate<HeartService> getHeartBehaviorDelegate() {
+    return mockRetrofit.create(HeartService.class);
+  }
+
   public AuthService getMockAuthService() {
     return new MockAuthService(getAuthBehaviorDelegate());
   }
@@ -123,5 +130,13 @@ public class RetrofitTestService {
 
   public AssetService getMockFailedAssetService() {
     return new MockAssetFailedService(getAssetBehaviorDelegate());
+  }
+
+  public HeartService getMockHeartService() {
+    return new MockHeartService(getHeartBehaviorDelegate());
+  }
+
+  public HeartService getMockFailedHeartService() {
+    return new MockHeartFailedService(getHeartBehaviorDelegate());
   }
 }

@@ -1,0 +1,21 @@
+{
+  "response": {
+    "title": "Heart Details",
+    "version": 2,
+    "code": 201,
+    "method": "POST",
+    "href": "https://api.getchute.com/v2/albums/2586175/assets/3517506078/hearts"
+  },
+  "data": {
+    "id": 2230678,
+    "links": {
+      "href": "https://getchute.com/v2/hearts/yzyoavairnbwzruwcitt1493128704",
+      "title": "Heart Details"
+    },
+    "created_at": "2017-04-25T13:58:24.287Z",
+    "updated_at": "2017-04-25T13:58:24.287Z",
+    "identifier": "yzyoavairnbwzruwcitt1493128704",
+    "album_id": 2586175,
+    "asset_id": 3517506078
+  }
+}

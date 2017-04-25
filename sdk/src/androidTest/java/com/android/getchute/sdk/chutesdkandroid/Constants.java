@@ -95,5 +95,16 @@ public class Constants {
       public static final String DELETE_RESPONSE_SUCCESS = "assets/asset_delete_response_ok.json";
       public static final String DELETE_RESPONSE_FAIL_ASSET_NOT_FOUND = "assets/asset_delete_response_error.json";
     }
+
+    public static class Heart {
+
+      public static final String HEART_GET_RESPONSE_SUCCESS = "hearts/heart_get_response_ok.json";
+      public static final String HEART_GET_RESPONSE_FAIL_ASSET_NOT_FOUND = "hearts/heart_get_response_error.json";
+      public static final String HEART_POST_RESPONSE_SUCCESS = "hearts/heart_post_response_ok.json";
+      public static final String HEART_POST_RESPONSE_FAIL_ASSET_NOT_FOUND = "hearts/heart_post_response_error.json";
+      public static final String HEART_REMOVE_RESPONSE_SUCCESS = "hearts/heart_remove_response_ok.json";
+      public static final String HEART_REMOVE_RESPONSE_FAIL = "hearts/heart_remove_response_error.json";
+
+    }
   }
 }

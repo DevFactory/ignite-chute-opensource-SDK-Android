@@ -1,0 +1,12 @@
+{
+  "response": {
+    "title": "Heart Count",
+    "version": 2,
+    "code": 200,
+    "method": "GET",
+    "href": "https://api.getchute.com/v2/albums/2586175/assets/3517506078/hearts"
+  },
+  "data": {
+    "count": 1
+  }
+}
