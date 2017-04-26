@@ -106,5 +106,16 @@ public class Constants {
       public static final String HEART_REMOVE_RESPONSE_FAIL = "hearts/heart_remove_response_error.json";
 
     }
+
+    public static class Vote {
+
+      public static final String VOTE_GET_RESPONSE_SUCCESS = "votes/vote_get_response_ok.json";
+      public static final String VOTE_GET_RESPONSE_FAIL_ASSET_NOT_FOUND = "votes/vote_get_response_error.json";
+      public static final String VOTE_POST_RESPONSE_SUCCESS = "votes/vote_post_response_ok.json";
+      public static final String VOTE_POST_RESPONSE_FAIL_ASSET_NOT_FOUND = "votes/vote_post_response_error.json";
+      public static final String VOTE_REMOVE_RESPONSE_SUCCESS = "votes/vote_remove_response_ok.json";
+      public static final String VOTE_REMOVE_RESPONSE_FAIL = "votes/vote_remove_response_error.json";
+
+    }
   }
 }

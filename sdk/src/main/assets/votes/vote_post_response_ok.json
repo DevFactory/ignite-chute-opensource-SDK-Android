@@ -1,0 +1,23 @@
+{
+  "response": {
+    "title": "Vote Details",
+    "version": 2,
+    "code": 201,
+    "method": "POST",
+    "href": "https://api.getchute.com/v2/albums/2586175/assets/3517506078/votes"
+  },
+  "data": {
+    "id": 1021,
+    "links": {
+      "self": {
+        "href": "https://getchute.com/v2/votes/1021",
+        "title": "Vote Details"
+      }
+    },
+    "created_at": "2017-04-25T15:18:10.523Z",
+    "updated_at": "2017-04-25T15:18:10.523Z",
+    "identifier": "yzyoavairnbwzruwcitt1493128704",
+    "album_id": 2586175,
+    "asset_id": 3517506078
+  }
+}

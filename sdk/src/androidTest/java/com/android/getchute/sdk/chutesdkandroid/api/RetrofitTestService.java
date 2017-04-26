@@ -38,6 +38,9 @@ import com.android.getchute.sdk.chutesdkandroid.api.service.album.AlbumService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.asset.AssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.auth.AuthService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.heart.HeartService;
+import com.android.getchute.sdk.chutesdkandroid.api.service.vote.VoteService;
+import com.android.getchute.sdk.chutesdkandroid.api.vote.MockVoteFailedService;
+import com.android.getchute.sdk.chutesdkandroid.api.vote.MockVoteService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -108,6 +111,10 @@ public class RetrofitTestService {
     return mockRetrofit.create(HeartService.class);
   }
 
+  private BehaviorDelegate<VoteService> getVoteBehaviorDelegate() {
+    return mockRetrofit.create(VoteService.class);
+  }
+
   public AuthService getMockAuthService() {
     return new MockAuthService(getAuthBehaviorDelegate());
   }
@@ -138,5 +145,13 @@ public class RetrofitTestService {
 
   public HeartService getMockFailedHeartService() {
     return new MockHeartFailedService(getHeartBehaviorDelegate());
+  }
+
+  public VoteService getMockVoteService() {
+    return new MockVoteService(getVoteBehaviorDelegate());
+  }
+
+  public VoteService getMockFailedVoteService() {
+    return new MockVoteFailedService(getVoteBehaviorDelegate());
   }
 }
