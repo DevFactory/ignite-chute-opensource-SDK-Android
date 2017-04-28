@@ -81,41 +81,72 @@ public class Constants {
       public static final String LIST_RESPONSE_FAIL_MISSING_TOKEN =
           "assets/asset_list_response_error.json";
       public static final String GET_RESPONSE_SUCCESS = "assets/asset_get_response_ok.json";
-      public static final String GET_RESPONSE_FAIL_ALBUM_NOT_FOUND = "assets/asset_get_response_error.json";
+      public static final String GET_RESPONSE_FAIL_ALBUM_NOT_FOUND =
+          "assets/asset_get_response_error.json";
       public static final String IMPORT_RESPONSE_SUCCESS = "assets/asset_import_response_ok.json";
-      public static final String IMPORT_RESPONSE_FAIL_WRONG_TOKEN = "assets/asset_import_response_error.json";
+      public static final String IMPORT_RESPONSE_FAIL_WRONG_TOKEN =
+          "assets/asset_import_response_error.json";
       public static final String MOVE_RESPONSE_SUCCESS = "assets/asset_move_response_ok.json";
-      public static final String MOVE_RESPONSE_FAIL_WRONG_TOKEN = "assets/asset_move_response_error.json";
+      public static final String MOVE_RESPONSE_FAIL_WRONG_TOKEN =
+          "assets/asset_move_response_error.json";
       public static final String COPY_RESPONSE_SUCCESS = "assets/asset_copy_response_ok.json";
-      public static final String COPY_RESPONSE_FAIL_MISSING_TOKEN = "assets/asset_copy_response_error.json";
+      public static final String COPY_RESPONSE_FAIL_MISSING_TOKEN =
+          "assets/asset_copy_response_error.json";
       public static final String EXIF_RESPONSE_SUCCESS = "assets/asset_exif_response_ok.json";
-      public static final String EXIF_RESPONSE_FAIL_NONEXISTENT_ASSET = "assets/asset_exif_response_error.json";
-      public static final String NEXT_PAGE_RESPONSE_SUCCESS = "assets/asset_next_page_response_ok.json";
-      public static final String NEXT_PAGE_RESPONSE_FAIL_MISSING_TOKEN = "assets/asset_next_page_response_error.json";
+      public static final String EXIF_RESPONSE_FAIL_NONEXISTENT_ASSET =
+          "assets/asset_exif_response_error.json";
+      public static final String NEXT_PAGE_RESPONSE_SUCCESS =
+          "assets/asset_next_page_response_ok.json";
+      public static final String NEXT_PAGE_RESPONSE_FAIL_MISSING_TOKEN =
+          "assets/asset_next_page_response_error.json";
       public static final String DELETE_RESPONSE_SUCCESS = "assets/asset_delete_response_ok.json";
-      public static final String DELETE_RESPONSE_FAIL_ASSET_NOT_FOUND = "assets/asset_delete_response_error.json";
+      public static final String DELETE_RESPONSE_FAIL_ASSET_NOT_FOUND =
+          "assets/asset_delete_response_error.json";
     }
 
     public static class Heart {
 
       public static final String HEART_GET_RESPONSE_SUCCESS = "hearts/heart_get_response_ok.json";
-      public static final String HEART_GET_RESPONSE_FAIL_ASSET_NOT_FOUND = "hearts/heart_get_response_error.json";
+      public static final String HEART_GET_RESPONSE_FAIL_ASSET_NOT_FOUND =
+          "hearts/heart_get_response_error.json";
       public static final String HEART_POST_RESPONSE_SUCCESS = "hearts/heart_post_response_ok.json";
-      public static final String HEART_POST_RESPONSE_FAIL_ASSET_NOT_FOUND = "hearts/heart_post_response_error.json";
-      public static final String HEART_REMOVE_RESPONSE_SUCCESS = "hearts/heart_remove_response_ok.json";
-      public static final String HEART_REMOVE_RESPONSE_FAIL = "hearts/heart_remove_response_error.json";
-
+      public static final String HEART_POST_RESPONSE_FAIL_ASSET_NOT_FOUND =
+          "hearts/heart_post_response_error.json";
+      public static final String HEART_REMOVE_RESPONSE_SUCCESS =
+          "hearts/heart_remove_response_ok.json";
+      public static final String HEART_REMOVE_RESPONSE_FAIL =
+          "hearts/heart_remove_response_error.json";
     }
 
     public static class Vote {
 
       public static final String VOTE_GET_RESPONSE_SUCCESS = "votes/vote_get_response_ok.json";
-      public static final String VOTE_GET_RESPONSE_FAIL_ASSET_NOT_FOUND = "votes/vote_get_response_error.json";
+      public static final String VOTE_GET_RESPONSE_FAIL_ASSET_NOT_FOUND =
+          "votes/vote_get_response_error.json";
       public static final String VOTE_POST_RESPONSE_SUCCESS = "votes/vote_post_response_ok.json";
-      public static final String VOTE_POST_RESPONSE_FAIL_ASSET_NOT_FOUND = "votes/vote_post_response_error.json";
-      public static final String VOTE_REMOVE_RESPONSE_SUCCESS = "votes/vote_remove_response_ok.json";
-      public static final String VOTE_REMOVE_RESPONSE_FAIL = "votes/vote_remove_response_error.json";
+      public static final String VOTE_POST_RESPONSE_FAIL_ASSET_NOT_FOUND =
+          "votes/vote_post_response_error.json";
+      public static final String VOTE_REMOVE_RESPONSE_SUCCESS =
+          "votes/vote_remove_response_ok.json";
+      public static final String VOTE_REMOVE_RESPONSE_FAIL =
+          "votes/vote_remove_response_error.json";
+    }
 
+    public static class Tag {
+
+      public static final String TAG_GET_RESPONSE_SUCESS = "tags/tag_get_response_ok.json";
+      public static final String TAG_GET_RESPONSE_ASSET_NOT_FOUND =
+          "tags/tag_get_response_error.json";
+      public static final String TAG_POST_REQUEST_BODY = "tags/tag_post_request_ok.json";
+      public static final String TAG_POST_RESPONSE_OK = "tags/tag_post_response_ok.json";
+      public static final String TAG_POST_RESPONSE_MISSING_TOKEN =
+          "tags/tag_post_response_error.json";
+      public static final String TAG_REPLACE_RESPONSE_OK = "tags/tag_replace_response_ok.json";
+      public static final String TAG_REPLACE_RESPONSE_MISSING_TOKEN =
+          "tags/tag_replace_response_error.json";
+      public static final String TAG_DELETE_RESPONSE_OK = "tags/tag_remove_response_ok.json";
+      public static final String TAG_DELETE_RESPONSE_MISSING_TOKEN =
+          "tags/tag_remove_response_error.json";
     }
   }
 }

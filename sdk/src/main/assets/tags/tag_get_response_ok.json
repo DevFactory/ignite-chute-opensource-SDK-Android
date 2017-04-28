@@ -1,0 +1,13 @@
+{
+  "response": {
+    "title": "Tags List",
+    "version": 2,
+    "code": 200,
+    "href": "http://api.getchute.com/v2/albums/2586175/assets/3517506078/tags"
+  },
+  "data": [
+    "chute",
+    "fashion",
+    "beauty"
+  ]
+}

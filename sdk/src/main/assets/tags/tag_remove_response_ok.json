@@ -1,0 +1,11 @@
+{
+  "response": {
+    "title": "Tags Removed",
+    "version": 2,
+    "code": 200,
+    "href": "https://api.getchute.com/v2/albums/2586175/assets/3517506078/tags/fashion,beauty"
+  },
+  "data": [
+    "chute"
+  ]
+}
