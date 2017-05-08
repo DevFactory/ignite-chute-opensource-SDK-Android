@@ -1,0 +1,107 @@
+{
+  "response": {
+    "title": "Album Details",
+    "version": 2,
+    "code": 200,
+    "method": "GET",
+    "href": "https://api.getchute.com/v2/albums?page=2&per_page=2"
+  },
+  "data": [
+    {
+      "id": 2586173,
+      "links": {
+        "self": {
+          "href": "https://getchute.com/v2/albums/2586173",
+          "title": "Album Details"
+        },
+        "assets": {
+          "href": "https://getchute.com/v2/albums/2586173/assets",
+          "title": "Asset Listing"
+        }
+      },
+      "created_at": "2017-03-14T09:20:59.038Z",
+      "updated_at": "2017-04-11T00:32:01.948Z",
+      "shortcut": "aQMtbrwz",
+      "name": "New test",
+      "description": null,
+      "type": null,
+      "moderate_media": false,
+      "moderate_comments": false,
+      "has_new_assets": true,
+      "parent_id": 123456,
+      "sortable": false,
+      "user": {
+        "id": 86004443,
+        "links": {
+          "self": {
+            "href": "https://getchute.com/v2/users/86004443",
+            "title": "User Details"
+          },
+          "apps": {
+            "href": "https://getchute.com/v2/apps",
+            "title": "Apps List"
+          }
+        },
+        "created_at": "2015-05-05T11:04:29.166Z",
+        "updated_at": "2017-04-21T21:08:38.035Z",
+        "name": "Oliver Dimitrov",
+        "username": "oli2290",
+        "avatar": "https://instagram.fotp1-1.fna.fbcdn.net/t51.2885-19/11906329_960233084022564_1448528159_a.jpg",
+        "profile": {
+          "title": "Software engineer"
+        },
+        "last_login": "2017-03-20T10:09:27.379Z",
+        "admin": true
+      },
+      "cover_asset": {
+        "id": 3522218093,
+        "links": {
+          "self": {
+            "href": "https://getchute.com/v2/albums/2586173/assets/3522218093",
+            "title": "AlbumAsset Details"
+          },
+          "exif": {
+            "href": "https://getchute.com/v2/albums/2586173/assets/3522218093/exif",
+            "title": "Exif Details"
+          },
+          "geo": {
+            "href": "https://getchute.com/v2/albums/2586173/assets/3522218093/geo",
+            "title": "Geo Details"
+          },
+          "heart": {
+            "href": "https://getchute.com/v2/albums/2586173/assets/3522218093/hearts",
+            "title": "Hearts"
+          },
+          "vote": {
+            "href": "https://getchute.com/v2/albums/2586173/assets/3522218093/votes",
+            "title": "Votes"
+          }
+        },
+        "created_at": "2017-03-14T09:49:43.280Z",
+        "updated_at": "2017-04-11T21:45:27.546Z",
+        "chute_asset_id": 3522218093,
+        "shortcut": "3Q3610tmhq",
+        "type": "image",
+        "album_id": 2586173,
+        "source": {
+          "source": "import",
+          "source_url": "http%3A%2F%2Ffarm5.static.flickr.com%2F4138%2F4758470218_b0f3cf0d44.jpg"
+        },
+        "tags": [],
+        "metadata": {},
+        "hearts": 0,
+        "votes": 0,
+        "thumbnail": "http://media.getchute.com/media/3Q3610tmhq/75x75",
+        "url": "https://media.getchute.com/media/3Q3610tmhq",
+        "dimensions": {}
+      }
+    }
+  ],
+  "pagination": {
+    "current_page": 2,
+    "next_page": null,
+    "previous_page": "https://api.getchute.com/v2/albums?&page=1&per_page=2",
+    "first_page": "https://api.getchute.com/v2/albums?&per_page=2",
+    "per_page": 2
+  }
+}

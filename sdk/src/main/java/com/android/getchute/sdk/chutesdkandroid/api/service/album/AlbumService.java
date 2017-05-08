@@ -39,6 +39,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface AlbumService {
 
@@ -64,6 +65,8 @@ public interface AlbumService {
       @Path("id") String id,
       @Body AlbumRequestModel albumRequestModel);
 
+  @GET Observable<ListResponseModel<AlbumModel>> getNextPageObservable(@Url String url);
+
   /** Calls **/
 
   @POST("albums") Call<ResponseModel<AlbumModel>> createAlbumCall(
@@ -83,4 +86,6 @@ public interface AlbumService {
 
   @PUT("albums/{id}") Call<ResponseModel<AlbumModel>> updateAlbumCall(@Path("id") String id,
       @Body AlbumRequestModel albumRequestModel);
+
+  @GET Call<ListResponseModel<AlbumModel>> getNextPageCall(@Url String url);
 }

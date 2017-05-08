@@ -4,30 +4,30 @@
     "version": 2,
     "code": 200,
     "method": "POST",
-    "href": "https://api.getchute.com/v2/albums/2586173/assets/import"
+    "href": "https://api.getchute.com/v2/albums/2586175/assets/import"
   },
   "data": [
     {
       "id": 3529930322,
       "links": {
         "self": {
-          "href": "https://getchute.com/v2/albums/2586173/assets/3529930322",
+          "href": "https://getchute.com/v2/albums/2586175/assets/3529930322",
           "title": "AlbumAsset Details"
         },
         "exif": {
-          "href": "https://getchute.com/v2/albums/2586173/assets/3529930322/exif",
+          "href": "https://getchute.com/v2/albums/2586175/assets/3529930322/exif",
           "title": "Exif Details"
         },
         "geo": {
-          "href": "https://getchute.com/v2/albums/2586173/assets/3529930322/geo",
+          "href": "https://getchute.com/v2/albums/2586175/assets/3529930322/geo",
           "title": "Geo Details"
         },
         "heart": {
-          "href": "https://getchute.com/v2/albums/2586173/assets/3529930322/hearts",
+          "href": "https://getchute.com/v2/albums/2586175/assets/3529930322/hearts",
           "title": "Hearts"
         },
         "vote": {
-          "href": "https://getchute.com/v2/albums/2586173/assets/3529930322/votes",
+          "href": "https://getchute.com/v2/albums/2586175/assets/3529930322/votes",
           "title": "Votes"
         }
       },

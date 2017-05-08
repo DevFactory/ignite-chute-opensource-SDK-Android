@@ -49,13 +49,10 @@ import retrofit2.Response;
 
 public class AssetImportMockAdapterTest extends BaseMockAssetAdapterTest {
 
-  private static final String ASSET_ID = "2586173";
-  private static final String ERROR_TOKEN = "99976f13";
-
   @Test
   public void testAssetImportCall() throws Exception {
     Call<ListResponseModel<AssetModel>> call =
-        mockAssetService.importCall(ASSET_ID, getBody());
+        mockAssetService.importCall(ALBUM_ID, getBody());
     Response<ListResponseModel<AssetModel>> response = call.execute();
     AssetModel actual = response.body().getData().get(0);
     Assert.assertTrue(response.isSuccessful());
@@ -65,9 +62,9 @@ public class AssetImportMockAdapterTest extends BaseMockAssetAdapterTest {
 
   @Test
   public void testAssetImportFailedWrongTokenCall() throws Exception {
-    TokenAuthenticationProvider.getInstance().setToken(ERROR_TOKEN);
+    TokenAuthenticationProvider.getInstance().setToken(Constants.MOCK_ERROR_TOKEN);
     Call<ListResponseModel<AssetModel>> call =
-        mockFailedAssetService.importCall(ASSET_ID, getBody());
+        mockFailedAssetService.importCall(ALBUM_ID, getBody());
     Response<ListResponseModel<AssetModel>> response = call.execute();
     ResponseStatusModel actual = response.body().getResponse();
     JSONAssert.assertEquals(gson.toJson(getExpectedStatusResponseModel()), gson.toJson(actual),
@@ -77,7 +74,7 @@ public class AssetImportMockAdapterTest extends BaseMockAssetAdapterTest {
   @Test
   public void testAssetImportObserver() throws Exception {
     Observable<ListResponseModel<AssetModel>> observable =
-        mockAssetService.importObservable(ASSET_ID, getBody());
+        mockAssetService.importObservable(ALBUM_ID, getBody());
     TestObserver<ListResponseModel<AssetModel>> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
         .subscribe(testObserver);
@@ -91,7 +88,7 @@ public class AssetImportMockAdapterTest extends BaseMockAssetAdapterTest {
 
   @Test
   public void testAssetImportFailedWrongTokenObserver() throws Exception {
-    TokenAuthenticationProvider.getInstance().setToken(ERROR_TOKEN);
+    TokenAuthenticationProvider.getInstance().setToken(Constants.MOCK_ERROR_TOKEN);
     Observable<ListResponseModel<AssetModel>> observable =
         mockFailedAssetService.importObservable(ASSET_ID, getBody());
     TestObserver<ListResponseModel<AssetModel>> testObserver = observable.test();
@@ -108,23 +105,23 @@ public class AssetImportMockAdapterTest extends BaseMockAssetAdapterTest {
   private AssetModel getExpectedAssetModel() {
     LinkInfoModel self =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586173/assets/3529930322",
+            "https://getchute.com/v2/albums/2586175/assets/3529930322",
             "AlbumAsset Details");
     LinkInfoModel exif =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586173/assets/3529930322/exif",
+            "https://getchute.com/v2/albums/2586175/assets/3529930322/exif",
             "Exif Details");
     LinkInfoModel geo =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586173/assets/3529930322/geo",
+            "https://getchute.com/v2/albums/2586175/assets/3529930322/geo",
             "Geo Details");
     LinkInfoModel heart =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586173/assets/3529930322/hearts",
+            "https://getchute.com/v2/albums/2586175/assets/3529930322/hearts",
             "Hearts");
     LinkInfoModel vote =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586173/assets/3529930322/votes",
+            "https://getchute.com/v2/albums/2586175/assets/3529930322/votes",
             "Votes");
     LinkModel linkModel =
         ModelBluePrint.createLinkModel(self, null, geo, exif, heart, vote);
@@ -142,7 +139,7 @@ public class AssetImportMockAdapterTest extends BaseMockAssetAdapterTest {
 
   private ResponseStatusModel getExpectedStatusResponseModel() {
     return ModelBluePrint.createResponseStatusModel("Unauthorized", 401, 2,
-        "https://api.getchute.com/v2/albums/2586173/assets/import", null);
+        "https://api.getchute.com/v2/albums/2586175/assets/import", null);
   }
 
   private AssetRequestModel getBody() {

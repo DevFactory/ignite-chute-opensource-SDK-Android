@@ -27,11 +27,12 @@
 package com.android.getchute.sdk.chutesdkandroid.api.album;
 
 import com.android.getchute.sdk.chutesdkandroid.Constants;
+import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
-import com.android.getchute.sdk.chutesdkandroid.model.AlbumModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.LinkInfoModel;
 import com.android.getchute.sdk.chutesdkandroid.model.LinkModel;
 import com.android.getchute.sdk.chutesdkandroid.model.ModelBluePrint;
+import com.android.getchute.sdk.chutesdkandroid.model.ModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.ResponseStatusModel;
 import com.android.getchute.sdk.chutesdkandroid.model.UserModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
@@ -47,12 +48,11 @@ import retrofit2.Response;
 
 public class AlbumUpdateMockAdapterTest extends BaseMockAlbumAdapterTest {
 
-  private static final String ALBUM_ID = "2586173";
 
   @Test
   public void testAlbumUpdateCall() throws Exception {
     AlbumRequestModel albumRequestModel =
-        AlbumModelGenerator.getRequestModel(Constants.FilePaths.Album.UPDATE_REQUEST_SUCCESS);
+        ModelGenerator.Album.getRequestModel(Constants.FilePaths.Album.UPDATE_REQUEST_SUCCESS);
     Call<ResponseModel<AlbumModel>> call =
         mockAlbumService.updateAlbumCall(ALBUM_ID, albumRequestModel);
     Response<ResponseModel<AlbumModel>> response = call.execute();
@@ -64,8 +64,9 @@ public class AlbumUpdateMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumUpdateFailedMissingTokenCall() throws Exception {
+    TokenAuthenticationProvider.getInstance().setToken("");
     AlbumRequestModel albumRequestModel =
-        AlbumModelGenerator.getFailedRequestModel(Constants.FilePaths.Album.UPDATE_REQUEST_BODY_WRONG_PARAMETER);
+        ModelGenerator.Album.getFailedRequestModel(Constants.FilePaths.Album.UPDATE_REQUEST_BODY_WRONG_PARAMETER);
     Call<ResponseModel<AlbumModel>> call =
         mockFailedAlbumService.updateAlbumCall(ALBUM_ID, albumRequestModel);
     Response<ResponseModel<AlbumModel>> response = call.execute();
@@ -79,7 +80,7 @@ public class AlbumUpdateMockAdapterTest extends BaseMockAlbumAdapterTest {
   @Test
   public void testAlbumUpdateObserver() throws Exception {
     AlbumRequestModel albumRequestModel =
-        AlbumModelGenerator.getRequestModel(Constants.FilePaths.Album.UPDATE_REQUEST_SUCCESS);
+        ModelGenerator.Album.getRequestModel(Constants.FilePaths.Album.UPDATE_REQUEST_SUCCESS);
     Observable<ResponseModel<AlbumModel>> observable =
         mockAlbumService.updateAlbumObservable(ALBUM_ID, albumRequestModel);
     TestObserver<ResponseModel<AlbumModel>> testObserver = observable.test();
@@ -95,8 +96,9 @@ public class AlbumUpdateMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumUpdateFailedMissingTokenObserver() throws Exception {
+    TokenAuthenticationProvider.getInstance().setToken("");
     AlbumRequestModel albumRequestModel =
-        AlbumModelGenerator.getFailedRequestModel(Constants.FilePaths.Album.UPDATE_REQUEST_BODY_WRONG_PARAMETER);
+        ModelGenerator.Album.getFailedRequestModel(Constants.FilePaths.Album.UPDATE_REQUEST_BODY_WRONG_PARAMETER);
     Observable<ResponseModel<AlbumModel>> observable =
         mockFailedAlbumService.updateAlbumObservable(ALBUM_ID, albumRequestModel);
     TestObserver<ResponseModel<AlbumModel>> testObserver = observable.test();
@@ -112,10 +114,10 @@ public class AlbumUpdateMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   private AlbumModel getExpectedAlbumModel() {
     LinkInfoModel self =
-        ModelBluePrint.createLinkInfoModel("https://getchute.com/v2/albums/2586173",
+        ModelBluePrint.createLinkInfoModel("https://getchute.com/v2/albums/2586434",
             "Album Details");
     LinkInfoModel assets =
-        ModelBluePrint.createLinkInfoModel("https://getchute.com/v2/albums/2586173/assets",
+        ModelBluePrint.createLinkInfoModel("https://getchute.com/v2/albums/2586434/assets",
             "Asset Listing");
     LinkModel linkModel =
         ModelBluePrint.createLinkModel(self, assets, null, null, null, null);
@@ -131,6 +133,6 @@ public class AlbumUpdateMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   private ResponseStatusModel getExpectedStatusResponseModel() {
     return ModelBluePrint.createResponseStatusModel("Unauthorized", 401, 2,
-        "https://api.getchute.com/v2/albums/2586173", null);
+        "https://api.getchute.com/v2/albums/2586434", null);
   }
 }

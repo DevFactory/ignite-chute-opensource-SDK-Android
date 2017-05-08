@@ -27,6 +27,7 @@
 package com.android.getchute.sdk.chutesdkandroid.api.album;
 
 import com.android.getchute.sdk.chutesdkandroid.Constants;
+import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
 import com.android.getchute.sdk.chutesdkandroid.model.LinkInfoModel;
 import com.android.getchute.sdk.chutesdkandroid.model.LinkModel;
@@ -58,6 +59,7 @@ public class AlbumListMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumListFailedMissingTokenCall() throws Exception {
+    TokenAuthenticationProvider.getInstance().setToken("");
     Call<ListResponseModel<AlbumModel>> call =
         mockFailedAlbumService.listAlbumsCall(Constants.DEFAULT_PER_PAGE);
     Response<ListResponseModel<AlbumModel>> response = call.execute();
@@ -83,6 +85,7 @@ public class AlbumListMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumListFailedMissingTokenObserver() throws Exception {
+    TokenAuthenticationProvider.getInstance().setToken("");
     Observable<ListResponseModel<AlbumModel>> observable =
         mockFailedAlbumService.listAlbumsObservable(Constants.DEFAULT_PER_PAGE);
     TestObserver<ListResponseModel<AlbumModel>> testObserver = observable.test();

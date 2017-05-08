@@ -42,6 +42,10 @@ import org.junit.runner.RunWith;
 @LargeTest
 public abstract class BaseMockVoteAdapterTest {
 
+  protected static final String ALBUM_ID = "2586175";
+  protected static final String ASSET_ID = "3517506078";
+  protected static final String ASSET_ID_ERRONEOUS = "35";
+
   protected VoteService mockVoteService;
   protected VoteService mockFailedVoteService;
   protected Gson gson;

@@ -41,9 +41,7 @@ import retrofit2.Response;
 
 public class AssetExifMockAdapterTest extends BaseMockAssetAdapterTest {
 
-  private static final String ALBUM_ID = "2586175";
-  private static final String ASSET_ID = "3517506078";
-  private static final String ASSET_ID_ERRONEOUS = "35";
+
 
   @Test
   public void testAssetExifCall() throws Exception {
@@ -109,6 +107,6 @@ public class AssetExifMockAdapterTest extends BaseMockAssetAdapterTest {
 
   private ResponseStatusModel getExpectedStatusResponseModel() {
     return ModelBluePrint.createResponseStatusModel("Not Found", 404, 2,
-        "https://api.getchute.com/v2/albums/2586175/assets/35/exif", null);
+        "https://api.getchute.com/v2/albums/2586175/assets/352797845/exif", null);
   }
 }

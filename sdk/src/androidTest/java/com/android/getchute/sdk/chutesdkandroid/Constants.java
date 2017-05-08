@@ -30,6 +30,8 @@ public class Constants {
 
   public static final String DEFAULT_PER_PAGE = "50";
   public static final String TEST_IMAGE_URL = "https://goo.gl/Q5MaKv";
+  public static final String MOCK_OAUTH_TOKEN = "1234567890";
+  public static final String MOCK_ERROR_TOKEN = "99976f13";
 
   public static class FilePaths {
 
@@ -73,6 +75,10 @@ public class Constants {
           "albums/album_delete_response_ok.json";
       public static final String DELETE_RESPONSE_FAIL_NONEXISTENT_ALBUM =
           "albums/album_delete_response_error.json";
+      public static final String NEXT_PAGE_RESPONSE_SUCCESS =
+          "albums/album_next_page_response_ok.json";
+      public static final String NEXT_PAGE_RESPONSE_MISSING_TOKEN =
+          "albums/album_next_page_response_error.json";
     }
 
     public static class Asset {
@@ -147,6 +153,28 @@ public class Constants {
       public static final String TAG_DELETE_RESPONSE_OK = "tags/tag_remove_response_ok.json";
       public static final String TAG_DELETE_RESPONSE_MISSING_TOKEN =
           "tags/tag_remove_response_error.json";
+    }
+
+    public static class User {
+
+      public static final String USER_CURRENT_RESPONSE_SUCCESS =
+          "users/user_get_current_response_ok.json";
+      public static final String USER_CURRENT_RESPONSE_FAIL_MISSING_TOKEN =
+          "users/user_get_current_response_error.json";
+      public static final String USER_CREATE_RESPONSE_SUCCESS =
+          "users/user_create_response_ok.json";
+      public static final String USER_CREATE_RESPONSE_FAIL_EMAIL_ALREADY_TAKEN =
+          "users/user_create_response_error.json";
+      public static final String USER_CREATE_REQUEST_SUCCESS = "users/user_create_request_ok.json";
+      public static final String USER_CREATE_REQUEST_FAIL = "users/user_create_request_error.json";
+      public static final String USER_GET_RESPONSE_OK = "users/user_get_response_ok.json";
+      public static final String USER_GET_RESPONSE_FAIL_USER_NOT_FOUND =
+          "users/user_get_response_error.json";
+      public static final String USER_UPDATE_RESPONSE_SUCCESS =
+          "users/user_update_response_ok.json";
+      public static final String USER_UPDATE_RESPONSE_FAIL_MISSING_TOKEN =
+          "users/user_update_response_error.json";
+      public static final String USER_UPDATE_REQUEST = "users/user_update_request_ok.json";
     }
   }
 }

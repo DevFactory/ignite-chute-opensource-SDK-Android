@@ -44,9 +44,6 @@ import retrofit2.Response;
 
 public class AlbumGetMockAdapterTest extends BaseMockAlbumAdapterTest {
 
-  private static final String ALBUM_ID = "2586173";
-  private static final String ALBUM_ID_ERRONEOUS = "258617345";
-
   @Test
   public void testAlbumGetCall() throws Exception {
     Call<ResponseModel<AlbumModel>> call =
@@ -71,7 +68,6 @@ public class AlbumGetMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumGetObserver() throws Exception {
-
     Observable<ResponseModel<AlbumModel>> observable =
         mockAlbumService.getAlbumObservable(ALBUM_ID);
     TestObserver<ResponseModel<AlbumModel>> testObserver = observable.test();
@@ -102,10 +98,10 @@ public class AlbumGetMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   private AlbumModel getExpectedAlbumModel() {
     LinkInfoModel self =
-        ModelBluePrint.createLinkInfoModel("https://getchute.com/v2/albums/2586173",
+        ModelBluePrint.createLinkInfoModel("https://getchute.com/v2/albums/2586434",
             "Album Details");
     LinkInfoModel assets =
-        ModelBluePrint.createLinkInfoModel("https://getchute.com/v2/albums/2586173/assets",
+        ModelBluePrint.createLinkInfoModel("https://getchute.com/v2/albums/2586434/assets",
             "Asset Listing");
     LinkModel linkModel =
         ModelBluePrint.createLinkModel(self, assets, null, null, null, null);
@@ -121,6 +117,6 @@ public class AlbumGetMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   private ResponseStatusModel getExpectedStatusResponseModel() {
     return ModelBluePrint.createResponseStatusModel("Not Found", 404, 2,
-        "https://api.getchute.com/v2/albums/258617345", null);
+        "https://api.getchute.com/v2/albums/25", null);
   }
 }

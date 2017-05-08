@@ -29,7 +29,7 @@ package com.android.getchute.sdk.chutesdkandroid.api.album;
 import com.android.getchute.sdk.chutesdkandroid.Constants;
 import com.android.getchute.sdk.chutesdkandroid.api.service.album.AlbumService;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
-import com.android.getchute.sdk.chutesdkandroid.model.AlbumModelGenerator;
+import com.android.getchute.sdk.chutesdkandroid.model.ModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
 import com.android.getchute.sdk.chutesdkandroid.model.body.AlbumRequestModel;
@@ -38,6 +38,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import retrofit2.mock.BehaviorDelegate;
 
 public class MockFailedAlbumService implements AlbumService {
@@ -50,35 +51,35 @@ public class MockFailedAlbumService implements AlbumService {
 
   @Override public Observable<ResponseModel<AlbumModel>> createAlbumObservable(
       @Body AlbumRequestModel albumRequestModel) {
-    ResponseModel<AlbumModel> response = AlbumModelGenerator.getFailedResponseModel(
+    ResponseModel<AlbumModel> response = ModelGenerator.Album.getFailedResponseModel(
         Constants.FilePaths.Album.CREATE_RESPONSE_FAIL_WRONG_TOKEN);
     return delegate.returningResponse(response).createAlbumObservable(albumRequestModel);
   }
 
   @Override
   public Observable<ResponseModel<Void>> deleteAlbumObservable(@Path("album_id") String albumId) {
-    ResponseModel<Void> response = AlbumModelGenerator.getAlbumDeleteFailedResponseModel();
+    ResponseModel<Void> response = ModelGenerator.getEmptyResponseModel(Constants.FilePaths.Album.DELETE_RESPONSE_FAIL_NONEXISTENT_ALBUM);
     return delegate.returningResponse(response).deleteAlbumObservable(albumId);
   }
 
   @Override public Observable<ResponseModel<AlbumModel>> getAlbumObservable(
       @Path("album_id") String albumId) {
     ResponseModel<AlbumModel> response =
-        AlbumModelGenerator.getFailedResponseModel(Constants.FilePaths.Album.GET_RESPONSE_FAIL_NONEXISTENT_ALBUM);
+        ModelGenerator.Album.getFailedResponseModel(Constants.FilePaths.Album.GET_RESPONSE_FAIL_NONEXISTENT_ALBUM);
     return delegate.returningResponse(response).getAlbumObservable(albumId);
   }
 
   @Override public Observable<ListResponseModel<AlbumModel>> listAlbumsObservable(
       @Query("per_page") String perPage) {
     ListResponseModel<AlbumModel> response =
-        AlbumModelGenerator.getFailedListResponseModel(Constants.FilePaths.Album.LIST_RESPONSE_FAIL_MISSING_TOKEN);
+        ModelGenerator.Album.getFailedListResponseModel(Constants.FilePaths.Album.LIST_RESPONSE_FAIL_MISSING_TOKEN);
     return delegate.returningResponse(response).listAlbumsObservable(perPage);
   }
 
   @Override public Observable<ListResponseModel<AlbumModel>> listNestedAlbumsObservable(
       @Path("album_id") String albumId, @Query("per_page") String perPage) {
     ListResponseModel<AlbumModel> response =
-        AlbumModelGenerator.getListResponseModel(Constants.FilePaths.Album.NESTED_RESPONSE_FAIL_NONEXISTENT_ALBUM);
+        ModelGenerator.Album.getListResponseModel(Constants.FilePaths.Album.NESTED_RESPONSE_FAIL_NONEXISTENT_ALBUM);
     return delegate.returningResponse(response).listNestedAlbumsObservable(albumId, perPage);
   }
 
@@ -86,32 +87,38 @@ public class MockFailedAlbumService implements AlbumService {
   public Observable<ResponseModel<AlbumModel>> updateAlbumObservable(@Path("id") String id,
       @Body AlbumRequestModel albumRequestModel) {
     ResponseModel<AlbumModel> response =
-        AlbumModelGenerator.getResponseModel(Constants.FilePaths.Album.UPDATE_RESPONSE_FAIL_MISSING_TOKEN);
+        ModelGenerator.Album.getResponseModel(Constants.FilePaths.Album.UPDATE_RESPONSE_FAIL_MISSING_TOKEN);
     return delegate.returningResponse(response).createAlbumObservable(albumRequestModel);
+  }
+
+  @Override
+  public Observable<ListResponseModel<AlbumModel>> getNextPageObservable(@Url String url) {
+    ListResponseModel<AlbumModel> response = ModelGenerator.Album.getListResponseModel(Constants.FilePaths.Album.NEXT_PAGE_RESPONSE_MISSING_TOKEN);
+    return delegate.returningResponse(response).getNextPageObservable(url);
   }
 
   @Override public Call<ResponseModel<AlbumModel>> createAlbumCall(
       @Body AlbumRequestModel albumRequestModel) {
     ResponseModel<AlbumModel> response =
-        AlbumModelGenerator.getFailedResponseModel(Constants.FilePaths.Album.CREATE_RESPONSE_FAIL_WRONG_TOKEN);
+        ModelGenerator.Album.getFailedResponseModel(Constants.FilePaths.Album.CREATE_RESPONSE_FAIL_WRONG_TOKEN);
     return delegate.returningResponse(response).createAlbumCall(albumRequestModel);
   }
 
   @Override public Call<ResponseModel<Void>> deleteAlbumCall(@Path("album_id") String albumId) {
-    ResponseModel<Void> response = AlbumModelGenerator.getAlbumDeleteFailedResponseModel();
+    ResponseModel<Void> response = ModelGenerator.getEmptyResponseModel(Constants.FilePaths.Album.DELETE_RESPONSE_FAIL_NONEXISTENT_ALBUM);
     return delegate.returningResponse(response).deleteAlbumCall(albumId);
   }
 
   @Override public Call<ResponseModel<AlbumModel>> getAlbumCall(@Path("album_id") String albumId) {
     ResponseModel<AlbumModel> response =
-        AlbumModelGenerator.getFailedResponseModel(Constants.FilePaths.Album.GET_RESPONSE_FAIL_NONEXISTENT_ALBUM);
+        ModelGenerator.Album.getFailedResponseModel(Constants.FilePaths.Album.GET_RESPONSE_FAIL_NONEXISTENT_ALBUM);
     return delegate.returningResponse(response).getAlbumCall(albumId);
   }
 
   @Override
   public Call<ListResponseModel<AlbumModel>> listAlbumsCall(@Query("per_page") String perPage) {
     ListResponseModel<AlbumModel> response =
-        AlbumModelGenerator.getFailedListResponseModel(Constants.FilePaths.Album.LIST_RESPONSE_FAIL_MISSING_TOKEN);
+        ModelGenerator.Album.getFailedListResponseModel(Constants.FilePaths.Album.LIST_RESPONSE_FAIL_MISSING_TOKEN);
     return delegate.returningResponse(response).listAlbumsCall(perPage);
   }
 
@@ -119,14 +126,19 @@ public class MockFailedAlbumService implements AlbumService {
   public Call<ListResponseModel<AlbumModel>> listNestedAlbumsCall(@Path("album_id") String albumId,
       @Query("per_page") String perPage) {
     ListResponseModel<AlbumModel> response =
-        AlbumModelGenerator.getListResponseModel(Constants.FilePaths.Album.NESTED_RESPONSE_FAIL_NONEXISTENT_ALBUM);
+        ModelGenerator.Album.getListResponseModel(Constants.FilePaths.Album.NESTED_RESPONSE_FAIL_NONEXISTENT_ALBUM);
     return delegate.returningResponse(response).listNestedAlbumsCall(albumId, perPage);
   }
 
   @Override public Call<ResponseModel<AlbumModel>> updateAlbumCall(@Path("id") String id,
       @Body AlbumRequestModel albumRequestModel) {
     ResponseModel<AlbumModel> response =
-        AlbumModelGenerator.getResponseModel(Constants.FilePaths.Album.UPDATE_RESPONSE_FAIL_MISSING_TOKEN);
+        ModelGenerator.Album.getResponseModel(Constants.FilePaths.Album.UPDATE_RESPONSE_FAIL_MISSING_TOKEN);
     return delegate.returningResponse(response).createAlbumCall(albumRequestModel);
+  }
+
+  @Override public Call<ListResponseModel<AlbumModel>> getNextPageCall(@Url String url) {
+    ListResponseModel<AlbumModel> response = ModelGenerator.Album.getListResponseModel(Constants.FilePaths.Album.NEXT_PAGE_RESPONSE_MISSING_TOKEN);
+    return delegate.returningResponse(response).getNextPageCall(url);
   }
 }

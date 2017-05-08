@@ -47,9 +47,7 @@ import retrofit2.Response;
 
 public class AssetMoveMockAdapterTest extends BaseMockAssetAdapterTest {
 
-  private static final String ALBUM_ID = "2586173";
-  private static final String ASSET_ID = "3517506078";
-  private static final String NEW_ALBUM_ID = "2586175";
+
 
   @Test
   public void testAssetMoveCall() throws Exception {
@@ -143,6 +141,6 @@ public class AssetMoveMockAdapterTest extends BaseMockAssetAdapterTest {
 
   private ResponseStatusModel getExpectedStatusResponseModel() {
     return ModelBluePrint.createResponseStatusModel("Unauthorized", 401, 2,
-        "https://api.getchute.com/v2/albums/2586173/assets/3517506078/move/2586175", null);
+        "https://api.getchute.com/v2/albums/2586175/assets/3517506078/move/2586173", null);
   }
 }

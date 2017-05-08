@@ -45,9 +45,6 @@ import retrofit2.Response;
 
 public class AlbumNestedMockAdapterTest extends BaseMockAlbumAdapterTest {
 
-  private static final String ALBUM_ID = "2586175";
-  private static final String ALBUM_ID_ERRONEOUS = "25";
-
   @Test
   public void testAlbumNestedCall() throws Exception {
     Call<ListResponseModel<AlbumModel>> call =
@@ -62,7 +59,8 @@ public class AlbumNestedMockAdapterTest extends BaseMockAlbumAdapterTest {
   @Test
   public void testAlbumNestedFailedNonexistentAlbumCall() throws Exception {
     Call<ListResponseModel<AlbumModel>> call =
-        mockFailedAlbumService.listNestedAlbumsCall(ALBUM_ID_ERRONEOUS, Constants.DEFAULT_PER_PAGE);
+        mockFailedAlbumService.listNestedAlbumsCall(ALBUM_ID_ERRONEOUS,
+            Constants.DEFAULT_PER_PAGE);
     Response<ListResponseModel<AlbumModel>> response = call.execute();
     ResponseStatusModel actual = response.body().getResponse();
     JSONAssert.assertEquals(gson.toJson(getExpectedStatusResponseModel()), gson.toJson(actual),
@@ -71,7 +69,6 @@ public class AlbumNestedMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumNestedObserver() throws Exception {
-
     Observable<ListResponseModel<AlbumModel>> observable =
         mockAlbumService.listNestedAlbumsObservable(ALBUM_ID, Constants.DEFAULT_PER_PAGE);
     TestObserver<ListResponseModel<AlbumModel>> testObserver = observable.test();

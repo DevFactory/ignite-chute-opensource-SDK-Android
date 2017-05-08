@@ -1,0 +1,39 @@
+{
+  "response": {
+    "title": "User Details",
+    "version": 2,
+    "code": 201,
+    "method": "POST",
+    "href": "https://api.getchute.com/v2/users"
+  },
+  "data": {
+    "id": 143682587,
+    "links": {
+      "self": {
+        "href": "https://getchute.com/v2/users/143682587",
+        "title": "User Details"
+      },
+      "apps": {
+        "href": "https://getchute.com/v2/apps",
+        "title": "Apps List"
+      }
+    },
+    "created_at": "2017-04-28T15:06:30.118Z",
+    "updated_at": "2017-04-28T15:06:30.118Z",
+    "name": null,
+    "username": null,
+    "avatar": "https://avatars.io/gravatar/chute.test.email@gmail.com/medium",
+    "profile": null,
+    "last_login": null,
+    "client_id": "1236",
+    "oauth_token": "1234567",
+    "oauth_app": {
+      "id": 5214,
+      "name": "Chute-Login",
+      "scopes": [
+        "login"
+      ],
+      "permissions": []
+    }
+  }
+}

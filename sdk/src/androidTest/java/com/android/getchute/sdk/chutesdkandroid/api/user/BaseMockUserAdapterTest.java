@@ -24,49 +24,38 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.android.getchute.sdk.chutesdkandroid.model;
+package com.android.getchute.sdk.chutesdkandroid.api.user;
 
 import android.support.test.InstrumentationRegistry;
-import android.util.Log;
-import com.android.getchute.sdk.chutesdkandroid.FileUtil;
+import android.support.test.filters.LargeTest;
+import android.support.test.runner.AndroidJUnit4;
+import com.android.getchute.sdk.chutesdkandroid.Constants;
+import com.android.getchute.sdk.chutesdkandroid.ImmediateSchedulersRule;
 import com.android.getchute.sdk.chutesdkandroid.api.RetrofitTestService;
-import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
+import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
+import com.android.getchute.sdk.chutesdkandroid.api.service.user.UserService;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.runner.RunWith;
 
-public class VoteModelGenerator {
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public abstract class BaseMockUserAdapterTest {
 
-  private static final String TAG = VoteModelGenerator.class.getSimpleName();
-  private static Gson gson = RetrofitTestService.get().getGson();
+  protected UserService mockUserService;
+  protected UserService mockFailedUserService;
+  protected Gson gson;
 
-  /** Response **/
-  public static ResponseModel<VoteModel> getResponseModel(String fileName) {
-    ResponseModel<VoteModel> response = new ResponseModel<>();
-    try {
-      String jsonString = FileUtil.getStringFromFile(
-          InstrumentationRegistry.getContext(), fileName);
-      Type type = new TypeToken<ResponseModel<VoteModel>>() {}.getType();
-      response =
-          gson.fromJson(jsonString, type);
-    } catch (Exception e) {
-      Log.e(TAG, "Failed to create ResponseModel<HeartModel>: " + e.getMessage());
-    }
-    return response;
+  @Before
+  public void setUp() throws Exception {
+    mockUserService = RetrofitTestService.get().getMockUserService();
+    mockFailedUserService = RetrofitTestService.get().getMockFailedUserService();
+    gson = RetrofitTestService.get().getGson();
+    TokenAuthenticationProvider.init(InstrumentationRegistry.getContext());
+    TokenAuthenticationProvider.getInstance().setToken(Constants.MOCK_OAUTH_TOKEN);
   }
 
-  /** Delete album response **/
-  public static ResponseModel<Void> getVoteDeleteResponseModel(String fileName) {
-    ResponseModel<Void> response = new ResponseModel<>();
-    try {
-      String jsonString = FileUtil.getStringFromFile(
-          InstrumentationRegistry.getContext(), fileName);
-      Type type = new TypeToken<ResponseModel<Void>>() {}.getType();
-      response =
-          gson.fromJson(jsonString, type);
-    } catch (Exception e) {
-      Log.e(TAG, "Failed to create ResponseModel<Void>: " + e.getMessage());
-    }
-    return response;
-  }
+  @Rule
+  public final ImmediateSchedulersRule schedulers = new ImmediateSchedulersRule();
 }

@@ -39,9 +39,12 @@ import com.android.getchute.sdk.chutesdkandroid.api.service.asset.AssetService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.auth.AuthService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.heart.HeartService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.tag.TagService;
+import com.android.getchute.sdk.chutesdkandroid.api.service.user.UserService;
 import com.android.getchute.sdk.chutesdkandroid.api.service.vote.VoteService;
 import com.android.getchute.sdk.chutesdkandroid.api.tags.MockTagFailedService;
 import com.android.getchute.sdk.chutesdkandroid.api.tags.MockTagService;
+import com.android.getchute.sdk.chutesdkandroid.api.user.MockUserFailedService;
+import com.android.getchute.sdk.chutesdkandroid.api.user.MockUserService;
 import com.android.getchute.sdk.chutesdkandroid.api.vote.MockVoteFailedService;
 import com.android.getchute.sdk.chutesdkandroid.api.vote.MockVoteService;
 import com.google.gson.FieldNamingPolicy;
@@ -123,6 +126,10 @@ public class RetrofitTestService {
     return mockRetrofit.create(TagService.class);
   }
 
+  private BehaviorDelegate<UserService> getUserBehaviorDelegate() {
+    return mockRetrofit.create(UserService.class);
+  }
+
   public AuthService getMockAuthService() {
     return new MockAuthService(getAuthBehaviorDelegate());
   }
@@ -169,5 +176,13 @@ public class RetrofitTestService {
 
   public TagService getMockFailedTagService() {
     return new MockTagFailedService(getTagBehaviorDelegate());
+  }
+
+  public UserService getMockUserService() {
+    return new MockUserService(getUserBehaviorDelegate());
+  }
+
+  public UserService getMockFailedUserService() {
+    return new MockUserFailedService(getUserBehaviorDelegate());
   }
 }

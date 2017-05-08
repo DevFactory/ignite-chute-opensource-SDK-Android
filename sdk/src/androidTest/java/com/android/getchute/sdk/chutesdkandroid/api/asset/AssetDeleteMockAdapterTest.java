@@ -40,9 +40,7 @@ import retrofit2.Response;
 
 public class AssetDeleteMockAdapterTest extends BaseMockAssetAdapterTest {
 
-  private static final String ALBUM_ID = "2586173";
-  private static final String ASSET_ID = "3517514423";
-  private static final String ASSET_ID_ERRONEOUS = "352797845";
+
 
   @Test
   public void testAssetDeleteCall() throws Exception {
@@ -93,6 +91,6 @@ public class AssetDeleteMockAdapterTest extends BaseMockAssetAdapterTest {
 
   private ResponseStatusModel getExpectedStatusResponseModel() {
     return ModelBluePrint.createResponseStatusModel("Not Found", 404, 2,
-        "https://api.getchute.com/v2/albums/2586173/assets/352797845", null);
+        "https://api.getchute.com/v2/albums/2586175/assets/3517506078", null);
   }
 }

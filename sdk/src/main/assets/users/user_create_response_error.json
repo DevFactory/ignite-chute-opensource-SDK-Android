@@ -1,0 +1,9 @@
+{
+  "response": {
+    "error": "Email has already been taken",
+    "version": 2,
+    "code": 400,
+    "method": "POST",
+    "href": "https://api.getchute.com/v2/users"
+  }
+}

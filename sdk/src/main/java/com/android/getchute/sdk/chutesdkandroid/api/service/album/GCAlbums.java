@@ -111,8 +111,16 @@ public class GCAlbums {
      *
      * @param albumId ID of parent {@link AlbumModel}
      */
-    public static Observable<ListResponseModel<AlbumModel>> listNested(String albumId, @Nullable String perPage) {
+    public static Observable<ListResponseModel<AlbumModel>> listNested(String albumId,
+        @Nullable String perPage) {
       return RetrofitService.get().getAlbumService().listNestedAlbumsObservable(albumId, perPage);
+    }
+
+    /**
+     * @param nextPage URL of albums next page
+     */
+    public static Observable<ListResponseModel<AlbumModel>> getNextPage(String nextPage) {
+      return RetrofitService.get().getAlbumService().getNextPageObservable(nextPage);
     }
   }
 
@@ -128,7 +136,8 @@ public class GCAlbums {
      * @param coverAssetId ID of the cover {@link AssetModel}
      * @param parentId ID of the parent album.
      */
-    public static Call<ResponseModel<AlbumModel>> create(String name, String coverAssetId, String parentId) {
+    public static Call<ResponseModel<AlbumModel>> create(String name, String coverAssetId,
+        String parentId) {
       AlbumRequestModel albumRequestModel = new AlbumRequestModel();
       albumRequestModel.setName(name);
       albumRequestModel.setCoverAssetId(coverAssetId);
@@ -186,8 +195,16 @@ public class GCAlbums {
      *
      * @param albumId ID of parent {@link AlbumModel}
      */
-    public static Call<ListResponseModel<AlbumModel>> listNested(String albumId, @Nullable String perPage) {
+    public static Call<ListResponseModel<AlbumModel>> listNested(String albumId,
+        @Nullable String perPage) {
       return RetrofitService.get().getAlbumService().listNestedAlbumsCall(albumId, perPage);
+    }
+
+    /**
+     * @param nextPage URL of albums next page
+     */
+    public static Call<ListResponseModel<AlbumModel>> getNextPage(String nextPage) {
+      return RetrofitService.get().getAlbumService().getNextPageCall(nextPage);
     }
   }
 }

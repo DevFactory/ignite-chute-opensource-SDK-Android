@@ -2,7 +2,7 @@ package com.android.getchute.sdk.chutesdkandroid.api.tags;
 
 import com.android.getchute.sdk.chutesdkandroid.Constants;
 import com.android.getchute.sdk.chutesdkandroid.api.service.tag.TagService;
-import com.android.getchute.sdk.chutesdkandroid.model.TagModelGenerator;
+import com.android.getchute.sdk.chutesdkandroid.model.ModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
 import io.reactivex.Observable;
 import java.util.List;
@@ -24,7 +24,7 @@ public class MockTagFailedService implements TagService {
   public Observable<ListResponseModel<String>> addTagsObservable(@Path("album_id") String albumId,
       @Path("asset_id") String assetId, @Body Map<String, List<String>> tags) {
     ListResponseModel<String> response =
-        TagModelGenerator.getListResponseModel(
+        ModelGenerator.Tag.getListResponseModel(
             Constants.FilePaths.Tag.TAG_POST_RESPONSE_MISSING_TOKEN);
     return delegate.returningResponse(response).addTagsObservable(albumId, assetId, tags);
   }
@@ -33,7 +33,7 @@ public class MockTagFailedService implements TagService {
       @Path("album_id") String albumId, @Path("asset_id") String assetId,
       @Path("tags") String tags) {
     ListResponseModel<String> response =
-        TagModelGenerator.getListResponseModel(
+        ModelGenerator.Tag.getListResponseModel(
             Constants.FilePaths.Tag.TAG_DELETE_RESPONSE_MISSING_TOKEN);
     return delegate.returningResponse(response).removeTagsObservable(albumId, assetId, tags);
   }
@@ -42,7 +42,7 @@ public class MockTagFailedService implements TagService {
   public Observable<ListResponseModel<String>> getTagsObservable(@Path("album_id") String albumId,
       @Path("asset_id") String assetId) {
     ListResponseModel<String> response =
-        TagModelGenerator.getListResponseModel(
+        ModelGenerator.Tag.getListResponseModel(
             Constants.FilePaths.Tag.TAG_GET_RESPONSE_ASSET_NOT_FOUND);
     return delegate.returningResponse(response).getTagsObservable(albumId, assetId);
   }
@@ -51,7 +51,7 @@ public class MockTagFailedService implements TagService {
       @Path("album_id") String albumId, @Path("asset_id") String assetId,
       @Body Map<String, List<String>> tags) {
     ListResponseModel<String> response =
-        TagModelGenerator.getListResponseModel(
+        ModelGenerator.Tag.getListResponseModel(
             Constants.FilePaths.Tag.TAG_REPLACE_RESPONSE_MISSING_TOKEN);
     return delegate.returningResponse(response).addTagsObservable(albumId, assetId, tags);
   }
@@ -59,7 +59,7 @@ public class MockTagFailedService implements TagService {
   @Override public Call<ListResponseModel<String>> addTagsCall(@Path("album_id") String albumId,
       @Path("asset_id") String assetId, @Body Map<String, List<String>> tags) {
     ListResponseModel<String> response =
-        TagModelGenerator.getListResponseModel(
+        ModelGenerator.Tag.getListResponseModel(
             Constants.FilePaths.Tag.TAG_POST_RESPONSE_MISSING_TOKEN);
     return delegate.returningResponse(response).addTagsCall(albumId, assetId, tags);
   }
@@ -67,7 +67,7 @@ public class MockTagFailedService implements TagService {
   @Override public Call<ListResponseModel<String>> removeTagsCall(@Path("album_id") String albumId,
       @Path("asset_id") String assetId, @Path("tags") String tags) {
     ListResponseModel<String> response =
-        TagModelGenerator.getListResponseModel(
+        ModelGenerator.Tag.getListResponseModel(
             Constants.FilePaths.Tag.TAG_DELETE_RESPONSE_MISSING_TOKEN);
     return delegate.returningResponse(response).removeTagsCall(albumId, assetId, tags);
   }
@@ -75,7 +75,7 @@ public class MockTagFailedService implements TagService {
   @Override public Call<ListResponseModel<String>> getTagsCall(@Path("album_id") String albumId,
       @Path("asset_id") String assetId) {
     ListResponseModel<String> response =
-        TagModelGenerator.getListResponseModel(
+        ModelGenerator.Tag.getListResponseModel(
             Constants.FilePaths.Tag.TAG_GET_RESPONSE_ASSET_NOT_FOUND);
     return delegate.returningResponse(response).getTagsCall(albumId, assetId);
   }
@@ -83,7 +83,7 @@ public class MockTagFailedService implements TagService {
   @Override public Call<ListResponseModel<String>> replaceTagsCall(@Path("album_id") String albumId,
       @Path("asset_id") String assetId, @Body Map<String, List<String>> tags) {
     ListResponseModel<String> response =
-        TagModelGenerator.getListResponseModel(
+        ModelGenerator.Tag.getListResponseModel(
             Constants.FilePaths.Tag.TAG_REPLACE_RESPONSE_MISSING_TOKEN);
     return delegate.returningResponse(response).addTagsCall(albumId, assetId, tags);
   }

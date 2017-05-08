@@ -1,0 +1,9 @@
+{
+  "response": {
+    "error": "Unauthorized",
+    "version": 2,
+    "code": 401,
+    "method": "PUT",
+    "href": "https://api.getchute.com/v2/me"
+  }
+}

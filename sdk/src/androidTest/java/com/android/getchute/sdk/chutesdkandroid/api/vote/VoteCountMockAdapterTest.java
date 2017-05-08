@@ -41,10 +41,6 @@ import retrofit2.Response;
 
 public class VoteCountMockAdapterTest extends BaseMockVoteAdapterTest {
 
-  private static final String ALBUM_ID = "2586175";
-  private static final String ASSET_ID = "3517506078";
-  private static final String ASSET_ID_ERRONEOUS = "35";
-
   @Test
   public void testVoteCountCall() throws Exception {
     Call<ResponseModel<VoteModel>> call =

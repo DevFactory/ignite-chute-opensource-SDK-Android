@@ -28,8 +28,8 @@ package com.android.getchute.sdk.chutesdkandroid.api.tags;
 
 import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
 import com.android.getchute.sdk.chutesdkandroid.model.ModelBluePrint;
+import com.android.getchute.sdk.chutesdkandroid.model.ModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.ResponseStatusModel;
-import com.android.getchute.sdk.chutesdkandroid.model.TagModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ListResponseModel;
 import io.reactivex.Observable;
 import io.reactivex.observers.TestObserver;
@@ -44,13 +44,10 @@ import retrofit2.Response;
 
 public class TagPostMockAdapterTest extends BaseMockTagAdapterTest {
 
-  private static final String ALBUM_ID = "2586175";
-  private static final String ASSET_ID = "3517506078";
-
   @Test
   public void testTagPostCall() throws Exception {
     Call<ListResponseModel<String>> call =
-        mockTagService.addTagsCall(ALBUM_ID, ASSET_ID, TagModelGenerator.getRequestBody());
+        mockTagService.addTagsCall(ALBUM_ID, ASSET_ID, ModelGenerator.Tag.getRequestBody());
     Response<ListResponseModel<String>> response = call.execute();
     List<String> actual = response.body().getData();
     Assert.assertTrue(response.isSuccessful());
@@ -62,7 +59,7 @@ public class TagPostMockAdapterTest extends BaseMockTagAdapterTest {
   public void testTagPostFailedMissingTokenCall() throws Exception {
     TokenAuthenticationProvider.getInstance().setToken("");
     Call<ListResponseModel<String>> call =
-        mockFailedTagService.addTagsCall(ALBUM_ID, ASSET_ID, TagModelGenerator.getRequestBody());
+        mockFailedTagService.addTagsCall(ALBUM_ID, ASSET_ID, ModelGenerator.Tag.getRequestBody());
     Response<ListResponseModel<String>> response = call.execute();
     ResponseStatusModel actual = response.body().getResponse();
     JSONAssert.assertEquals(gson.toJson(getExpectedStatusResponseModel()), gson.toJson(actual),
@@ -72,7 +69,7 @@ public class TagPostMockAdapterTest extends BaseMockTagAdapterTest {
   @Test
   public void testTagPostObserver() throws Exception {
     Observable<ListResponseModel<String>> observable =
-        mockTagService.addTagsObservable(ALBUM_ID, ASSET_ID, TagModelGenerator.getRequestBody());
+        mockTagService.addTagsObservable(ALBUM_ID, ASSET_ID, ModelGenerator.Tag.getRequestBody());
     TestObserver<ListResponseModel<String>> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
         .subscribe(testObserver);
@@ -89,7 +86,7 @@ public class TagPostMockAdapterTest extends BaseMockTagAdapterTest {
     TokenAuthenticationProvider.getInstance().setToken("");
     Observable<ListResponseModel<String>> observable =
         mockFailedTagService.addTagsObservable(ALBUM_ID, ASSET_ID,
-            TagModelGenerator.getRequestBody());
+            ModelGenerator.Tag.getRequestBody());
     TestObserver<ListResponseModel<String>> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
         .subscribe(testObserver);

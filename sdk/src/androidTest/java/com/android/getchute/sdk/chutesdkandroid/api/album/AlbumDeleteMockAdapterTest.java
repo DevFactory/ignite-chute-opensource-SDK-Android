@@ -40,9 +40,6 @@ import retrofit2.Response;
 
 public class AlbumDeleteMockAdapterTest extends BaseMockAlbumAdapterTest {
 
-  private static final String ALBUM_ID = "2586434";
-  private static final String ALBUM_ID_ERRONEOUS = "2586174";
-
   @Test
   public void testAlbumDeleteCall() throws Exception {
     Call<ResponseModel<Void>> call =
@@ -66,7 +63,6 @@ public class AlbumDeleteMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumDeleteObserver() throws Exception {
-
     Observable<ResponseModel<Void>> observable =
         mockAlbumService.deleteAlbumObservable(ALBUM_ID);
     TestObserver<ResponseModel<Void>> testObserver = observable.test();
@@ -98,7 +94,7 @@ public class AlbumDeleteMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   private ResponseStatusModel getExpectedResponseStatusModelFailed() {
     return ModelBluePrint.createResponseStatusModel("Not Found", 404, 2,
-        "https://api.getchute.com/v2/albums/2586174", null);
+        "https://api.getchute.com/v2/albums/25", null);
   }
 
   private ResponseStatusModel getExpectedResponseStatusModelSucceed() {

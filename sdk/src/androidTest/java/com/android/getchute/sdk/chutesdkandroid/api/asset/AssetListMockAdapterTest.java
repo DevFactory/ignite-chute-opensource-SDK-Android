@@ -47,12 +47,10 @@ import retrofit2.Response;
 
 public class AssetListMockAdapterTest extends BaseMockAssetAdapterTest {
 
-  private String albumId = "2586175";
-
   @Test
   public void testAssetListCall() throws Exception {
     Call<ListResponseModel<AssetModel>> call =
-        mockAssetService.listCall(albumId, Constants.DEFAULT_PER_PAGE, null, null, null, null);
+        mockAssetService.listCall(ALBUM_ID, Constants.DEFAULT_PER_PAGE, null, null, null, null);
     Response<ListResponseModel<AssetModel>> response = call.execute();
     AssetModel actual = response.body().getData().get(0);
     Assert.assertTrue(response.isSuccessful());
@@ -64,7 +62,7 @@ public class AssetListMockAdapterTest extends BaseMockAssetAdapterTest {
   public void testAssetListFailedMissingTokenCall() throws Exception {
     TokenAuthenticationProvider.getInstance().setToken("");
     Call<ListResponseModel<AssetModel>> call =
-        mockFailedAssetService.listCall(albumId, Constants.DEFAULT_PER_PAGE, null, null, null,
+        mockFailedAssetService.listCall(ALBUM_ID, Constants.DEFAULT_PER_PAGE, null, null, null,
             null);
     Response<ListResponseModel<AssetModel>> response = call.execute();
     ResponseStatusModel actual = response.body().getResponse();
@@ -75,7 +73,7 @@ public class AssetListMockAdapterTest extends BaseMockAssetAdapterTest {
   @Test
   public void testAssetListObserver() throws Exception {
     Observable<ListResponseModel<AssetModel>> observable =
-        mockAssetService.listObservable(albumId, Constants.DEFAULT_PER_PAGE, null, null, null,
+        mockAssetService.listObservable(ALBUM_ID, Constants.DEFAULT_PER_PAGE, null, null, null,
             null);
     TestObserver<ListResponseModel<AssetModel>> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
@@ -92,7 +90,7 @@ public class AssetListMockAdapterTest extends BaseMockAssetAdapterTest {
   public void testAssetListFailedMissingTokenObserver() throws Exception {
     TokenAuthenticationProvider.getInstance().setToken("");
     Observable<ListResponseModel<AssetModel>> observable =
-        mockFailedAssetService.listObservable(albumId, Constants.DEFAULT_PER_PAGE, null, null, null,
+        mockFailedAssetService.listObservable(ALBUM_ID, Constants.DEFAULT_PER_PAGE, null, null, null,
             null);
     TestObserver<ListResponseModel<AssetModel>> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())

@@ -42,10 +42,6 @@ import retrofit2.Response;
 
 public class TagGetMockAdapterTest extends BaseMockTagAdapterTest {
 
-  private static final String ALBUM_ID = "2586175";
-  private static final String ASSET_ID = "3517506078";
-  private static final String ASSET_ID_ERRONEOUS = "35";
-
   @Test
   public void testTagGetCall() throws Exception {
     Call<ListResponseModel<String>> call =

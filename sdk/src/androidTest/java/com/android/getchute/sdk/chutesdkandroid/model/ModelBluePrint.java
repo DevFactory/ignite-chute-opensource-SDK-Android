@@ -1,12 +1,15 @@
 package com.android.getchute.sdk.chutesdkandroid.model;
 
 import android.text.TextUtils;
+import com.android.getchute.sdk.chutesdkandroid.model.body.ProfileRequestModel;
+import com.android.getchute.sdk.chutesdkandroid.model.body.UserRequestModel;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModelBluePrint {
 
-  public static LinkModel createLinkModel(LinkInfoModel self, LinkInfoModel assets, LinkInfoModel geo, LinkInfoModel exif, LinkInfoModel heart, LinkInfoModel vote) {
+  public static LinkModel createLinkModel(LinkInfoModel self, LinkInfoModel assets,
+      LinkInfoModel geo, LinkInfoModel exif, LinkInfoModel heart, LinkInfoModel vote) {
     LinkModel linkModel = new LinkModel();
     if (self != null) { linkModel.setSelf(self); }
     if (assets != null) { linkModel.setAssets(assets); }
@@ -82,5 +85,21 @@ public class ModelBluePrint {
     responseStatusModel.setHref(href);
     if (!TextUtils.isEmpty(title)) { responseStatusModel.setTitle(title); }
     return responseStatusModel;
+  }
+
+  public static UserRequestModel createUserRequestModel(String email, String name, String username,
+      String company,
+      String title, String password, String confirmPassword) {
+    UserRequestModel userRequestModel = new UserRequestModel();
+    userRequestModel.setEmail(email);
+    userRequestModel.setName(name);
+    userRequestModel.setUsername(username);
+    ProfileRequestModel profileRequestModel = new ProfileRequestModel();
+    profileRequestModel.setCompany(company);
+    profileRequestModel.setTitle(title);
+    userRequestModel.setProfile(profileRequestModel);
+    userRequestModel.setPassword(password);
+    userRequestModel.setConfirmPassword(confirmPassword);
+    return userRequestModel;
   }
 }

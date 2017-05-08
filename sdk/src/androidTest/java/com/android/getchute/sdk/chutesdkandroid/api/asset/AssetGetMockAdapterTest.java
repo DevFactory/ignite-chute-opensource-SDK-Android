@@ -45,10 +45,6 @@ import retrofit2.Response;
 
 public class AssetGetMockAdapterTest extends BaseMockAssetAdapterTest {
 
-  private static final String ALBUM_ID = "2586175";
-  private static final String ASSET_ID = "3527978451";
-  private static final String ASSET_ID_ERRONEOUS = "352797845";
-
   @Test
   public void testAssetGetCall() throws Exception {
     Call<ResponseModel<AssetModel>> call =
@@ -103,23 +99,23 @@ public class AssetGetMockAdapterTest extends BaseMockAssetAdapterTest {
   private AssetModel getExpectedAssetModel() {
     LinkInfoModel self =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586175/assets/3527978451",
+            "https://getchute.com/v2/albums/2586175/assets/3517506078",
             "AlbumAsset Details");
     LinkInfoModel exif =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586175/assets/3527978451/exif",
+            "https://getchute.com/v2/albums/2586175/assets/3517506078/exif",
             "Exif Details");
     LinkInfoModel geo =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586175/assets/3527978451/geo",
+            "https://getchute.com/v2/albums/2586175/assets/3517506078/geo",
             "Geo Details");
     LinkInfoModel heart =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586175/assets/3527978451/hearts",
+            "https://getchute.com/v2/albums/2586175/assets/3517506078/hearts",
             "Hearts");
     LinkInfoModel vote =
         ModelBluePrint.createLinkInfoModel(
-            "https://getchute.com/v2/albums/2586175/assets/3527978451/votes",
+            "https://getchute.com/v2/albums/2586175/assets/3517506078/votes",
             "Votes");
     LinkModel linkModel =
         ModelBluePrint.createLinkModel(self, null, geo, exif, heart, vote);
@@ -128,7 +124,7 @@ public class AssetGetMockAdapterTest extends BaseMockAssetAdapterTest {
         "https://instagram.fotp1-1.fna.fbcdn.net/t51.2885-19/11906329_960233084022564_1448528159_a.jpg",
         "2017-03-20T10:09:27.379Z", true);
     AssetModel assetModel =
-        ModelBluePrint.createAssetModel("3527978451", linkModel, "2017-03-30T10:54:36.615Z",
+        ModelBluePrint.createAssetModel("3517506078", linkModel, "2017-03-30T10:54:36.615Z",
             "2017-04-18T16:52:33.405Z", "3QnPU1mitx", "image", "3527978451",
             new ArrayList<String>(), 0, 0, "http://media.getchute.com/media/3QnPU1mitx/75x75",
             "https://media.getchute.com/media/3QnPU1mitx", userModel);

@@ -27,11 +27,12 @@
 package com.android.getchute.sdk.chutesdkandroid.api.album;
 
 import com.android.getchute.sdk.chutesdkandroid.Constants;
+import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
 import com.android.getchute.sdk.chutesdkandroid.model.AlbumModel;
-import com.android.getchute.sdk.chutesdkandroid.model.AlbumModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.LinkInfoModel;
 import com.android.getchute.sdk.chutesdkandroid.model.LinkModel;
 import com.android.getchute.sdk.chutesdkandroid.model.ModelBluePrint;
+import com.android.getchute.sdk.chutesdkandroid.model.ModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.ResponseStatusModel;
 import com.android.getchute.sdk.chutesdkandroid.model.UserModel;
 import com.android.getchute.sdk.chutesdkandroid.model.base.response.ResponseModel;
@@ -50,7 +51,7 @@ public class AlbumCreateMockAdapterTest extends BaseMockAlbumAdapterTest {
   @Test
   public void testAlbumCreateCall() throws Exception {
     AlbumRequestModel albumRequestModel =
-        AlbumModelGenerator.getRequestModel(Constants.FilePaths.Album.CREATE_REQUEST_BODY_NAME);
+        ModelGenerator.Album.getRequestModel(Constants.FilePaths.Album.CREATE_REQUEST_BODY_NAME);
     Call<ResponseModel<AlbumModel>> call =
         mockAlbumService.createAlbumCall(albumRequestModel);
     Response<ResponseModel<AlbumModel>> response = call.execute();
@@ -62,8 +63,9 @@ public class AlbumCreateMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumCreateFailedWrongTokenCall() throws Exception {
+    TokenAuthenticationProvider.getInstance().setToken(Constants.MOCK_ERROR_TOKEN);
     AlbumRequestModel albumRequestModel =
-        AlbumModelGenerator.getFailedRequestModel(Constants.FilePaths.Album.CREATE_REQUEST_BODY_PARENT_ID);
+        ModelGenerator.Album.getFailedRequestModel(Constants.FilePaths.Album.CREATE_REQUEST_BODY_PARENT_ID);
     Call<ResponseModel<AlbumModel>> call =
         mockFailedAlbumService.createAlbumCall(albumRequestModel);
     Response<ResponseModel<AlbumModel>> response = call.execute();
@@ -76,7 +78,7 @@ public class AlbumCreateMockAdapterTest extends BaseMockAlbumAdapterTest {
   @Test
   public void testAlbumCreateObserver() throws Exception {
     AlbumRequestModel albumRequestModel =
-        AlbumModelGenerator.getRequestModel(Constants.FilePaths.Album.CREATE_REQUEST_BODY_NAME);
+        ModelGenerator.Album.getRequestModel(Constants.FilePaths.Album.CREATE_REQUEST_BODY_NAME);
     Observable<ResponseModel<AlbumModel>> observable =
         mockAlbumService.createAlbumObservable(albumRequestModel);
     TestObserver<ResponseModel<AlbumModel>> testObserver = observable.test();
@@ -92,8 +94,9 @@ public class AlbumCreateMockAdapterTest extends BaseMockAlbumAdapterTest {
 
   @Test
   public void testAlbumCreateFailedWrongTokenObserver() throws Exception {
+    TokenAuthenticationProvider.getInstance().setToken(Constants.MOCK_ERROR_TOKEN);
     AlbumRequestModel albumRequestModel =
-        AlbumModelGenerator.getFailedRequestModel(Constants.FilePaths.Album.CREATE_REQUEST_BODY_PARENT_ID);
+        ModelGenerator.Album.getFailedRequestModel(Constants.FilePaths.Album.CREATE_REQUEST_BODY_PARENT_ID);
     Observable<ResponseModel<AlbumModel>> observable =
         mockFailedAlbumService.createAlbumObservable(albumRequestModel);
     TestObserver<ResponseModel<AlbumModel>> testObserver = observable.test();

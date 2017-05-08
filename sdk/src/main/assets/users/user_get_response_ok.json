@@ -1,0 +1,29 @@
+{
+  "response": {
+    "title": "User Details",
+    "version": 2,
+    "code": 200,
+    "method": "GET",
+    "href": "https://api.getchute.com/v2/users/1"
+  },
+  "data": {
+    "id": 1,
+    "links": {
+      "self": {
+        "href": "https://getchute.com/v2/users/1",
+        "title": "User Details"
+      },
+      "apps": {
+        "href": "https://getchute.com/v2/apps",
+        "title": "Apps List"
+      }
+    },
+    "created_at": "2011-09-21T15:14:38.000Z",
+    "updated_at": "2012-03-07T22:55:27.000Z",
+    "name": "Gaurav Sharma",
+    "username": "Gaurav Sharma",
+    "avatar": "http://graph.facebook.com/100000725980873/picture?type=square",
+    "profile": null,
+    "last_login": null
+  }
+}

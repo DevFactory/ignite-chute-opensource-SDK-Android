@@ -29,6 +29,7 @@ package com.android.getchute.sdk.chutesdkandroid.api.heart;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
+import com.android.getchute.sdk.chutesdkandroid.Constants;
 import com.android.getchute.sdk.chutesdkandroid.ImmediateSchedulersRule;
 import com.android.getchute.sdk.chutesdkandroid.api.RetrofitTestService;
 import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
@@ -42,6 +43,10 @@ import org.junit.runner.RunWith;
 @LargeTest
 public abstract class BaseMockHeartAdapterTest {
 
+  protected static final String ALBUM_ID = "2586175";
+  protected static final String ASSET_ID = "3517506078";
+  protected static final String ASSET_ID_ERRONEOUS = "35";
+
   protected HeartService mockHeartService;
   protected HeartService mockFailedHeartService;
   protected Gson gson;
@@ -52,6 +57,7 @@ public abstract class BaseMockHeartAdapterTest {
     mockFailedHeartService = RetrofitTestService.get().getMockFailedHeartService();
     gson = RetrofitTestService.get().getGson();
     TokenAuthenticationProvider.init(InstrumentationRegistry.getContext());
+    TokenAuthenticationProvider.getInstance().setToken(Constants.MOCK_OAUTH_TOKEN);
   }
 
   @Rule

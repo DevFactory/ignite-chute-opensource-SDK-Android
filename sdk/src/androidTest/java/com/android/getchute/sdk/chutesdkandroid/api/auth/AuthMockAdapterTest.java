@@ -26,15 +26,18 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.api.auth;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.filters.SmallTest;
 import android.support.test.runner.AndroidJUnit4;
+import com.android.getchute.sdk.chutesdkandroid.Constants;
 import com.android.getchute.sdk.chutesdkandroid.ImmediateSchedulersRule;
 import com.android.getchute.sdk.chutesdkandroid.api.RetrofitTestService;
+import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
 import com.android.getchute.sdk.chutesdkandroid.api.service.auth.AuthService;
-import com.android.getchute.sdk.chutesdkandroid.model.LoginModelGenerator;
 import com.android.getchute.sdk.chutesdkandroid.model.LoginRequestModel;
 import com.android.getchute.sdk.chutesdkandroid.model.LoginResponseModel;
+import com.android.getchute.sdk.chutesdkandroid.model.ModelGenerator;
 import io.reactivex.Observable;
 import io.reactivex.observers.TestObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -57,30 +60,25 @@ public class AuthMockAdapterTest {
   public void init() throws Exception {
     mockAuthService = RetrofitTestService.get().getMockAuthService();
     mockFailedAuthService = RetrofitTestService.get().getMockFailedAuthService();
+    TokenAuthenticationProvider.init(InstrumentationRegistry.getContext());
+    TokenAuthenticationProvider.getInstance().setToken(Constants.MOCK_OAUTH_TOKEN);
   }
 
   @Test
   public void testAuthLoginCall() throws Exception {
-    LoginRequestModel loginRequestModel = LoginModelGenerator.getRequestModel();
-
+    LoginRequestModel loginRequestModel = ModelGenerator.Login.getRequestModel();
     Call<LoginResponseModel> call = mockAuthService.loginCall(loginRequestModel);
     Response<LoginResponseModel> response = call.execute();
-
     Assert.assertTrue(response.isSuccessful());
-    Assert.assertEquals("1234567890abcd", response.body().getAccessToken());
-    Assert.assertEquals("bearer", response.body().getTokenType());
+    checkSuccessfulResult(response.body().getAccessToken(), response.body().getTokenType());
   }
 
   @Test
   public void testFailedAuthLoginCall() throws Exception {
-    LoginRequestModel loginRequestModel = LoginModelGenerator.getFailedRequestModel();
+    LoginRequestModel loginRequestModel = ModelGenerator.Login.getFailedRequestModel();
     Call<LoginResponseModel> call = mockFailedAuthService.loginCall(loginRequestModel);
     Response<LoginResponseModel> response = call.execute();
-
-    Assert.assertEquals("invalid_resource_owner", response.body().getError());
-    Assert.assertEquals(
-        "The provided resource owner credentials are not valid, or resource owner cannot be found",
-        response.body().getErrorDescription());
+    checkFailedResult(response.body().getError(), response.body().getErrorDescription());
   }
 
   @Rule
@@ -88,36 +86,42 @@ public class AuthMockAdapterTest {
 
   @Test
   public void testAuthLoginObserver() throws Exception {
-    LoginRequestModel loginRequestModel = LoginModelGenerator.getRequestModel();
-
+    LoginRequestModel loginRequestModel = ModelGenerator.Login.getRequestModel();
     Observable<LoginResponseModel> observable =
         mockAuthService.loginObservable(loginRequestModel);
     TestObserver<LoginResponseModel> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
         .subscribe(testObserver);
-
     testObserver.assertComplete();
     testObserver.assertNoErrors();
-    Assert.assertEquals("1234567890abcd", testObserver.values().get(0).getAccessToken());
-    Assert.assertEquals("bearer", testObserver.values().get(0).getTokenType());
+    checkSuccessfulResult(testObserver.values().get(0).getAccessToken(),
+        testObserver.values().get(0).getTokenType());
     Assert.assertTrue(testObserver.isDisposed());
   }
 
   @SmallTest
   public void testFailedAuthLoginObserver() throws Exception {
-    LoginRequestModel loginRequestModel = LoginModelGenerator.getFailedRequestModel();
-
+    LoginRequestModel loginRequestModel = ModelGenerator.Login.getFailedRequestModel();
     Observable<LoginResponseModel> observable =
         mockFailedAuthService.loginObservable(loginRequestModel);
     TestObserver<LoginResponseModel> testObserver = observable.test();
     observable.subscribeOn(Schedulers.io())
         .subscribe(testObserver);
-
     testObserver.assertComplete();
-    Assert.assertEquals("invalid_resource_owner", testObserver.values().get(0).getError());
-    Assert.assertEquals(
-        "The provided resource owner credentials are not valid, or resource owner cannot be found",
+    checkFailedResult(testObserver.values().get(0).getError(),
         testObserver.values().get(0).getErrorDescription());
     Assert.assertTrue(testObserver.isDisposed());
+  }
+
+  private void checkSuccessfulResult(String accessToken, String tokenType) {
+    Assert.assertEquals("1234567890abcd", accessToken);
+    Assert.assertEquals("bearer", tokenType);
+  }
+
+  private void checkFailedResult(String error, String description) {
+    Assert.assertEquals("invalid_resource_owner", error);
+    Assert.assertEquals(
+        "The provided resource owner credentials are not valid, or resource owner cannot be found",
+        description);
   }
 }

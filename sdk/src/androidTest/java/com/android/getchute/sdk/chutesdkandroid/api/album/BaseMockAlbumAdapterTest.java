@@ -26,10 +26,13 @@
  **/
 package com.android.getchute.sdk.chutesdkandroid.api.album;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
+import com.android.getchute.sdk.chutesdkandroid.Constants;
 import com.android.getchute.sdk.chutesdkandroid.ImmediateSchedulersRule;
 import com.android.getchute.sdk.chutesdkandroid.api.RetrofitTestService;
+import com.android.getchute.sdk.chutesdkandroid.api.authentication.TokenAuthenticationProvider;
 import com.android.getchute.sdk.chutesdkandroid.api.service.album.AlbumService;
 import com.google.gson.Gson;
 import org.junit.Before;
@@ -40,6 +43,9 @@ import org.junit.runner.RunWith;
 @LargeTest
 public abstract class BaseMockAlbumAdapterTest {
 
+  protected static final String ALBUM_ID = "2586434";
+  protected static final String ALBUM_ID_ERRONEOUS = "25";
+
   protected AlbumService mockAlbumService;
   protected AlbumService mockFailedAlbumService;
   protected Gson gson;
@@ -49,6 +55,8 @@ public abstract class BaseMockAlbumAdapterTest {
     mockAlbumService = RetrofitTestService.get().getMockAlbumService();
     mockFailedAlbumService = RetrofitTestService.get().getMockFailedAlbumService();
     gson = RetrofitTestService.get().getGson();
+    TokenAuthenticationProvider.init(InstrumentationRegistry.getContext());
+    TokenAuthenticationProvider.getInstance().setToken(Constants.MOCK_OAUTH_TOKEN);
   }
 
   @Rule

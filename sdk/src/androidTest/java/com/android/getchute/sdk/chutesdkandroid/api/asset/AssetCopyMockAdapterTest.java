@@ -46,10 +46,6 @@ import retrofit2.Response;
 
 public class AssetCopyMockAdapterTest extends BaseMockAssetAdapterTest {
 
-  private static final String ALBUM_ID = "2586175";
-  private static final String ASSET_ID = "3517506078";
-  private static final String NEW_ALBUM_ID = "2586173";
-
   @Test
   public void testAssetCopyCall() throws Exception {
     Call<ResponseModel<AssetModel>> call =
