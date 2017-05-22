@@ -10,4 +10,5 @@
     <string name="snackbar_response_success">Successfully executed request</string>
     <string name="snackbar_response_error">An error occurred, please try again</string>
     <string name="snackbar_empty_token">The token is empty</string>
+    <string name="execute_request">Execute Request</string>
 </resources>

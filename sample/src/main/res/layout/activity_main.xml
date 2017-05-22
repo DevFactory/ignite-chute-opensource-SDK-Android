@@ -11,7 +11,7 @@
     <Button android:id="@+id/buttonExecuteRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Execute Request"
+        android:text="@string/execute_request"
         android:layout_gravity="center"/>
 
 </LinearLayout>

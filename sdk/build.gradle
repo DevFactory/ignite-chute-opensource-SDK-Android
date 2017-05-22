@@ -20,7 +20,7 @@ ext {
 
     developerId = 'olgalazarova'
     developerName = 'Olga Lazarova'
-    developerEmail = 'olahla@email.com'
+    developerEmail = 'olahla@gmail.com'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
@@ -61,7 +61,6 @@ android {
 
 install {
     repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
         pom {
             project {
                 packaging 'aar'
