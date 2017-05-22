@@ -22,7 +22,7 @@ Then, add the SDK as a project dependency.
 
 ```
 dependencies {
-    compile 'com.getchute.android.sdk.v2:library:2.5.8'
+    compile 'com.chute.sdk.android:sdk:1.0.0'
   }
 ```
 
