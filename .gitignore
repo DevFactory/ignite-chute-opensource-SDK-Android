@@ -47,3 +47,5 @@ local.properties
 # that don't belong under version control
 # can be added to
 local
+bintray.gradle
+install.gradle
