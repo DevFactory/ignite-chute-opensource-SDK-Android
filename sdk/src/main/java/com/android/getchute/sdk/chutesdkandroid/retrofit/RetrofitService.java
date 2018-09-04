@@ -48,19 +48,29 @@ public class RetrofitService {
   private static RetrofitService instance;
   private Retrofit retrofit;
 
-  private RetrofitService() {
-    createRetrofit();
+  private RetrofitService(final String baseUrl) {
+    createRetrofit(baseUrl);
   }
 
-  public static RetrofitService get() {
+  /**
+   * Create singleton and get it. Warning: if instance was already created with another endpoint
+   * this method will return old instance
+   * @param baseUrl endpoint
+   * @return instance
+   */
+  public static RetrofitService get(final String baseUrl) {
     if (instance == null) {
       synchronized (RetrofitService.class) {
         if (instance == null) {
-          instance = new RetrofitService();
+          instance = new RetrofitService(baseUrl);
         }
       }
     }
     return instance;
+  }
+
+  public static RetrofitService get() {
+    return get(Endpoints.BASE_URL);
   }
 
   private Gson gson() {
@@ -69,12 +79,12 @@ public class RetrofitService {
     return gson;
   }
 
-  private Retrofit createRetrofit() {
+  private Retrofit createRetrofit(final String baseUrl) {
     Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson()))
         .client(authClient().build())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-    retrofit = retrofitBuilder.baseUrl(Endpoints.BASE_URL)
+    retrofit = retrofitBuilder.baseUrl(baseUrl)
         .build();
     return retrofit;
   }
