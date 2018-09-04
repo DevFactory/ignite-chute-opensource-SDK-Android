@@ -28,5 +28,7 @@ package com.android.getchute.sdk.chutesdkandroid;
 
 public class Endpoints {
 
-  public static String BASE_URL = "https://api.getchute.com/v2/";
+  @SuppressWarnings("ConstantConditions")
+  public static String BASE_URL
+          = BuildConfig.CHUTE_API_URL.equals("null") ? "https://api.getchute.com/v2/" : BuildConfig.CHUTE_API_URL;
 }
