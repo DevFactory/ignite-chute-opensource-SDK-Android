@@ -1,4 +1,31 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        nexus(MavenPublication) {
+            groupId 'com.chute.sdk.android'
+            artifactId 'sdk'
+            version '1.0.1'
+            artifact(sourceJar)
+            artifact("$buildDir/outputs/aar/sdk-release.aar")
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username "${nexus_username}"
+                password "${nexus_password}"
+            }
+            url "https://nexus.devfactory.com/repository/chute-apk"
+        }
+    }
+}
 
 android {
     compileSdkVersion 25
@@ -16,10 +43,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'CHUTE_API_URL', "\"${System.env.CHUTE_API_URL}\""
-        }
-        debug {
-            initWith release
         }
     }
     packagingOptions {
