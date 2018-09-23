@@ -25,8 +25,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 package com.android.getchute.sdk.chutesdkandroid;
+import com.android.getchute.sdk.chutesdkandroid.BuildConfig;
 
 public class Endpoints {
 
-  public static String BASE_URL = "https://api.getchute.com/v2/";
+  public static String BASE_URL = BuildConfig.BASE_URL;
 }
