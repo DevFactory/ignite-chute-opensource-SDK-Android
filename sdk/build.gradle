@@ -16,7 +16,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-			buildConfigField 'String', 'BASE_URL', "\"${System.env.BASE_URL}\""
+			buildConfigField 'String', 'BASE_URL', "\"${System.env.PATH}\""
         }
         debug {
 			initWith release

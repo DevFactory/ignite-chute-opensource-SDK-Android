@@ -73,7 +73,8 @@ pipeline {
 			params.each { param ->
 				script {
 					stg = param['ENV']
-					sh "export BASE_URL=param['BASE_URL']"
+					sh "export BASE_URL=${param['BASE_URL']}"
+                    sh "echo BASE_URL=${param['BASE_URL']}"
 			        sh "./gradlew :sdk:build"
 				}
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'service.tc.nexus', usernameVariable: 'tcUser', passwordVariable: 'tcPassword']]) {
