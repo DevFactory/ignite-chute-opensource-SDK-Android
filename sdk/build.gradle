@@ -12,11 +12,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+    def baseUrlResult = project.hasProperty('baseUrl') ?  baseUrl : "https://api.getchute.com"
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-			buildConfigField 'String', 'BASE_URL', "\"${System.env.BASE_URL}\""
+			buildConfigField 'String', 'BASE_URL', "\"${baseUrlResult}\""
         }
         debug {
 			initWith release
