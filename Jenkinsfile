@@ -73,8 +73,8 @@ pipeline {
 			params.each { param ->
 				script {
 					stg = param['ENV']
-					sh "export BASE_URL=${param['BASE_URL']}"
-			        sh "./gradlew :sdk:build"
+                    sh "echo BASE_URL=${param['BASE_URL']}"
+			        sh "./gradlew :sdk:build -PbaseUrl=\"${param['BASE_URL']}\""
 				}
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'service.tc.nexus', usernameVariable: 'tcUser', passwordVariable: 'tcPassword']]) {
               		sh "mvn deploy:deploy-file -DgroupId=com.getchute.android.sdk.v1 -DartifactId=library -Dclassifier=${stg} -Dversion=1.0.${BUILD_NUMBER}  -DgeneratePom=true -Dpackaging=aar -DrepositoryId=chute-apk -Durl=https://${tcUser}:${tcPassword}@nexus.devfactory.com/repository/chute-apk -Dfile=sdk/build/outputs/aar/sdk-release.aar"
