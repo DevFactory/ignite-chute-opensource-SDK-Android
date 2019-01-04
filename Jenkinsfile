@@ -10,15 +10,15 @@ def stg = ""
 
 def params = [
     [
-		BASE_URL: "https://dev.getchute.com",
+		BASE_URL: "https://dev.getchute.com/v2/",
 		ENV: "qa"
 	], 
     [
-		BASE_URL: "https://staging.getchute.com",
+		BASE_URL: "https://staging.getchute.com/v2/",
 		ENV: "staging"
 	], 
     [
-		BASE_URL: "https://api.getchute.com", 
+		BASE_URL: "https://api.getchute.com/v2/",
 		ENV: "prod"
 	] 
 ]
